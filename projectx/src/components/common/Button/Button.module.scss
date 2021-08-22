@@ -1,0 +1,34 @@
+@import '../../../styles/settings.scss';
+
+.component {
+    width: $button-width;
+}
+
+.linkText {
+    font-family: $klee-one-font;
+    color: $button-text-color;
+    font-size: $button-font-size;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.linkDirection {
+    margin: 10px;
+}
+
+
+.linkBtn {
+    text-align: center;
+    width: $button-width;
+    line-height: $button-line-heigth;
+    height: $button-heigth;
+    background-image: linear-gradient($button-lighter, $button-darker);
+    border-radius: $button-radius;
+    border: 2px solid black;
+    margin: 10px;
+    transition: .5s linear;
+}
+
+.linkBtn:active {
+    background-image: linear-gradient($button-lighter, #70a1ff);
+}
