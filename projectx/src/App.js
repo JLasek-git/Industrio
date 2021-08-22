@@ -10,6 +10,7 @@ import StockMarket1 from "./components/views/StockMarket/StockMarket1/StockMarke
 import StockMarket2 from "./components/views/StockMarket/StockMarket2/StockMarket2";
 
 
+
 function App() {
   return (
     <div className="App">
