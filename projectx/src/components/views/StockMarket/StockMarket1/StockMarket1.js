@@ -4,9 +4,9 @@ import Button from '../../../common/Button/Button';
 
 const StockMarket1 = () => (
     <div>
-        <Button buttonText='StockMarket2' link='/stockmarket/stockmarket2' />
+        <Button buttonText='Employees' iconName='chart-line' link='/stockmarket/stockmarket2' />
         <h1>
-            StockMarket1 view
+            Materials market view
         </h1>
     </div>
 );
