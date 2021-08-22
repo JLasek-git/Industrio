@@ -6,8 +6,8 @@ import styles from './StockMarket.module.scss';
 const StockMarket = () => (
     <div>
         <nav className={styles.navigation}>
-            <Button buttonText='StockMarket1' link='/stockmarket/stockmarket1' />
-            <Button buttonText='StockMarket2' link='/stockmarket/stockmarket2' />
+            <Button buttonText='Materials' iconName='chart-line' link='/stockmarket/stockmarket1' />
+            <Button buttonText='Employees' iconName='chart-line' link='/stockmarket/stockmarket2' />
         </nav>
         <h1>StockMarket view</h1>
     </div>

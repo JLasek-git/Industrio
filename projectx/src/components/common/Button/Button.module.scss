@@ -13,7 +13,8 @@
 }
 
 .linkDirection {
-    margin: 10px;
+    margin-left: 10px;
+    transition: .3s linear;
 }
 
 
@@ -25,10 +26,14 @@
     background-image: linear-gradient($button-lighter, $button-darker);
     border-radius: $button-radius;
     border: 2px solid black;
-    margin: 10px;
+    margin: $button-margin;
     transition: .5s linear;
 }
 
 .linkBtn:active {
     background-image: linear-gradient($button-lighter, #70a1ff);
+}
+
+.linkBtn:hover .linkDirection {
+    margin-left: 20px;
 }

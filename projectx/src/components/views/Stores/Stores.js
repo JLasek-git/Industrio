@@ -4,8 +4,8 @@ import Button from '../../common/Button/Button';
 const Stores = () => (
     <div>
         <nav>
-            <Button buttonText='Store 1' link='/stores/store2' />
-            <Button buttonText='Store 2' link='/stores/store2' />
+            <Button buttonText='Materials' iconName='shopping-basket' link='/stores/store1' />
+            <Button buttonText='Employees' iconName='shopping-basket' link='/stores/store2' />
         </nav>
         <h1>Stores view</h1>
         
