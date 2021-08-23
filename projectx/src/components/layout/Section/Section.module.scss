@@ -1,0 +1,9 @@
+@import '../../../styles/global.scss';
+
+.component { 
+    display: flex;
+    justify-content: flex-start;
+    width: 100vw;
+    height: 100vh;
+    margin: 10px;
+}
