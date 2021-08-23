@@ -1,12 +1,13 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import styles from './PageNav.module.scss';
+import Button from '../../common/Button/Button';
 
 const PageNav = () => (
     <nav>
-        <NavLink exact to={`${process.env.PUBLIC_URL}/`} activeClassName='active'>Game</NavLink>
-        <NavLink to={`${process.env.PUBLIC_URL}/gameoptions`} activeClassName='active'>Options</NavLink>
-        <NavLink to={`${process.env.PUBLIC_URL}/stockmarket`} activeClassName='active'>Market</NavLink>
-        <NavLink to={`${process.env.PUBLIC_URL}/stores`} activeClassName='active'>Stores</NavLink>
+        <Button className={styles.mainNavBtn} buttonText='Game' iconName='gamepad' link='/'  />
+        <Button className={styles.mainNavBtn} buttonText='Market' iconName='chart-line' link='/stockmarket' />
+        <Button className={styles.mainNavBtn} buttonText='Stores' iconName='shopping-basket' link='/stores' />
+        <Button className={styles.mainNavBtn} buttonText='Options' iconName='cogs' link='/gameoptions' />
     </nav>
 );
 

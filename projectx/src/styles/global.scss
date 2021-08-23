@@ -1,0 +1,19 @@
+@import './settings.scss';
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-image: linear-gradient($button-darker, $button-lighter);
+  font-family: $klee-one-font;
+  overflow: hidden;
+}
+
+a, a:hover, a:visited {
+  text-decoration: none;
+}
+
+

@@ -1,10 +1,12 @@
 import React from 'react';
+import Section from '../../layout/Section/Section';
 import styles from './Game.module.scss';
 
 const Game = () => (
-    <div className={styles.component}>
-        <h1>Game view</h1>
-    </div>
+    <Section>
+        <div className={styles.gameWindow}>
+        </div>
+    </Section>
 );
 
 export default Game;

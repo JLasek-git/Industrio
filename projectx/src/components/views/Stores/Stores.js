@@ -1,15 +1,14 @@
 import React from 'react';
-import styles from './Store.module.scss';
 import Button from '../../common/Button/Button';
+import Section from '../../layout/Section/Section';
+import styles from './Store.module.scss';
+
 const Stores = () => (
-    <div>
-        <nav>
-            <Button buttonText='Materials' iconName='shopping-basket' link='/stores/store1' />
-            <Button buttonText='Employees' iconName='shopping-basket' link='/stores/store2' />
-        </nav>
+    <Section>
+            <Button buttonText='Machines' iconName='shopping-basket' link='/stores/store1' />
+            <Button buttonText='Buildings' iconName='shopping-basket' link='/stores/store2' />
         <h1>Stores view</h1>
-        
-    </div>
+    </Section>
 );
 
 export default Stores;

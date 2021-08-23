@@ -1,11 +1,10 @@
-@import '../../../styles/settings.scss';
+@import '../../../styles/global.scss';
 
 .component {
     width: $button-width;
 }
 
 .linkText {
-    font-family: $klee-one-font;
     color: $button-text-color;
     font-size: $button-font-size;
     text-decoration: none;
@@ -19,9 +18,11 @@
 
 
 .linkBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     width: $button-width;
-    line-height: $button-line-heigth;
     height: $button-heigth;
     background-image: linear-gradient($button-lighter, $button-darker);
     border-radius: $button-radius;
