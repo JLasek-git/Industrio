@@ -1,16 +1,18 @@
-import React from 'react';
-import PageNav from '../PageNav/PageNav';
-import PropTypes from 'prop-types';
+import React from "react";
+import PageNav from "../PageNav/PageNav";
+import ProfilePanel from "../ProfilePanel/ProfilePanel";
+import PropTypes from "prop-types";
 
-const MainLayout = ({children}) => (
-    <div>
-        <PageNav />
-        {children}
-    </div>
+const MainLayout = ({ children }) => (
+  <div>
+    <PageNav />
+    <ProfilePanel />
+    {children}
+  </div>
 );
 
 MainLayout.propTypes = {
-    children: PropTypes.node,
+  children: PropTypes.node,
 };
 
 export default MainLayout;
