@@ -11,6 +11,7 @@ import StockMarket2 from "./components/views/StockMarket/StockMarket2/StockMarke
 
 
 
+
 function App() {
   return (
     <div className="App">

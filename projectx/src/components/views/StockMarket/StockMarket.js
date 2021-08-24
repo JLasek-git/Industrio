@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '../../common/Button/Button';
 import Section from '../../layout/Section/Section';
 import styles from './StockMarket.module.scss';
-import GameWindow from '../../common/GameWindow/GameWindow';
+import GameWindow from '../../layout/GameWindow/GameWindow';
 
 const StockMarket = () => (
     <Section>

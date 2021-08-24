@@ -6,7 +6,7 @@ import styles from './GameOptions.module.scss';
 const GameOptions = () => (
     <Section>
         <GameWindow>
-            
+            <h1>GameOptions view</h1>
         </GameWindow>
     </Section>
 );

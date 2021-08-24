@@ -1,6 +1,6 @@
 import React from 'react';
 import Section from '../../layout/Section/Section';
-import GameWindow from '../../common/GameWindow/GameWindow';
+import GameWindow from '../../layout/GameWindow/GameWindow';
 import styles from './Game.module.scss';
 import image from '../../../images/mockupPhoto.jpg';
 

@@ -5,14 +5,14 @@
 }
 
 .linkText {
-    color: $button-text-color;
+    color: $color-white-text;
     font-size: $button-font-size;
     text-decoration: none;
     font-weight: 600;
 }
 
 .linkDirection {
-    margin-left: 10px;
+    margin-left: $basic-maring;
     transition: .3s linear;
 }
 
@@ -24,7 +24,7 @@
     text-align: center;
     width: $button-width;
     height: $button-heigth;
-    background-image: linear-gradient($button-lighter, $button-darker);
+    background-image: linear-gradient($blue-lighter, $blue-darker);
     border-radius: $button-radius;
     border: 2px solid black;
     margin: $button-margin;
@@ -32,7 +32,7 @@
 }
 
 .linkBtn:active {
-    background-image: linear-gradient($button-lighter, #70a1ff);
+    background-image: linear-gradient($blue-lighter, $color-grayish-blue);
 }
 
 .linkBtn:hover .linkDirection {
