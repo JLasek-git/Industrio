@@ -1,0 +1,78 @@
+@import "../../../styles/global.scss";
+
+.profilePanel {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 350px;
+  height: 80px;
+  color: $color-white-text;
+  border: 2px solid black;
+  background-color: rgba($color: #000000, $alpha: 0.3);
+  border-radius: $basic-radius;
+  top: 1%;
+  right: 1%;
+  cursor: default;
+}
+
+.playerInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 80%;
+}
+
+.avatar {
+  border-radius: 50%;
+  border: 2px solid black;
+  margin-left: 10px;
+  background-color: blanchedalmond;
+  width: 70px;
+  height: 70px;
+  overflow: hidden;
+
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.money {
+  color: $color-white-text;
+
+  & span.moneyCount {
+    margin-left: 10px;
+  }
+}
+
+.experience {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  height: 25px;
+  background-image: linear-gradient(to right, green 50%, white 0);
+  color: #c6cacf;
+  border: 2px solid black;
+  border-radius: $basic-radius;
+
+  & .levelInfo {
+    background-color: rgba($color: #000000, $alpha: 0);
+  }
+
+  & .experienceAmount {
+    display: none;
+  }
+
+  &:hover .levelInfo {
+    display: none;
+  }
+
+  &:hover .experienceAmount {
+    display: inline;
+  }
+}

@@ -1,8 +1,8 @@
-@import '../../../styles/global.scss';
+@import "../../../styles/global.scss";
 
-nav{
-    position: absolute;
-    display: flex;
-    align-items: center;
-    margin: $basic-maring;
-};
+nav.mainNavBar {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  margin: $basic-maring;
+}

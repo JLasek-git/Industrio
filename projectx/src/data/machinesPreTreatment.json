@@ -1,0 +1,84 @@
+[
+    {
+        "id": "impact-crusher",
+        "name": "Impact Crusher",
+        "price": 10000,
+        "requirement": 0,
+        "type": "crusher",
+        "application": "pre-treatment-of-ore",
+        "performance": 1.5
+    },
+
+    {
+        "id": "jaw-crusher",
+        "name": "Jaw Crusher",
+        "price": 20000,
+        "requirement": 10,
+        "type": "crusher",
+        "application": "pre-treatment-of-ore",
+        "performance": 2.5
+    },
+
+    {
+        "id": "cone-crusher",
+        "name": "Cone Crusher",
+        "price": 35000,
+        "requirement": 20,
+        "type": "crusher",
+        "application": "pre-treatment-of-ore",
+        "performance": 5
+    },
+
+    {
+        "id": "hammer-crusher",
+        "name": "Hammer Crusher",
+        "price": 50000,
+        "requirement": 30,
+        "type": "crusher",
+        "application": "pre-treatment-of-ore",
+        "performance": 8
+    },
+
+    {
+        "id": "ball-drum-mill",
+        "name": "Ball drum mill",
+        "price": 100000,
+        "requirement": 40,
+        "type": "mill",
+        "application": "pre-treatment-of-ore",
+        "performance": 15
+    },
+
+    {
+        "id": "rod-drum-mill",
+        "name": "Rod drum mill",
+        "price": 180000,
+        "requirement": 70,
+        "type": "mill",
+        "application": "pre-treatment-of-ore",
+        "performance": 25
+    },
+
+    {
+        "id": "drum-screen",
+        "name": "Drum screen",
+        "price": 250000,
+        "requirement": 100,
+        "type": "screens-and-separators",
+        "application": "pre-treatment-of-ore",
+        "performance": 75
+    },
+
+    {
+        "id": "magnetic-separator",
+        "name": "Magnetic separator",
+        "price": 650000,
+        "requirement": 150,
+        "type": "screens-and-separators",
+        "application": "pre-treatment-of-ore",
+        "performance": 200
+    }
+    
+
+    
+]

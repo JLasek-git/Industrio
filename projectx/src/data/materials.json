@@ -1,0 +1,17 @@
+[
+    {
+        "id": "iron-ore",
+        "name": "Iron ore",
+        "price": 100,
+        "durability": 300,
+        "experience": 7.5
+    },
+
+    {
+        "id": "iron-ore-concentrate",
+        "name": "Iron ore concentrate",
+        "price": 200,
+        "durability": 450,
+        "experience": 7.5
+    }
+]

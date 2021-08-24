@@ -1,6 +1,8 @@
-@import './settings.scss';
+@import "./settings.scss";
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -12,8 +14,8 @@ body {
   overflow: hidden;
 }
 
-a, a:hover, a:visited {
+a,
+a:hover,
+a:visited {
   text-decoration: none;
 }
-
-
