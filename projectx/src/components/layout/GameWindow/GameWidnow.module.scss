@@ -1,16 +1,18 @@
+@import '../../../styles/global.scss';
+
 .gameWindow{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: blanchedalmond;
+    background-color: $color-light-gray;
     width: 80%;
     height: 80%;
     object-fit: cover;
     overflow: hidden;
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    border-radius: 25px;
-    border: 5px solid #2f3542;
+    border-radius: $basic-radius;
+    border: 5px solid $color-dark-gray;
 
     & img {
         width: 100%;
