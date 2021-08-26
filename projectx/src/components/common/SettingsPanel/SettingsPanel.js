@@ -45,7 +45,7 @@ function SettingsPanel(props) {
                     /* here we're passing changed values to reducer. Values are calculated before set timeout function. In this part of code, we only changing them in Redux state */
                     props.setMaterialQuantityUp(playerReceivedMaterialAfterProduction);
                     props.setMachineState(false);
-                },(materialDurability / machinePerformance) * 1000 );
+                },((materialDurability / machinePerformance) * 1000) * pickedAmount );
             }
 
             /* if machine is still working player can't start second work*/
