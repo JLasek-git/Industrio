@@ -6,6 +6,8 @@ import { setTime } from "../../../redux/playerRedux";
 
 function SettingsPanel(props) {
   const amountValue = useRef();
+
+  /* state used only in form */
   const [currentMaterialValue, setCurrentValue] = useState(1);
   const [currentProductionCost, setCurrentCost] = useState(0);
   const [currentProductionTime, setCurrentTime] = useState(0);
@@ -43,7 +45,9 @@ function SettingsPanel(props) {
         playerUsedEquipmentMaterialQuantity - pickedAmount;
       const productionDuration =
         (materialDurability / machinePerformance) * 1000 * pickedAmount;
+
       let counter = productionDuration;
+
       /* if whole production cost which depends on calculation playerActualMoney - productionCosts is less than 0 it means player don't have enough money to proceed*/
       if (
         playerMoneyAfterProduction < 0 ||
@@ -61,6 +65,7 @@ function SettingsPanel(props) {
           props.setMachineState(false);
         }, productionDuration);
 
+        /* counter which shows time to end of production */
         const counterInterval = setInterval(() => {
           counter -= 1000;
           props.setTime(counter);
@@ -75,6 +80,8 @@ function SettingsPanel(props) {
       alert("Machine is still working!");
     }
   }
+
+  /* Handler for range form, which allow us to show currentCost, currentAmount of items and currentTime to produce*/
 
   function changeHandler(playerInfo, event) {
     event.preventDefault();
