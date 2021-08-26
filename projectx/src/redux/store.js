@@ -22,6 +22,7 @@ const initialState = {
           application: "pre-treatment-of-ore",
           performance: 100,
           work: false,
+          timeDuration: 0,
         },
       },
 
@@ -47,6 +48,7 @@ const initialState = {
       },
     },
   },
+
   materialsInfo: materials,
   machinesInfo: machinesPreTreatment,
 };
