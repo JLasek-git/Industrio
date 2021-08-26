@@ -10,10 +10,12 @@ const ProfilePanel = (props) => (
       <img src={avatar} alt="avatar"></img>
     </div>
     <div className={styles.playerInfo}>
-      <div className={styles.playerNickname}>MistrzMarqs</div>
+      <div className={styles.playerNickname}>{props.playerInfo.nickname}</div>
       <div className={styles.experience}>
         <span className={styles.levelInfo}>Level 1</span>
-        <span className={styles.experienceAmount}>2000/4000</span>
+        <span className={styles.experienceAmount}>
+          {props.playerInfo.experience}/4000
+        </span>
       </div>
       <div className={styles.money}>
         <span className={styles.moneyCount}>${props.playerInfo.money}</span>
