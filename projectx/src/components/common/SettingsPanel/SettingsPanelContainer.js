@@ -1,4 +1,4 @@
-import { setMoney, setMaterialQuantity, getAllPlayerInfo } from "../../../redux/playerRedux";
+import { setMoney, setMaterialQuantityUp, setMaterialQuantityDown, setMachineState, getAllPlayerInfo } from "../../../redux/playerRedux";
 import SettingsPanel from "./SettingsPanel";
 import { connect } from 'react-redux';
 
@@ -8,7 +8,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     setMoney: moneyAmount => dispatch(setMoney(moneyAmount)),
-    setMaterialQuantity: materialQuantity => dispatch(setMaterialQuantity(materialQuantity)),
+    setMaterialQuantityUp: receivedMaterialAmount => dispatch(setMaterialQuantityUp(receivedMaterialAmount)),
+    setMaterialQuantityDown: usedMaterialAmount => dispatch(setMaterialQuantityDown(usedMaterialAmount)),
+    setMachineState: machineState => dispatch(setMachineState(machineState)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SettingsPanel);

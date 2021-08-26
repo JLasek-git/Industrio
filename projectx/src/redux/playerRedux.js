@@ -8,16 +8,20 @@ const reducerName = 'playerInfo';
 const createActionName = name => `app/${reducerName}/${name}`;
 
 // action types
-export const SET_MATERIAL_QUANTITY = createActionName('SET_MATERIAL_QUANTITY');
+export const SET_MATERIAL_QUANTITY_UP = createActionName('SET_MATERIAL_QUANTITY_UP');
+export const SET_MATERIAL_QUANTITY_DOWN = createActionName('SET_MATERIAL_QUANTITY_DOWN');
 export const SET_MONEY = createActionName('SET_MONEY');
+export const SET_MACHINE_STATE = createActionName('SET_MACHINE_STATE');
 
 // action creators
-export const setMaterialQuantity = payload => ({ payload, type: SET_MATERIAL_QUANTITY });
+export const setMaterialQuantityUp = payload => ({ payload, type: SET_MATERIAL_QUANTITY_UP });
+export const setMaterialQuantityDown = payload => ({ payload, type: SET_MATERIAL_QUANTITY_DOWN });
 export const setMoney = payload => ({ payload, type: SET_MONEY });
+export const setMachineState = payload => ({ payload, type: SET_MACHINE_STATE });
 
 export default function reducer(statePart = [], action = {}) {
     switch (action.type) {
-        case SET_MATERIAL_QUANTITY:
+        case SET_MATERIAL_QUANTITY_UP:
             return {
                 ...statePart,
                 equipment: {
@@ -31,6 +35,37 @@ export default function reducer(statePart = [], action = {}) {
                    }
                 }
             };
+
+        case SET_MATERIAL_QUANTITY_DOWN:
+            return {
+                ...statePart,
+                equipment: {
+                    ...statePart.equipment,
+                    materials: {
+                        ...statePart.equipment.materials,
+                        ironOre: {
+                            ...statePart.equipment.materials.ironOre,
+                            quantity: action.payload,
+                        }
+                    }
+                }
+            };
+
+        case SET_MACHINE_STATE:
+            return {
+                ...statePart,
+                equipment: {
+                    ...statePart.equipment,
+                    machines: {
+                        ...statePart.equipment.machines,
+                        impactCrusher: {
+                            ...statePart.equipment.machines.impactCrusher,
+                            work: action.payload,
+                        }
+                    }
+                }
+            };
+
         case SET_MONEY:
             return{
                 ...statePart,

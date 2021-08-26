@@ -1,5 +1,4 @@
 import { combineReducers, createStore } from 'redux';
-import player from '../data/player.json';
 import materials from '../data/materials.json';
 import machinesPreTreatment from '../data/machinesPreTreatment.json';
 
@@ -10,8 +9,8 @@ import playerReducer from './playerRedux'
 const initialState = {
     playerInfo: {
         nickname: 'Player 1',
-        experience: '2000',
-        money: '300000',
+        experience: 2000,
+        money: 7000,
         equipment: {
             machines: {
                 impactCrusher: {
@@ -33,7 +32,7 @@ const initialState = {
                     price: 100,
                     durability: 300,
                     experience: 7.5,
-                    quantity: 25
+                    quantity: 500
                 },
 
                 ironOreConcentrate: {

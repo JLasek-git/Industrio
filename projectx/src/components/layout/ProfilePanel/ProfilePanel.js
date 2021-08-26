@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styles from "./ProfilePanel.module.scss";
 import avatar from "../../../images/avatarMockup.jpg";
 
-const ProfilePanel = () => (
+const ProfilePanel = (props) => (
   <div className={styles.profilePanel}>
     <div className={styles.avatarContainer}></div>
     <div className={styles.avatar}>
@@ -16,7 +16,7 @@ const ProfilePanel = () => (
         <span className={styles.experienceAmount}>2000/4000</span>
       </div>
       <div className={styles.money}>
-        <span className={styles.moneyCount}>$30 000 000</span>
+        <span className={styles.moneyCount}>${props.playerInfo.money}</span>
       </div>
     </div>
   </div>
