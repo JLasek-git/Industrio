@@ -1,10 +1,14 @@
-import React, { useRef }from 'react';
+import React, { useRef, useState }from 'react';
 import styles from './SettingsPanel.module.scss';
 import Icon from '../Icon/Icon';
+import Button from '../../common/Button/Button';
 
 function SettingsPanel(props) {
 
     const amountValue = useRef();
+    const [currentMaterialValue, setCurrentValue] = useState();
+    const [currentProductionCost, setCurrentCost] = useState(0);
+    const [currentProductionTime, setCurrentTime] = useState(0);
 
     function submitHandler(playerInfo, event){
         event.preventDefault();
@@ -13,7 +17,7 @@ function SettingsPanel(props) {
         const playerUsedEquipmentMaterialQuantity = playerInfo.equipment.materials.ironOre.quantity;
         const playerReceivedEquipmentMaterialQuantity =  playerInfo.equipment.materials.ironOreConcentrate.quantity;
         const playerMoney = playerInfo.money;
-        const singleProductionCost = 7;
+        const singleProductionCost = playerInfo.equipment.materials.ironOre.productionCost;
         const materialDurability = playerInfo.equipment.materials.ironOre.durability;
         const machinePerformance = playerInfo.equipment.machines.impactCrusher.performance;
         const machineState = playerInfo.equipment.machines.impactCrusher.work;
@@ -41,7 +45,7 @@ function SettingsPanel(props) {
                     /* here we're passing changed values to reducer. Values are calculated before set timeout function. In this part of code, we only changing them in Redux state */
                     props.setMaterialQuantityUp(playerReceivedMaterialAfterProduction);
                     props.setMachineState(false);
-                },(materialDurability / machinePerformance) * 1000 );
+                },((materialDurability / machinePerformance) * 1000) * pickedAmount );
             }
 
             /* if machine is still working player can't start second work*/
@@ -50,16 +54,39 @@ function SettingsPanel(props) {
         }
     }
     
+    function changeHandler(playerInfo, event){
+        event.preventDefault();
+
+        const singleProductionCost = playerInfo.equipment.materials.ironOre.productionCost;
+        const pickedAmount = amountValue.current.value;
+        const materialDurability = playerInfo.equipment.materials.ironOre.durability;
+        const machinePerformance = playerInfo.equipment.machines.impactCrusher.performance;
+
+        const timeToProduct = (materialDurability / machinePerformance) * pickedAmount;
+        const costToProduct = (pickedAmount * singleProductionCost);
+        setCurrentValue(pickedAmount);
+        setCurrentCost(costToProduct);
+        setCurrentTime(timeToProduct);
+
+    } 
+
     return(
         <div className={styles.panelCard}>
             <div className={styles.closeBtn} onClick={props.handleClose}>
                 <Icon name='times' />
             </div>
             <form className={styles.parametersForm} onSubmit={(event) => submitHandler(props.playerInfo, event)}>
-                <label htmlFor='amount'>How many you want to use?</label>
-                <input type='range' name='amount' id='amount' min='1' max='1000' ref={amountValue} />
-                <button>Start</button>
+                <label htmlFor='amount'>
+                    How many you want to use?
+                    <p>{currentMaterialValue}</p>
+                </label>
+                <input type='range' name='amount' id='amount' min='1' max='1000' onChange={(event) => changeHandler(props.playerInfo, event)} ref={amountValue} />
+                <Button btnText='Start'/>
             </form>
+            <span>
+                <p>It will cost you: {currentProductionCost}$</p>
+                <p>It will take: {currentProductionTime}sec</p>
+            </span>
         </div>
     );
 }

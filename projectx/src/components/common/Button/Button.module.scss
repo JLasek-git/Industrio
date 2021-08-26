@@ -1,39 +1,30 @@
-@import "../../../styles/global.scss";
+@import '../../../styles/global.scss';
 
-.component {
-  width: $button-width;
+.btn {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: $button-width;
+    height: $button-heigth;
+    background-image: linear-gradient($blue-lighter, $blue-darker);
+    border-radius: $button-radius;
+    border: 2px solid black;
+    margin: $button-margin;
+    color: $color-white-text;
+    font-size: $button-font-size;
+    font-weight: 600;
+    transition: 0.3s linear;
+  }
+
+.btn:active {
+    background-image: linear-gradient($blue-lighter, $color-grayish-blue);
 }
 
-.linkText {
-  color: $color-white-text;
-  font-size: $button-font-size;
-  text-decoration: none;
-  font-weight: 600;
+.btnText {
+    transition: .2s linear;
 }
 
-.linkDirection {
-  margin-left: $basic-maring;
-  transition: 0.3s linear;
-}
-
-.linkBtn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  width: $button-width;
-  height: $button-heigth;
-  background-image: linear-gradient($blue-lighter, $blue-darker);
-  border-radius: $button-radius;
-  border: 2px solid black;
-  margin: $button-margin;
-  transition: 0.5s linear;
-}
-
-.linkBtn:active {
-  background-image: linear-gradient($blue-lighter, $color-grayish-blue);
-}
-
-.linkBtn:hover .linkDirection {
-  margin-left: 20px;
+.btn:hover .btnText {
+    margin-bottom: 10px;
 }
