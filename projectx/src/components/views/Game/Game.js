@@ -1,16 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import Section from "../../layout/Section/Section";
 import GameWindow from "../../layout/GameWindow/GameWindow";
-import styles from "./Game.module.scss";
-import image from "../../../images/mockupPhoto.jpg";
-import ProfilePanel from "../../layout/ProfilePanel/ProfilePanel";
+import styles from './Game.module.scss';
+import Backdrop from "../../common/Backdrop/Backdrop";
+//SET MONEY WORKS
 
-const Game = () => (
+
+const Game = ({...props}) => {
+  
+  const [backdrop, isVisible] = useState(false);
+
+  const handleClick = () => {
+    isVisible(true);
+  }
+
+  const handleClose = () => {
+    isVisible(false);
+  }
+  
+  return(
   <Section>
     <GameWindow>
-      <img src={image} alt="FactoryView" />
+      {backdrop && <Backdrop handleClose={handleClose}/>}
+      <button className={styles.machine} onClick={handleClick}></button>
     </GameWindow>
   </Section>
-);
+  );
+}
+
 
 export default Game;

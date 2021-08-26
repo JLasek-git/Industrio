@@ -1,1 +1,15 @@
 @import "../../../styles/global.scss";
+
+.machine {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: black;
+    border-radius: 30px;
+}
+
+.equipmentBar {
+    position: absolute;
+    top: 12%;
+    left: 12%;
+}

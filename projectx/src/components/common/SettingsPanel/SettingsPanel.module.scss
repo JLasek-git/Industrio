@@ -1,0 +1,36 @@
+@import '../../../styles/global.scss';
+
+.panelCard {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 80%;
+    height: 80%;
+    background-color: blanchedalmond;
+    border: 5px $blue-darker solid;
+    border-radius: $basic-radius;
+}
+
+
+.closeBtn {
+    position: absolute;
+    right: 1%;
+    top: 1%;
+    color: $color-white-text;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid black;
+    border-radius: 50%;
+    background-color: $blue-darker;
+}
+
+.parametersForm {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
