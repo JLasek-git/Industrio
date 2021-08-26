@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../../common/Button/Button";
+import LinkButton from "../../common/LinkButton/LinkButton";
 import Section from "../../layout/Section/Section";
 import styles from "./StockMarket.module.scss";
 import GameWindow from "../../layout/GameWindow/GameWindow";
@@ -7,12 +7,12 @@ import GameWindow from "../../layout/GameWindow/GameWindow";
 const StockMarket = () => (
   <Section>
     <GameWindow>
-      <Button
+      <LinkButton
         buttonText="Materials"
         iconName="chart-line"
         link="/stockmarket/stockmarket1"
       />
-      <Button
+      <LinkButton
         buttonText="Employees"
         iconName="chart-line"
         link="/stockmarket/stockmarket2"

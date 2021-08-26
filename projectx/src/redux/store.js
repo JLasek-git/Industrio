@@ -10,7 +10,7 @@ const initialState = {
     playerInfo: {
         nickname: 'Player 1',
         experience: 2000,
-        money: 7000,
+        money: 100000,
         equipment: {
             machines: {
                 impactCrusher: {
@@ -32,7 +32,8 @@ const initialState = {
                     price: 100,
                     durability: 300,
                     experience: 7.5,
-                    quantity: 500
+                    productionCost: 10,
+                    quantity: 1000000
                 },
 
                 ironOreConcentrate: {

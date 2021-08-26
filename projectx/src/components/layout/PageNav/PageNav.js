@@ -1,28 +1,28 @@
 import React from "react";
 import styles from "./PageNav.module.scss";
-import Button from "../../common/Button/Button";
+import LinkButton from "../../common/LinkButton/LinkButton";
 
 const PageNav = () => (
   <nav className={styles.mainNavBar}>
-    <Button
+    <LinkButton
       className={styles.mainNavBtn}
       buttonText="Game"
       iconName="gamepad"
       link="/"
     />
-    <Button
+    <LinkButton
       className={styles.mainNavBtn}
       buttonText="Market"
       iconName="chart-line"
       link="/stockmarket"
     />
-    <Button
+    <LinkButton
       className={styles.mainNavBtn}
       buttonText="Stores"
       iconName="shopping-basket"
       link="/stores"
     />
-    <Button
+    <LinkButton
       className={styles.mainNavBtn}
       buttonText="Options"
       iconName="cogs"

@@ -1,11 +1,12 @@
 import React, { useRef, useState }from 'react';
 import styles from './SettingsPanel.module.scss';
 import Icon from '../Icon/Icon';
+import Button from '../../common/Button/Button';
 
 function SettingsPanel(props) {
 
     const amountValue = useRef();
-    const [currentMaterialValue, setCurrentValue] = useState(0);
+    const [currentMaterialValue, setCurrentValue] = useState();
     const [currentProductionCost, setCurrentCost] = useState(0);
     const [currentProductionTime, setCurrentTime] = useState(0);
 
@@ -16,7 +17,7 @@ function SettingsPanel(props) {
         const playerUsedEquipmentMaterialQuantity = playerInfo.equipment.materials.ironOre.quantity;
         const playerReceivedEquipmentMaterialQuantity =  playerInfo.equipment.materials.ironOreConcentrate.quantity;
         const playerMoney = playerInfo.money;
-        const singleProductionCost = 7;
+        const singleProductionCost = playerInfo.equipment.materials.ironOre.productionCost;
         const materialDurability = playerInfo.equipment.materials.ironOre.durability;
         const machinePerformance = playerInfo.equipment.machines.impactCrusher.performance;
         const machineState = playerInfo.equipment.machines.impactCrusher.work;
@@ -56,7 +57,7 @@ function SettingsPanel(props) {
     function changeHandler(playerInfo, event){
         event.preventDefault();
 
-        const singleProductionCost = 7;
+        const singleProductionCost = playerInfo.equipment.materials.ironOre.productionCost;
         const pickedAmount = amountValue.current.value;
         const materialDurability = playerInfo.equipment.materials.ironOre.durability;
         const machinePerformance = playerInfo.equipment.machines.impactCrusher.performance;
@@ -80,11 +81,11 @@ function SettingsPanel(props) {
                     <p>{currentMaterialValue}</p>
                 </label>
                 <input type='range' name='amount' id='amount' min='1' max='1000' onChange={(event) => changeHandler(props.playerInfo, event)} ref={amountValue} />
-                <button>Start</button>
+                <Button btnText='Start'/>
             </form>
             <span>
-                <p>It will cost you: {currentProductionCost} $</p>
-                <p>It will take: {currentProductionTime} sec</p>
+                <p>It will cost you: {currentProductionCost}$</p>
+                <p>It will take: {currentProductionTime}sec</p>
             </span>
         </div>
     );

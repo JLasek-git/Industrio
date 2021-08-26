@@ -32,18 +32,39 @@
     transition: .2s linear;
 }
 
+.startBtn {
+        color: $color-white-text;
+        font-size: $button-font-size;
+        text-decoration: none;
+        font-weight: 600;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        width: $button-width;
+        height: $button-heigth;
+        background-image: linear-gradient($blue-lighter, $blue-darker);
+        border-radius: $button-radius;
+        border: 2px solid black;
+        margin: $button-margin;
+        transition: 0.5s linear;
+}
+
+
 .closeBtn:hover {
     color: $color-dark-gray;
     transform: rotate(360deg);
 }
 
 .parametersForm {
-    text-align: center;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 20px;
 
     & p {
+        text-align: center;
         margin: 0;
     }
 
