@@ -3,8 +3,9 @@
 .panelCard {
     position: relative;
     display: flex;
-    justify-content: center;
-    align-items: flex-end;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
     width: 80%;
     height: 80%;
     background-color: blanchedalmond;
@@ -37,7 +38,16 @@
 }
 
 .parametersForm {
+    text-align: center;
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
+
+    & p {
+        margin: 0;
+    }
+
+    & input {
+        margin-bottom: 20px;
+    }
 }
