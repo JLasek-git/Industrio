@@ -1,30 +1,30 @@
-@import '../../../styles/global.scss';
+@import "../../../styles/global.scss";
 
 .btn {
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: $button-width;
-    height: $button-heigth;
-    background-image: linear-gradient($blue-lighter, $blue-darker);
-    border-radius: $button-radius;
-    border: 2px solid black;
-    margin: $button-margin;
-    color: $color-white-text;
-    font-size: $button-font-size;
-    font-weight: 600;
-    transition: 0.3s linear;
-  }
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: $button-width;
+  height: $button-heigth;
+  background-image: linear-gradient($blue-lighter, $blue-darker);
+  border-radius: $button-radius;
+  border: 2px solid black;
+  margin: $button-margin;
+  color: $color-white-text;
+  font-size: $button-font-size;
+  font-weight: 600;
+  transition: 0.3s linear;
+}
 
 .btn:active {
-    background-image: linear-gradient($blue-lighter, $color-grayish-blue);
+  background-image: linear-gradient($blue-lighter, $color-grayish-blue);
 }
 
 .btnText {
-    transition: .2s linear;
+  transition: 0.2s linear;
 }
 
 .btn:hover .btnText {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }

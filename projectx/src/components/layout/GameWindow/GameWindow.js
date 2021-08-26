@@ -6,7 +6,8 @@ import MaterialPanel from "../MaterialPanel/MaterialPanelContainer";
 const GameWindow = ({ children }) => (
   <div className={styles.gameWindow}>
     <MaterialPanel />
-    {children}</div>
+    {children}
+  </div>
 );
 
 GameWindow.propTypes = {
