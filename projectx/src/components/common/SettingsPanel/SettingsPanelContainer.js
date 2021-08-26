@@ -1,16 +1,26 @@
-import { setMoney, setMaterialQuantityUp, setMaterialQuantityDown, setMachineState, getAllPlayerInfo } from "../../../redux/playerRedux";
+import {
+  setMoney,
+  setMaterialQuantityUp,
+  setMaterialQuantityDown,
+  setMachineState,
+  getAllPlayerInfo,
+  setTime,
+} from "../../../redux/playerRedux";
 import SettingsPanel from "./SettingsPanel";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-const mapStateToProps = state => ({
-    playerInfo: getAllPlayerInfo(state),
-})
+const mapStateToProps = (state) => ({
+  playerInfo: getAllPlayerInfo(state),
+});
 
-const mapDispatchToProps = dispatch => ({
-    setMoney: moneyAmount => dispatch(setMoney(moneyAmount)),
-    setMaterialQuantityUp: receivedMaterialAmount => dispatch(setMaterialQuantityUp(receivedMaterialAmount)),
-    setMaterialQuantityDown: usedMaterialAmount => dispatch(setMaterialQuantityDown(usedMaterialAmount)),
-    setMachineState: machineState => dispatch(setMachineState(machineState)),
+const mapDispatchToProps = (dispatch) => ({
+  setMoney: (moneyAmount) => dispatch(setMoney(moneyAmount)),
+  setMaterialQuantityUp: (receivedMaterialAmount) =>
+    dispatch(setMaterialQuantityUp(receivedMaterialAmount)),
+  setMaterialQuantityDown: (usedMaterialAmount) =>
+    dispatch(setMaterialQuantityDown(usedMaterialAmount)),
+  setMachineState: (machineState) => dispatch(setMachineState(machineState)),
+  setTime: (time) => dispatch(setTime(time)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SettingsPanel);

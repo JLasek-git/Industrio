@@ -7,14 +7,14 @@ import ChangeShopButton from "../../../common/ChangeShopButton/ChangeShopButton"
 
 const StockMarket2 = () => (
   <Section>
-    <ChangeShopButton>
-      <LinkButton
-        buttonText="Materials"
-        iconName="chart-line"
-        link="/stockmarket/stockmarket1"
-      />
-    </ChangeShopButton>
     <GameWindow>
+      <ChangeShopButton>
+        <LinkButton
+          buttonText="Materials"
+          iconName="chart-line"
+          link="/stockmarket/stockmarket1"
+        />
+      </ChangeShopButton>
       <h1>Employees market view</h1>
     </GameWindow>
   </Section>
