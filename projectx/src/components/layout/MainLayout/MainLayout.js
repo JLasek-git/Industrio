@@ -1,6 +1,6 @@
 import React from "react";
 import PageNav from "../PageNav/PageNav";
-import ProfilePanel from "../ProfilePanel/ProfilePanel";
+import ProfilePanel from "../ProfilePanel/ProfilePanelContainer";
 import PropTypes from "prop-types";
 
 const MainLayout = ({ children }) => (

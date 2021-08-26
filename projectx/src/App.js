@@ -1,6 +1,6 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import MainLayout from "./components/layout/MainLayout/MainLayout";
-import Game from "./components/views/Game/Game";
+import Game from "./components/views/Game/GameContainer";
 import GameOptions from "./components/views/GameOptions/GameOptions";
 import StockMarket from "./components/views/StockMarket/StockMarket";
 import Stores from "./components/views/Stores/Stores";
