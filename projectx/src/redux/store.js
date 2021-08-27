@@ -9,7 +9,8 @@ import playerReducer from "./playerRedux";
 const initialState = {
   playerInfo: {
     nickname: "Player 1",
-    experience: 2000,
+    experience: 0,
+    toNextLevel: 4000,
     money: 100000,
     equipment: {
       machines: {
@@ -20,7 +21,7 @@ const initialState = {
           requirement: 0,
           type: "crusher",
           application: "pre-treatment-of-ore",
-          performance: 100,
+          performance: 10000,
           work: false,
           timeDuration: 0,
         },
