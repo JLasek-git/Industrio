@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./ProfilePanel.module.scss";
-import avatar from "../../../images/avatarMockup.jpg";
 
 const linearColors = {
   green: "#017D01",
@@ -12,7 +11,7 @@ const ProfilePanel = (props) => (
   <div className={styles.profilePanel}>
     <div className={styles.avatarContainer}></div>
     <div className={styles.avatar}>
-      <img src={avatar} alt="avatar"></img>
+      <img src={props.playerInfo.avatar} alt="avatar"></img>
     </div>
     <div className={styles.playerInfo}>
       <div className={styles.playerNickname}>{props.playerInfo.nickname}</div>

@@ -2,12 +2,15 @@ import { combineReducers, createStore } from "redux";
 import materials from "../data/materials.json";
 import machinesPreTreatment from "../data/machinesPreTreatment.json";
 
+import profileIcon from '../images/profileIcon.png';
+
 import globalReducer from "./globalRedux";
 import playerReducer from "./playerRedux";
 
 /* make initial state */
 const initialState = {
   playerInfo: {
+    avatar: profileIcon,
     nickname: "Player 1",
     experience: 0,
     toNextLevel: 4000,
