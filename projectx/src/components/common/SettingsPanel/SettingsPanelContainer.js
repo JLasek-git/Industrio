@@ -5,6 +5,7 @@ import {
   setMachineState,
   getAllPlayerInfo,
   setTime,
+  setExperience,
 } from "../../../redux/playerRedux";
 import SettingsPanel from "./SettingsPanel";
 import { connect } from "react-redux";
@@ -21,6 +22,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(setMaterialQuantityDown(usedMaterialAmount)),
   setMachineState: (machineState) => dispatch(setMachineState(machineState)),
   setTime: (time) => dispatch(setTime(time)),
+  setExperience: (experience) => dispatch(setExperience(experience)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SettingsPanel);

@@ -1,12 +1,10 @@
 @import "../../../styles/global.scss";
 
-.backdrop {
+.machineImgContainer {
   position: absolute;
+  width: 165px;
+  height: 110px;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(#000000, 0.4);
 }

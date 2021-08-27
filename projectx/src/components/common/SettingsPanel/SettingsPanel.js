@@ -2,7 +2,6 @@ import React, { useRef, useState } from "react";
 import styles from "./SettingsPanel.module.scss";
 import Icon from "../Icon/Icon";
 import Button from "../../common/Button/Button";
-import { setTime } from "../../../redux/playerRedux";
 
 function SettingsPanel(props) {
   const amountValue = useRef();
@@ -28,7 +27,9 @@ function SettingsPanel(props) {
     const machinePerformance =
       playerInfo.equipment.machines.impactCrusher.performance;
     const machineState = playerInfo.equipment.machines.impactCrusher.work;
-
+    const playerExperience = playerInfo.experience;
+    const materialExperience =
+      playerInfo.equipment.materials.ironOre.experience;
     /* this part of code handle work start, and changing state depending on passed parameters (changing quantity of player material (how much he will be given), taking costs of work) */
     if (!machineState) {
       props.setMachineState(true);
@@ -45,7 +46,8 @@ function SettingsPanel(props) {
         playerUsedEquipmentMaterialQuantity - pickedAmount;
       const productionDuration =
         (materialDurability / machinePerformance) * 1000 * pickedAmount;
-
+      const playerReceivedExperience =
+        materialExperience * pickedAmount + playerExperience;
       let counter = productionDuration;
 
       /* if whole production cost which depends on calculation playerActualMoney - productionCosts is less than 0 it means player don't have enough money to proceed*/
@@ -62,16 +64,17 @@ function SettingsPanel(props) {
         setTimeout(() => {
           /* here we're passing changed values to reducer. Values are calculated before set timeout function. In this part of code, we only changing them in Redux state */
           props.setMaterialQuantityUp(playerReceivedMaterialAfterProduction);
+          props.setExperience(playerReceivedExperience);
           props.setMachineState(false);
         }, productionDuration);
 
         /* counter which shows time to end of production */
         const counterInterval = setInterval(() => {
           counter -= 1000;
-          props.setTime(counter);
-          if (counter == 0) {
+          if (counter <= 0) {
             clearInterval(counterInterval);
           }
+          props.setTime(counter);
         }, 1000);
       }
 
@@ -94,8 +97,10 @@ function SettingsPanel(props) {
     const machinePerformance =
       playerInfo.equipment.machines.impactCrusher.performance;
 
-    const timeToProduct =
-      (materialDurability / machinePerformance) * pickedAmount;
+    const timeToProduct = (
+      (materialDurability / machinePerformance) *
+      pickedAmount
+    ).toFixed(1);
     const costToProduct = pickedAmount * singleProductionCost;
     setCurrentValue(pickedAmount);
     setCurrentCost(costToProduct);
@@ -128,13 +133,13 @@ function SettingsPanel(props) {
       </form>
       <span>
         <p>It will cost you: {currentProductionCost}$</p>
-        <p>It will take: {currentProductionTime / 60} min</p>
+        <p>It will take: {(currentProductionTime / 60).toFixed(2)} min</p>
         <p>
           Time left:{" "}
           {(
             props.playerInfo.equipment.machines.impactCrusher.timeDuration /
             60000
-          ).toFixed(1)}{" "}
+          ).toFixed(2)}{" "}
           min
         </p>
       </span>

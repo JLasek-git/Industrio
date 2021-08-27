@@ -16,6 +16,7 @@ export const SET_MATERIAL_QUANTITY_DOWN = createActionName(
 export const SET_MONEY = createActionName("SET_MONEY");
 export const SET_MACHINE_STATE = createActionName("SET_MACHINE_STATE");
 export const SET_TIME = createActionName("SET_TIME");
+export const SET_EXPERIENCE = createActionName("SET_EXPERIENCE");
 
 // action creators
 export const setMaterialQuantityUp = (payload) => ({
@@ -32,6 +33,7 @@ export const setMachineState = (payload) => ({
   type: SET_MACHINE_STATE,
 });
 export const setTime = (payload) => ({ payload, type: SET_TIME });
+export const setExperience = (payload) => ({ payload, type: SET_EXPERIENCE });
 
 export default function reducer(statePart = [], action = {}) {
   switch (action.type) {
@@ -85,6 +87,13 @@ export default function reducer(statePart = [], action = {}) {
         ...statePart,
         money: action.payload,
       };
+
+    case SET_EXPERIENCE: {
+      return {
+        ...statePart,
+        experience: action.payload,
+      };
+    }
 
     case SET_TIME:
       return {

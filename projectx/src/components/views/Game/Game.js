@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import Section from "../../layout/Section/Section";
 import GameWindow from "../../layout/GameWindow/GameWindow";
-import styles from "./Game.module.scss";
+// import styles from "./Game.module.scss";
 import Backdrop from "../../common/Backdrop/Backdrop";
-import machineImg from "../../../images/inpact_hitter_1.png";
+// import machineImg from "../../../images/inpact_hitter_1.png";
+import MaterialPanel from "../../layout/MaterialPanel/MaterialPanelContainer";
+// import MachineMiniature from "../../common/MachineMiniature/MachineMiniature";
+import MagazineBackground from "../../common/MagazineBackground/MagazineBackground";
+
 //SET MONEY WORKS
 
-const Game = ({ ...props }) => {
+const Game = () => {
   const [backdrop, isVisible] = useState(false);
 
   const handleClick = () => {
@@ -20,10 +24,9 @@ const Game = ({ ...props }) => {
   return (
     <Section>
       <GameWindow>
+        <MaterialPanel />
+        <MagazineBackground handleClick={handleClick} />
         {backdrop && <Backdrop handleClose={handleClose} />}
-        <button className={styles.machine} onClick={handleClick}>
-          <img src={machineImg} alt="impact-hitter" />
-        </button>
       </GameWindow>
     </Section>
   );

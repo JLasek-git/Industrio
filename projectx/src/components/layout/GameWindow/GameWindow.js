@@ -1,13 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./GameWindow.module.scss";
-import MaterialPanel from "../MaterialPanel/MaterialPanelContainer";
 
 const GameWindow = ({ children }) => (
-  <div className={styles.gameWindow}>
-    <MaterialPanel />
-    {children}
-  </div>
+  <div className={styles.gameWindow}>{children}</div>
 );
 
 GameWindow.propTypes = {

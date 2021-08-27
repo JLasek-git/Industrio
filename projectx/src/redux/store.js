@@ -2,14 +2,18 @@ import { combineReducers, createStore } from "redux";
 import materials from "../data/materials.json";
 import machinesPreTreatment from "../data/machinesPreTreatment.json";
 
+import profileIcon from '../images/profileIcon.png';
+
 import globalReducer from "./globalRedux";
 import playerReducer from "./playerRedux";
 
 /* make initial state */
 const initialState = {
   playerInfo: {
+    avatar: profileIcon,
     nickname: "Player 1",
-    experience: 2000,
+    experience: 0,
+    toNextLevel: 4000,
     money: 100000,
     equipment: {
       machines: {
@@ -20,7 +24,7 @@ const initialState = {
           requirement: 0,
           type: "crusher",
           application: "pre-treatment-of-ore",
-          performance: 100,
+          performance: 1000,
           work: false,
           timeDuration: 0,
         },
