@@ -2,7 +2,6 @@ import React, { useRef, useState } from "react";
 import styles from "./SettingsPanel.module.scss";
 import Icon from "../Icon/Icon";
 import Button from "../../common/Button/Button";
-import { setTime } from "../../../redux/playerRedux";
 
 function SettingsPanel(props) {
   const amountValue = useRef();
@@ -72,10 +71,10 @@ function SettingsPanel(props) {
         /* counter which shows time to end of production */
         const counterInterval = setInterval(() => {
           counter -= 1000;
-          props.setTime(counter);
           if (counter <= 0) {
             clearInterval(counterInterval);
           }
+          props.setTime(counter);
         }, 1000);
       }
 
@@ -134,13 +133,13 @@ function SettingsPanel(props) {
       </form>
       <span>
         <p>It will cost you: {currentProductionCost}$</p>
-        <p>It will take: {(currentProductionTime / 60).toFixed(1)} min</p>
+        <p>It will take: {(currentProductionTime / 60).toFixed(2)} min</p>
         <p>
           Time left:{" "}
           {(
             props.playerInfo.equipment.machines.impactCrusher.timeDuration /
             60000
-          ).toFixed(1)}{" "}
+          ).toFixed(2)}{" "}
           min
         </p>
       </span>
