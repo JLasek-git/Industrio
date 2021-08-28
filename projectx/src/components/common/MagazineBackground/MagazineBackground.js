@@ -1,23 +1,40 @@
-import React, { createElement } from "react";
+import React, { createElement, useEffect } from "react";
 import ReactDOM from "react-dom";
-import PropTypes from "prop-types";
 import styles from "./MagazineBackground.module.scss";
 import magazineImg from "../../../images/magazyn_1.png";
 import MachineMiniature from "../../common/MachineMiniature/MachineMiniature";
 import machineImg from "../../../images/inpact_hitter_1.png";
 
 function MagazineBackground({ ...props }) {
+
+  const machinesInMagazineState = props.playerInfo.magazine.poorMagazine.machinePlaces;
+
+  /* This function allow us to place machine in squares */
   function machinePlaceHandleClick(event) {
     event.preventDefault();
+
     const clickedElementId = event.currentTarget.lastChild.id;
     const createdElement = createElement(MachineMiniature, {
       source: machineImg,
       altText: "impact-hitter",
       showSettings: props.handleClick,
     });
-    ReactDOM.render(createdElement, document.getElementById(`${clickedElementId}`));
+    
 
+      props.setMachinePlace({createdElement, clickedElementId});
+
+  };
+
+  function renderMachinesIcons () {
+    for(let place in machinesInMagazineState){
+      const machineContainer = document.getElementById(`${place}`);
+      ReactDOM.render(machinesInMagazineState[place].createdElement, machineContainer);
+    }
   }
+
+  useEffect(() => {
+    renderMachinesIcons();
+});
 
   return (
     <div className={styles.background}>
@@ -29,7 +46,7 @@ function MagazineBackground({ ...props }) {
             onClick={machinePlaceHandleClick}
           >
             <div
-              id="container1"
+              id="place1"
               className={styles.machineButton}
             >
             </div>
@@ -39,7 +56,7 @@ function MagazineBackground({ ...props }) {
             onClick={machinePlaceHandleClick}
           >
             <div
-              id="container2"
+              id="place2"
               className={styles.machineButton}
             ></div>
           </div>
@@ -48,7 +65,7 @@ function MagazineBackground({ ...props }) {
             onClick={machinePlaceHandleClick}
           >
             <div
-              id="container3"
+              id="place3"
               className={styles.machineButton}
             ></div>
           </div>
@@ -59,7 +76,7 @@ function MagazineBackground({ ...props }) {
             onClick={machinePlaceHandleClick}
           >
             <div
-              id="container4"
+              id="place4"
               className={styles.machineButton}
             ></div>
           </div>
@@ -68,7 +85,7 @@ function MagazineBackground({ ...props }) {
             onClick={machinePlaceHandleClick}
           >
             <div
-              id="container5"
+              id="place5"
               className={styles.machineButton}
             ></div>
           </div>
@@ -77,7 +94,7 @@ function MagazineBackground({ ...props }) {
             onClick={machinePlaceHandleClick}
           >
             <div
-              id="container6"
+              id="place6"
               className={styles.machineButton}
             ></div>
           </div>

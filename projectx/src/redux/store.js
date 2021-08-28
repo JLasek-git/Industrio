@@ -51,6 +51,19 @@ const initialState = {
         },
       },
     },
+    magazine: {
+      poorMagazine: {
+        machineCapacity: 6,
+        machinePlaces: {
+          place1: '',
+          place2: '',
+          place3: '',
+          place4: '',
+          place5: '',
+          place6: '',
+        }
+      }
+    }
   },
 
   materialsInfo: materials,
