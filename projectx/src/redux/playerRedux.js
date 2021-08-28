@@ -17,6 +17,7 @@ export const SET_MONEY = createActionName("SET_MONEY");
 export const SET_MACHINE_STATE = createActionName("SET_MACHINE_STATE");
 export const SET_TIME = createActionName("SET_TIME");
 export const SET_EXPERIENCE = createActionName("SET_EXPERIENCE");
+export const SET_MACHINE_PLACE = createActionName("SET_MACHINE_PLACE");
 
 // action creators
 export const setMaterialQuantityUp = (payload) => ({
@@ -34,6 +35,7 @@ export const setMachineState = (payload) => ({
 });
 export const setTime = (payload) => ({ payload, type: SET_TIME });
 export const setExperience = (payload) => ({ payload, type: SET_EXPERIENCE });
+export const setMachinePlace = (payload) => ({ payload, type: SET_MACHINE_PLACE })
 
 export default function reducer(statePart = [], action = {}) {
   switch (action.type) {
@@ -110,6 +112,21 @@ export default function reducer(statePart = [], action = {}) {
         },
       };
 
+    case SET_MACHINE_PLACE: {
+      return {
+        ...statePart,
+        magazine: {
+          ...statePart.magazine,
+          poorMagazine: {
+            ...statePart.magazine.poorMagazine,
+            machinePlaces: {
+              ...statePart.magazine.poorMagazine.machinePlaces,
+              [action.payload.clickedElementId]: action.payload,
+            }
+          }
+        }
+      }
+    }
     default:
       return statePart;
   }

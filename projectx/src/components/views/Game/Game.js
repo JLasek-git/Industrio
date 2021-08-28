@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import Section from "../../layout/Section/Section";
 import GameWindow from "../../layout/GameWindow/GameWindow";
-// import styles from "./Game.module.scss";
 import Backdrop from "../../common/Backdrop/Backdrop";
-// import machineImg from "../../../images/inpact_hitter_1.png";
 import MaterialPanel from "../../layout/MaterialPanel/MaterialPanelContainer";
-// import MachineMiniature from "../../common/MachineMiniature/MachineMiniature";
-import MagazineBackground from "../../common/MagazineBackground/MagazineBackground";
+import MagazineBackground from "../../common/MagazineBackground/MagazineBackgroundContainer";
 
 //SET MONEY WORKS
 
