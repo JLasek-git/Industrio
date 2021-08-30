@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { getAllPlayerInfo, setMachinePlace } from '../../../redux/playerRedux';
+import { getAllPlayerInfo, setMachinePlace, setMachineEqQuantity } from '../../../redux/playerRedux';
 import MagazineBackground from './MagazineBackground';
 
 const mapStateToProps = state => ({
@@ -8,7 +8,8 @@ const mapStateToProps = state => ({
 
 
 const mapDispatchToProps = dispatch => ({
-    setMachinePlace: (occupiedPlace, placeId) => dispatch(setMachinePlace(occupiedPlace)),
+    setMachinePlace: (occupiedPlace) => dispatch(setMachinePlace(occupiedPlace)),
+    setMachineEqQuantity: (quantity) => dispatch(setMachineEqQuantity(quantity))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MagazineBackground);

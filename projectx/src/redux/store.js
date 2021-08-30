@@ -27,6 +27,7 @@ const initialState = {
           performance: 1000,
           work: false,
           timeDuration: 0,
+          owned: 3,
         },
       },
 
@@ -95,6 +96,7 @@ const storeReducer = (state, action) => {
 const store = createStore(
   storeReducer,
   initialState,
+  // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 export default store;

@@ -10,11 +10,11 @@ import MagazineBackground from "../../common/MagazineBackground/MagazineBackgrou
 const Game = () => {
   const [backdrop, isVisible] = useState(false);
 
-  const handleClick = () => {
+  const showProductionSettings = () => {
     isVisible(true);
   };
 
-  const handleClose = () => {
+  const hideProductionSettings = () => {
     isVisible(false);
   };
 
@@ -22,8 +22,8 @@ const Game = () => {
     <Section>
       <GameWindow>
         <MaterialPanel />
-        <MagazineBackground handleClick={handleClick} />
-        {backdrop && <Backdrop handleClose={handleClose} />}
+        <MagazineBackground showProductionSettings={showProductionSettings} />
+        {backdrop && <Backdrop hideProductionSettings={hideProductionSettings} />}
       </GameWindow>
     </Section>
   );
