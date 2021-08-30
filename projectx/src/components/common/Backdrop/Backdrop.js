@@ -5,7 +5,7 @@ import SettingsPanel from "../SettingsPanel/SettingsPanelContainer";
 function MachinePanel(props) {
   return (
     <div className={styles.backdrop}>
-      <SettingsPanel handleClose={props.handleClose} />
+      <SettingsPanel handleClose={props.hideProductionSettings} />
     </div>
   );
 }
