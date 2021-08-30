@@ -13,12 +13,6 @@ function MaterialPanel(props) {
       </span>
       <span>Material: 0</span>
       <span>Material: 0</span>
-      <span>Material: 0</span>
-      <span>Material: 0</span>
-      <span>Material: 0</span>
-      <span>Material: 0</span>
-      <span>Material: 0</span>
-      <span>Material: 0</span>
     </div>
   );
 }

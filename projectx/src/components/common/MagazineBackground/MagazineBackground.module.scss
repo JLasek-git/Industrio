@@ -35,8 +35,9 @@
       height: 20px;
       background-color: gray;
       & > * {
+        cursor: pointer;
         position: absolute;
-        bottom: -50%;
+        bottom: -150%;
         right: -50%;
         transform: translate(50%, 50%);
         width: 165px;
