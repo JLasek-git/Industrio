@@ -11,14 +11,8 @@ function MaterialPanel(props) {
         Iron ore concentrate:{" "}
         {props.playerInfo.equipment.materials.ironOreConcentrate.quantity}
       </span>
-      <span>Material: 0</span>
-      <span>Material: 0</span>
-      <span>Material: 0</span>
-      <span>Material: 0</span>
-      <span>Material: 0</span>
-      <span>Material: 0</span>
-      <span>Material: 0</span>
-      <span>Material: 0</span>
+      <span>Impact Crusher:{" "}
+      {props.playerInfo.equipment.machines.impactCrusher.owned}</span>
     </div>
   );
 }
