@@ -4,6 +4,7 @@ import Section from "../../layout/Section/Section";
 import GameWindow from "../../layout/GameWindow/GameWindow";
 import styles from "./Store.module.scss";
 
+
 const Stores = () => (
   <Section>
     <GameWindow>
