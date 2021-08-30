@@ -5,11 +5,13 @@ import Button from "../../common/Button/Button";
 
 function SettingsPanel(props) {
   const amountValue = useRef();
+  const machinesCount = useRef();
 
   /* state used only in form */
   const [currentMaterialValue, setCurrentValue] = useState(1);
   const [currentProductionCost, setCurrentCost] = useState(0);
   const [currentProductionTime, setCurrentTime] = useState(0);
+  const [currentMachinesCount, setCurrentMachinesCount] = useState(1);
 
   function submitHandler(playerInfo, event) {
     event.preventDefault();
@@ -36,16 +38,16 @@ function SettingsPanel(props) {
 
       /* this defines our pickedAmount on input and parses to int*/
       const pickedAmount = parseInt(amountValue.current.value);
-
+      const pickedMachinesAmount = parseInt(machinesCount.current.value);
       /* calculations passed to state depending on props */
-      const wholeProductionCost = pickedAmount * singleProductionCost;
+      const wholeProductionCost = (pickedAmount * singleProductionCost) * pickedMachinesAmount;
       const playerMoneyAfterProduction = playerMoney - wholeProductionCost;
       const playerReceivedMaterialAfterProduction =
         playerReceivedEquipmentMaterialQuantity + pickedAmount;
       const playerUsedMaterialAfterProduction =
         playerUsedEquipmentMaterialQuantity - pickedAmount;
       const productionDuration =
-        (materialDurability / machinePerformance) * 1000 * pickedAmount;
+        ((materialDurability / machinePerformance) * 1000 * pickedAmount) / pickedMachinesAmount;
       const playerReceivedExperience =
         materialExperience * pickedAmount + playerExperience;
       let counter = productionDuration;
@@ -66,6 +68,7 @@ function SettingsPanel(props) {
           props.setMaterialQuantityUp(playerReceivedMaterialAfterProduction);
           props.setExperience(playerReceivedExperience);
           props.setMachineState(false);
+          alert("Productions has finished.");
         }, productionDuration);
 
         /* counter which shows time to end of production */
@@ -92,17 +95,19 @@ function SettingsPanel(props) {
     const singleProductionCost =
       playerInfo.equipment.materials.ironOre.productionCost;
     const pickedAmount = amountValue.current.value;
+    const pickedMachinesAmount = machinesCount.current.value;
     const materialDurability =
       playerInfo.equipment.materials.ironOre.durability;
     const machinePerformance =
       playerInfo.equipment.machines.impactCrusher.performance;
 
     const timeToProduct = (
-      (materialDurability / machinePerformance) *
-      pickedAmount
+      ((materialDurability / machinePerformance) *
+      pickedAmount) / pickedMachinesAmount
     ).toFixed(1);
-    const costToProduct = pickedAmount * singleProductionCost;
+    const costToProduct = (pickedAmount * singleProductionCost) * pickedMachinesAmount;
     setCurrentValue(pickedAmount);
+    setCurrentMachinesCount(pickedMachinesAmount);
     setCurrentCost(costToProduct);
     setCurrentTime(timeToProduct);
   }
@@ -128,6 +133,19 @@ function SettingsPanel(props) {
           max="1000"
           onChange={(event) => changeHandler(props.playerInfo, event)}
           ref={amountValue}
+        />
+        <label htmlFor="machinesCount">
+          How many machines you would like to include in production?
+          <p>{currentMachinesCount}</p>
+        </label>
+        <input
+          type="range"
+          name="machinesCount"
+          id="machinesCount"
+          min="1"
+          max={props.playerInfo.magazine.poorMagazine.machinesQuantity}
+          onChange={(event) => changeHandler(props.playerInfo, event)}
+          ref={machinesCount}
         />
         <Button btnText="Start" />
       </form>

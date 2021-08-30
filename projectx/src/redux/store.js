@@ -54,7 +54,7 @@ const initialState = {
     },
     magazine: {
       poorMagazine: {
-        machineCapacity: 6,
+        machinesQuantity: 0,
         machinePlaces: {
           place1: '',
           place2: '',
