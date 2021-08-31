@@ -6,7 +6,7 @@ import StockMarket from "./components/views/StockMarket/StockMarket";
 import Stores from "./components/views/Stores/Stores";
 import Store1 from "./components/views/Stores/Store1/MachineStore1Container";
 import Store2 from "./components/views/Stores/Store2/Store2";
-import StockMarket1 from "./components/views/StockMarket/StockMarket1/StockMarket1";
+import StockMarket1 from "./components/views/StockMarket/StockMarket1/MaterialsShopContainer";
 import StockMarket2 from "./components/views/StockMarket/StockMarket2/StockMarket2";
 
 function App() {
