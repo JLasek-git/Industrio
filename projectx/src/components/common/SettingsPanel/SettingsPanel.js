@@ -122,7 +122,7 @@ function SettingsPanel(props) {
         onSubmit={(event) => submitHandler(props.playerInfo, event)}
       >
         <label htmlFor="amount">
-          How many you want to use?
+          How much Iron ore you want to use?
           <p>{currentMaterialValue}</p>
         </label>
         <input
