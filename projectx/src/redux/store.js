@@ -14,7 +14,7 @@ const initialState = {
     nickname: "Player 1",
     experience: 0,
     toNextLevel: 4000,
-    money: 100000,
+    money: 60000,
     equipment: {
       machines: {
         impactCrusher: {
@@ -27,7 +27,7 @@ const initialState = {
           performance: 1000,
           work: false,
           timeDuration: 0,
-          owned: 3,
+          owned: 1,
         },
       },
 
@@ -39,7 +39,7 @@ const initialState = {
           durability: 300,
           experience: 7.5,
           productionCost: 10,
-          quantity: 1000000,
+          quantity: 100,
         },
 
         ironOreConcentrate: {

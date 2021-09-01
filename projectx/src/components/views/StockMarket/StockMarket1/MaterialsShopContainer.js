@@ -1,7 +1,8 @@
 import StockMarket1 from "./StockMarket1";
 import { connect } from "react-redux";
 import {
-  setMaterialQuantityUp,
+  setMaterialQuantityBuy,
+  setMoney,
   getAllPlayerInfo,
 } from "../../../../redux/playerRedux";
 
@@ -10,8 +11,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setMaterialQuantityUp: (quantity) =>
-    dispatch(setMaterialQuantityUp(quantity)),
-});
+  setMaterialQuantityBuy: (buyInfo) =>
+    dispatch(setMaterialQuantityBuy(buyInfo)),
+  setMoney: (amount) => dispatch(setMoney(amount)),
+  });
 
 export default connect(mapStateToProps, mapDispatchToProps)(StockMarket1);
