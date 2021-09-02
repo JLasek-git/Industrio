@@ -10,7 +10,8 @@ function MagazineBackground({ ...props }) {
     props.playerInfo.magazine.poorMagazine.machinePlaces;
   const playerMachinesInEquipment =
     props.playerInfo.equipment.machines.impactCrusher.owned;
-  const playerMachinesInMagazine = props.playerInfo.magazine.poorMagazine.machinesQuantity;
+  const playerMachinesInMagazine =
+    props.playerInfo.magazine.poorMagazine.machinesQuantity;
   /* This function allow us to place machine in squares */
   function machinePlaceHandleClick(event) {
     event.preventDefault();
@@ -20,35 +21,40 @@ function MagazineBackground({ ...props }) {
       machinesInMagazineState[clickedElementId] == "" &&
       playerMachinesInEquipment != 0
     ) {
-
-      const createdElement = <MachineMiniature source={machineImg} altText="impact-hitter" />
+      const createdElement = (
+        <MachineMiniature source={machineImg} altText="impact-hitter" />
+      );
       const quantityInEq = playerMachinesInEquipment - 1;
       const quantityInMagazine = playerMachinesInMagazine + 1;
 
       props.setMachinePlace({ createdElement, clickedElementId });
       props.setMachineEqQuantity(quantityInEq);
       props.setMachineInMagazineQuantity(quantityInMagazine);
-    } else if(machinesInMagazineState[clickedElementId] == "" && playerMachinesInEquipment <= 0) {
-      alert("You don't have that machine in your equipment. First you have to buy one.")
+    } else if (
+      machinesInMagazineState[clickedElementId] == "" &&
+      playerMachinesInEquipment <= 0
+    ) {
+      alert(
+        "You don't have that machine in your equipment. First you have to buy one."
+      );
     }
   }
 
   function renderMachinesIcons() {
     for (let place in machinesInMagazineState) {
       const machineContainer = document.getElementById(`${place}`);
-        ReactDOM.render(
-          <div onClick={props.showProductionSettings}>
-            {machinesInMagazineState[place].createdElement}          
-          </div>,  
-          machineContainer
-        )
+      ReactDOM.render(
+        <div onClick={props.showProductionSettings}>
+          {machinesInMagazineState[place].createdElement}
+        </div>,
+        machineContainer
+      );
     }
   }
 
   useEffect(() => {
     renderMachinesIcons();
-  })
-
+  });
 
   return (
     <div className={styles.background}>

@@ -2,7 +2,7 @@ import { combineReducers, createStore } from "redux";
 import materials from "../data/materials.json";
 import machinesPreTreatment from "../data/machinesPreTreatment.json";
 
-import profileIcon from '../images/profileIcon.png';
+import profileIcon from "../images/profileIcon.png";
 
 import globalReducer from "./globalRedux";
 import playerReducer from "./playerRedux";
@@ -56,15 +56,15 @@ const initialState = {
       poorMagazine: {
         machinesQuantity: 0,
         machinePlaces: {
-          place1: '',
-          place2: '',
-          place3: '',
-          place4: '',
-          place5: '',
-          place6: '',
-        }
-      }
-    }
+          place1: "",
+          place2: "",
+          place3: "",
+          place4: "",
+          place5: "",
+          place6: "",
+        },
+      },
+    },
   },
 
   materialsInfo: materials,
@@ -95,7 +95,7 @@ const storeReducer = (state, action) => {
 
 const store = createStore(
   storeReducer,
-  initialState,
+  initialState
   // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 

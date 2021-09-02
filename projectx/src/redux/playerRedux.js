@@ -18,9 +18,15 @@ export const SET_MACHINE_STATE = createActionName("SET_MACHINE_STATE");
 export const SET_TIME = createActionName("SET_TIME");
 export const SET_EXPERIENCE = createActionName("SET_EXPERIENCE");
 export const SET_MACHINE_PLACE = createActionName("SET_MACHINE_PLACE");
-export const SET_MACHINE_EQ_QUANTITY = createActionName("SET_MACHINE_EQ_QUANTITY");
-export const SET_MACHINE_IN_MAGAZINE_QUANTITY = createActionName("SET_MACHINE_IN_MAGAZINE_QUANTITY");
-export const SET_MATERIAL_QUANTITY_BUY = createActionName("SET_MATERIAL_QUANTITY_BUY");
+export const SET_MACHINE_EQ_QUANTITY = createActionName(
+  "SET_MACHINE_EQ_QUANTITY"
+);
+export const SET_MACHINE_IN_MAGAZINE_QUANTITY = createActionName(
+  "SET_MACHINE_IN_MAGAZINE_QUANTITY"
+);
+export const SET_MATERIAL_QUANTITY_BUY = createActionName(
+  "SET_MATERIAL_QUANTITY_BUY"
+);
 
 // action creators
 export const setMaterialQuantityUp = (payload) => ({
@@ -38,11 +44,22 @@ export const setMachineState = (payload) => ({
 });
 export const setTime = (payload) => ({ payload, type: SET_TIME });
 export const setExperience = (payload) => ({ payload, type: SET_EXPERIENCE });
-export const setMachinePlace = (payload) => ({ payload, type: SET_MACHINE_PLACE });
-export const setMachineEqQuantity = (payload) => ({payload, type: SET_MACHINE_EQ_QUANTITY});
-export const setMachineInMagazineQuantity = (payload) => ({payload, type:SET_MACHINE_IN_MAGAZINE_QUANTITY});
-export const setMaterialQuantityBuy = (payload) => ({payload, type:SET_MATERIAL_QUANTITY_BUY});
-
+export const setMachinePlace = (payload) => ({
+  payload,
+  type: SET_MACHINE_PLACE,
+});
+export const setMachineEqQuantity = (payload) => ({
+  payload,
+  type: SET_MACHINE_EQ_QUANTITY,
+});
+export const setMachineInMagazineQuantity = (payload) => ({
+  payload,
+  type: SET_MACHINE_IN_MAGAZINE_QUANTITY,
+});
+export const setMaterialQuantityBuy = (payload) => ({
+  payload,
+  type: SET_MATERIAL_QUANTITY_BUY,
+});
 
 export default function reducer(statePart = [], action = {}) {
   switch (action.type) {
@@ -76,20 +93,20 @@ export default function reducer(statePart = [], action = {}) {
         },
       };
 
-      case SET_MATERIAL_QUANTITY_BUY:
-        return {
-          ...statePart,
-          equipment: {
-            ...statePart.equipment,
-            materials: {
-              ...statePart.equipment.materials,
-              [action.payload.name]: {
-                ...statePart.equipment.materials[action.payload.name],
-                  quantity: action.payload.playerMaterialAfterBuy,
-              }
-            }
-          }
-        }
+    case SET_MATERIAL_QUANTITY_BUY:
+      return {
+        ...statePart,
+        equipment: {
+          ...statePart.equipment,
+          materials: {
+            ...statePart.equipment.materials,
+            [action.payload.materialName]: {
+              ...statePart.equipment.materials[action.payload.materialName],
+              quantity: action.payload.playerMaterialAfterAction,
+            },
+          },
+        },
+      };
 
     case SET_MACHINE_STATE:
       return {
@@ -144,10 +161,10 @@ export default function reducer(statePart = [], action = {}) {
             machinePlaces: {
               ...statePart.magazine.poorMagazine.machinePlaces,
               [action.payload.clickedElementId]: action.payload,
-            }
-          }
-        }
-      }
+            },
+          },
+        },
+      };
     }
 
     case SET_MACHINE_EQ_QUANTITY: {
@@ -160,24 +177,23 @@ export default function reducer(statePart = [], action = {}) {
             impactCrusher: {
               ...statePart.equipment.machines.impactCrusher,
               owned: action.payload,
-            }
-          }
-        }
-      }
-
+            },
+          },
+        },
+      };
     }
 
     case SET_MACHINE_IN_MAGAZINE_QUANTITY: {
-      return{
+      return {
         ...statePart,
         magazine: {
           ...statePart.magazine,
           poorMagazine: {
             ...statePart.magazine.poorMagazine,
-            machinesQuantity: action.payload
-          }
-        }
-      }
+            machinesQuantity: action.payload,
+          },
+        },
+      };
     }
     default:
       return statePart;
