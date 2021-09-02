@@ -1,0 +1,15 @@
+@import "../../../../../styles/global.scss";
+
+.materialActionsList {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.buyingForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
