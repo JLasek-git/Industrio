@@ -40,14 +40,16 @@ function SettingsPanel(props) {
       const pickedAmount = parseInt(amountValue.current.value);
       const pickedMachinesAmount = parseInt(machinesCount.current.value);
       /* calculations passed to state depending on props */
-      const wholeProductionCost = (pickedAmount * singleProductionCost) * pickedMachinesAmount;
+      const wholeProductionCost =
+        pickedAmount * singleProductionCost * pickedMachinesAmount;
       const playerMoneyAfterProduction = playerMoney - wholeProductionCost;
       const playerReceivedMaterialAfterProduction =
         playerReceivedEquipmentMaterialQuantity + pickedAmount;
       const playerUsedMaterialAfterProduction =
         playerUsedEquipmentMaterialQuantity - pickedAmount;
       const productionDuration =
-        ((materialDurability / machinePerformance) * 1000 * pickedAmount) / pickedMachinesAmount;
+        ((materialDurability / machinePerformance) * 1000 * pickedAmount) /
+        pickedMachinesAmount;
       const playerReceivedExperience =
         materialExperience * pickedAmount + playerExperience;
       let counter = productionDuration;
@@ -102,10 +104,11 @@ function SettingsPanel(props) {
       playerInfo.equipment.machines.impactCrusher.performance;
 
     const timeToProduct = (
-      ((materialDurability / machinePerformance) *
-      pickedAmount) / pickedMachinesAmount
+      ((materialDurability / machinePerformance) * pickedAmount) /
+      pickedMachinesAmount
     ).toFixed(1);
-    const costToProduct = (pickedAmount * singleProductionCost) * pickedMachinesAmount;
+    const costToProduct =
+      pickedAmount * singleProductionCost * pickedMachinesAmount;
     setCurrentValue(pickedAmount);
     setCurrentMachinesCount(pickedMachinesAmount);
     setCurrentCost(costToProduct);
@@ -130,7 +133,7 @@ function SettingsPanel(props) {
           name="amount"
           id="amount"
           min="1"
-          max="1000"
+          max={props.playerInfo.equipment.materials.ironOre.quantity}
           onChange={(event) => changeHandler(props.playerInfo, event)}
           ref={amountValue}
         />
