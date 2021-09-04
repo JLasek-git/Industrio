@@ -6,8 +6,15 @@ import MachineMiniature from "../../common/MachineMiniature/MachineMiniature";
 import machineImg from "../../../images/inpact_hitter_1.png";
 
 function MagazineBackground({ ...props }) {
-  const machinesInMagazineState =
-    props.playerInfo.magazine.poorMagazine.machinePlaces;
+  const reduxStateInfo = {
+    machinesInMagazineState:
+      props.playerInfo.magazine.poorMagazine.machinePlaces,
+    playerMachinesInEquipment:
+      props.playerInfo.equipment.machines.impactCrusher.owned,
+    playerMachinesInMagazine:
+      props.playerInfo.magazine.poorMagazine.machinesQuantity,
+  };
+
   const playerMachinesInEquipment =
     props.playerInfo.equipment.machines.impactCrusher.owned;
   const playerMachinesInMagazine =
@@ -18,7 +25,7 @@ function MagazineBackground({ ...props }) {
     const clickedElementId = event.currentTarget.lastChild.id;
 
     if (
-      machinesInMagazineState[clickedElementId] == "" &&
+      reduxStateInfo.machinesInMagazineState[clickedElementId] == "" &&
       playerMachinesInEquipment != 0
     ) {
       const createdElement = (
@@ -31,7 +38,7 @@ function MagazineBackground({ ...props }) {
       props.setMachineEqQuantity(quantityInEq);
       props.setMachineInMagazineQuantity(quantityInMagazine);
     } else if (
-      machinesInMagazineState[clickedElementId] == "" &&
+      reduxStateInfo.machinesInMagazineState[clickedElementId] == "" &&
       playerMachinesInEquipment <= 0
     ) {
       alert(
@@ -41,11 +48,11 @@ function MagazineBackground({ ...props }) {
   }
 
   function renderMachinesIcons() {
-    for (let place in machinesInMagazineState) {
+    for (let place in reduxStateInfo.machinesInMagazineState) {
       const machineContainer = document.getElementById(`${place}`);
       ReactDOM.render(
         <div onClick={props.showProductionSettings}>
-          {machinesInMagazineState[place].createdElement}
+          {reduxStateInfo.machinesInMagazineState[place].createdElement}
         </div>,
         machineContainer
       );

@@ -100,8 +100,10 @@ export default function reducer(statePart = [], action = {}) {
           ...statePart.equipment,
           materials: {
             ...statePart.equipment.materials,
-            [action.payload.materialName]: {
-              ...statePart.equipment.materials[action.payload.materialName],
+            [action.payload.materialStateName]: {
+              ...statePart.equipment.materials[
+                action.payload.materialStateName
+              ],
               quantity: action.payload.playerMaterialAfterAction,
             },
           },

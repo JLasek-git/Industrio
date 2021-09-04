@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
-import styles from "./IronOreConcentrate.module.scss";
+import styles from "./ShopElement.module.scss";
 import Button from "../../../../common/Button/Button";
 
-function IronOre({ ...props }) {
+function ShopElement({ materialStateName, materialDisplayName, ...props }) {
   const buyingAmount = useRef();
   const sellingAmount = useRef();
   const [currentBuyingAmount, setCurrentBuyingAmount] = useState(0);
@@ -10,64 +10,104 @@ function IronOre({ ...props }) {
   const [currentBuyingCost, setCurrentBuyingCost] = useState(0);
   const [currentSellingIncome, setCurrentSellingIncome] = useState(0);
   /* Changing props to shorter names */
-  const playerMoney = props.playerInfo.money;
-  const playerMaterialAmount =
-    props.playerInfo.equipment.materials.ironOreConcentrate.quantity;
-  const materialPrice =
-    props.playerInfo.equipment.materials.ironOreConcentrate.price;
-  const maxPlayerCanBuy = playerMoney / materialPrice;
-  const materialName = "ironOreConcentrate";
+  const reduxStateInfo = {
+    playerMoney: props.playerInfo.money,
+    playerMaterialAmount:
+      props.playerInfo.equipment.materials[materialStateName].quantity,
+    materialPrice:
+      props.playerInfo.equipment.materials[materialStateName].price,
+  };
+  /* All functions for buying materials */
+  function calculateMaxPlayerCanBuy() {
+    return reduxStateInfo.playerMoney / reduxStateInfo.materialPrice;
+  }
+
+  function calculateBuyingCost(pickedAmount) {
+    return reduxStateInfo.materialPrice * pickedAmount;
+  }
+
+  function calculatePlayerMoneyAfterBuy(buyingCost) {
+    return reduxStateInfo.playerMoney - buyingCost;
+  }
+
+  function calculatePlayerMaterialAfterBuy(pickedAmount) {
+    return reduxStateInfo.playerMaterialAmount + pickedAmount;
+  }
 
   const handleShopActionBuy = (event) => {
     event.preventDefault();
     const pickedAmount = parseInt(buyingAmount.current.value);
-    const buyingCost = materialPrice * pickedAmount;
-    const playerMoneyAfterAction = playerMoney - buyingCost;
-    const playerMaterialAfterAction = playerMaterialAmount + pickedAmount;
+    const buyingCost = calculateBuyingCost(pickedAmount);
+    const playerMoneyAfterAction = calculatePlayerMoneyAfterBuy(buyingCost);
+    const playerMaterialAfterAction =
+      calculatePlayerMaterialAfterBuy(pickedAmount);
 
     if (playerMoneyAfterAction < 0) {
       alert("You need more money!");
     } else {
       props.setMoney(playerMoneyAfterAction);
-      props.setMaterialQuantityBuy({ playerMaterialAfterAction, materialName });
+      props.setMaterialQuantityBuy({
+        playerMaterialAfterAction,
+        materialStateName,
+      });
     }
   };
+
+  /* All functions for selling materials  */
+  function calculateItemsWorth(pickedAmount) {
+    return reduxStateInfo.materialPrice * pickedAmount;
+  }
+
+  function calculatePlayerMoneyAfterSell(sellingItemsWorth) {
+    return reduxStateInfo.playerMoney + sellingItemsWorth;
+  }
+
+  function calculatePlayerMaterialAfterSell(pickedAmount) {
+    return reduxStateInfo.playerMaterialAmount - pickedAmount;
+  }
 
   const handleShopActionSell = (event) => {
     event.preventDefault();
     const pickedAmount = sellingAmount.current.value;
 
-    const sellingItemsWorth = materialPrice * pickedAmount;
-    const playerMoneyAfterAction = playerMoney + sellingItemsWorth;
-    const playerMaterialAfterAction = playerMaterialAmount - pickedAmount;
+    const sellingItemsWorth = calculateItemsWorth(pickedAmount);
+    const playerMoneyAfterAction =
+      calculatePlayerMoneyAfterSell(sellingItemsWorth);
+    const playerMaterialAfterAction =
+      calculatePlayerMaterialAfterSell(pickedAmount);
 
-    if (playerMaterialAmount <= 0) {
+    if (reduxStateInfo.playerMaterialAmount <= 0) {
       alert("You don't have that much material in stock!");
     } else {
       props.setMoney(playerMoneyAfterAction);
-      props.setMaterialQuantityBuy({ playerMaterialAfterAction, materialName });
+      props.setMaterialQuantityBuy({
+        playerMaterialAfterAction,
+        materialStateName,
+      });
     }
   };
 
+  /* Handlers which allow to display buying amount and selling amount and costs at form */
   const changeBuyingAmountHandler = () => {
     const pickedAmount = parseInt(buyingAmount.current.value);
 
-    setCurrentBuyingCost(pickedAmount * materialPrice);
+    setCurrentBuyingCost(pickedAmount * reduxStateInfo.materialPrice);
     setCurrentBuyingAmount(pickedAmount);
   };
 
   const changeSellingAmountHandler = () => {
     const pickedAmount = sellingAmount.current.value;
 
-    setCurrentSellingIncome(pickedAmount * materialPrice);
+    setCurrentSellingIncome(pickedAmount * reduxStateInfo.materialPrice);
     setCurrentSellingAmount(pickedAmount);
   };
 
+  /* Main component */
   return (
     <div className={styles.materialActionsList}>
       <form className={styles.buyingForm}>
         <label htmlFor="buyingAmount">
-          How much Iron ore concentrate you want to buy?
+          How much {materialDisplayName} you want to buy?
         </label>
         <p>{currentBuyingAmount}</p>
         <input
@@ -75,7 +115,7 @@ function IronOre({ ...props }) {
           name="buyingAmount"
           id="buyingAmount"
           min="1"
-          max={maxPlayerCanBuy}
+          max={calculateMaxPlayerCanBuy()}
           onChange={(event) =>
             changeBuyingAmountHandler(props.playerInfo, event)
           }
@@ -88,7 +128,7 @@ function IronOre({ ...props }) {
       </form>{" "}
       <form className={styles.buyingForm}>
         <label htmlFor="sellingAmount">
-          How much Iron ore concentrate you want to sell?
+          How much {materialDisplayName} you want to sell?
         </label>
         <p>{currentSellingAmount}</p>
         <input
@@ -96,7 +136,7 @@ function IronOre({ ...props }) {
           name="sellingAmount"
           id="sellingAmount"
           min="1"
-          max={playerMaterialAmount}
+          max={reduxStateInfo.playerMaterialAmount}
           onChange={(event) =>
             changeSellingAmountHandler(props.playerInfo, event)
           }
@@ -111,4 +151,4 @@ function IronOre({ ...props }) {
   );
 }
 
-export default IronOre;
+export default ShopElement;

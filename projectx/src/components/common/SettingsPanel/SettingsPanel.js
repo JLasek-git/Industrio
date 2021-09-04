@@ -13,45 +13,97 @@ function SettingsPanel(props) {
   const [currentProductionTime, setCurrentTime] = useState(0);
   const [currentMachinesCount, setCurrentMachinesCount] = useState(1);
 
-  function submitHandler(playerInfo, event) {
+  /* object to make used Redux state object keys shorter */
+  const reduxStateInfo = {
+    playerEqUsedMaterialQuantity:
+      props.playerInfo.equipment.materials.ironOre.quantity,
+
+    playerEqReceivedMaterialQuantity:
+      props.playerInfo.equipment.materials.ironOreConcentrate.quantity,
+
+    playerMoney: props.playerInfo.money,
+
+    singleProductionCost:
+      props.playerInfo.equipment.materials.ironOre.productionCost,
+
+    materialDurability: props.playerInfo.equipment.materials.ironOre.durability,
+
+    machinePerformance:
+      props.playerInfo.equipment.machines.impactCrusher.performance,
+
+    machineState: props.playerInfo.equipment.machines.impactCrusher.work,
+
+    playerExperience: props.playerInfo.experience,
+
+    materialGivenExperience:
+      props.playerInfo.equipment.materials.ironOre.experience,
+  };
+
+  function calculateProductionCost(pickedAmount, pickedMachinesAmount) {
+    return (
+      pickedAmount * reduxStateInfo.singleProductionCost * pickedMachinesAmount
+    );
+  }
+
+  function claculatePlayerMoneyAfter(wholeProductionCost) {
+    return reduxStateInfo.playerMoney - wholeProductionCost;
+  }
+
+  function calculateMaterialReceived(pickedAmount) {
+    return reduxStateInfo.playerEqReceivedMaterialQuantity + pickedAmount;
+  }
+
+  function calculateMaterialUsed(pickedAmount) {
+    return reduxStateInfo.playerEqUsedMaterialQuantity - pickedAmount;
+  }
+
+  function calculateDuration(pickedAmount, pickedMachinesAmount) {
+    return (
+      ((reduxStateInfo.materialDurability / reduxStateInfo.machinePerformance) *
+        1000 *
+        pickedAmount) /
+      pickedMachinesAmount
+    );
+  }
+
+  function calculateReceivedExp(pickedAmount) {
+    return (
+      reduxStateInfo.materialGivenExperience * pickedAmount +
+      reduxStateInfo.playerExperience
+    );
+  }
+
+  function submitHandler(event) {
     event.preventDefault();
 
-    /* saving object properties to variables and const depending on purpose */
-    const playerUsedEquipmentMaterialQuantity =
-      playerInfo.equipment.materials.ironOre.quantity;
-    const playerReceivedEquipmentMaterialQuantity =
-      playerInfo.equipment.materials.ironOreConcentrate.quantity;
-    const playerMoney = playerInfo.money;
-    const singleProductionCost =
-      playerInfo.equipment.materials.ironOre.productionCost;
-    const materialDurability =
-      playerInfo.equipment.materials.ironOre.durability;
-    const machinePerformance =
-      playerInfo.equipment.machines.impactCrusher.performance;
-    const machineState = playerInfo.equipment.machines.impactCrusher.work;
-    const playerExperience = playerInfo.experience;
-    const materialExperience =
-      playerInfo.equipment.materials.ironOre.experience;
     /* this part of code handle work start, and changing state depending on passed parameters (changing quantity of player material (how much he will be given), taking costs of work) */
-    if (!machineState) {
+    if (!reduxStateInfo.machineState) {
       props.setMachineState(true);
 
       /* this defines our pickedAmount on input and parses to int*/
       const pickedAmount = parseInt(amountValue.current.value);
       const pickedMachinesAmount = parseInt(machinesCount.current.value);
+
       /* calculations passed to state depending on props */
-      const wholeProductionCost =
-        pickedAmount * singleProductionCost * pickedMachinesAmount;
-      const playerMoneyAfterProduction = playerMoney - wholeProductionCost;
+      const wholeProductionCost = calculateProductionCost(
+        pickedAmount,
+        pickedMachinesAmount
+      );
+
+      const playerMoneyAfterProduction =
+        claculatePlayerMoneyAfter(wholeProductionCost);
       const playerReceivedMaterialAfterProduction =
-        playerReceivedEquipmentMaterialQuantity + pickedAmount;
+        calculateMaterialReceived(pickedAmount);
+
       const playerUsedMaterialAfterProduction =
-        playerUsedEquipmentMaterialQuantity - pickedAmount;
-      const productionDuration =
-        ((materialDurability / machinePerformance) * 1000 * pickedAmount) /
-        pickedMachinesAmount;
-      const playerReceivedExperience =
-        materialExperience * pickedAmount + playerExperience;
+        calculateMaterialUsed(pickedAmount);
+      const productionDuration = calculateDuration(
+        pickedAmount,
+        pickedMachinesAmount
+      );
+      const playerReceivedExperience = calculateReceivedExp(pickedAmount);
+
+      /* variable used in setInterval to count duration to end of production*/
       let counter = productionDuration;
 
       /* if whole production cost which depends on calculation playerActualMoney - productionCosts is less than 0 it means player don't have enough money to proceed*/
@@ -91,24 +143,19 @@ function SettingsPanel(props) {
 
   /* Handler for range form, which allow us to show currentCost, currentAmount of items and currentTime to produce*/
 
-  function changeHandler(playerInfo, event) {
+  function changeHandler(event) {
     event.preventDefault();
 
-    const singleProductionCost =
-      playerInfo.equipment.materials.ironOre.productionCost;
     const pickedAmount = amountValue.current.value;
     const pickedMachinesAmount = machinesCount.current.value;
-    const materialDurability =
-      playerInfo.equipment.materials.ironOre.durability;
-    const machinePerformance =
-      playerInfo.equipment.machines.impactCrusher.performance;
 
     const timeToProduct = (
-      ((materialDurability / machinePerformance) * pickedAmount) /
+      ((reduxStateInfo.materialDurability / reduxStateInfo.machinePerformance) *
+        pickedAmount) /
       pickedMachinesAmount
     ).toFixed(1);
     const costToProduct =
-      pickedAmount * singleProductionCost * pickedMachinesAmount;
+      pickedAmount * reduxStateInfo.singleProductionCost * pickedMachinesAmount;
     setCurrentValue(pickedAmount);
     setCurrentMachinesCount(pickedMachinesAmount);
     setCurrentCost(costToProduct);
@@ -122,7 +169,7 @@ function SettingsPanel(props) {
       </div>
       <form
         className={styles.parametersForm}
-        onSubmit={(event) => submitHandler(props.playerInfo, event)}
+        onSubmit={(event) => submitHandler(event)}
       >
         <label htmlFor="amount">
           How much Iron ore you want to use?
@@ -134,7 +181,7 @@ function SettingsPanel(props) {
           id="amount"
           min="1"
           max={props.playerInfo.equipment.materials.ironOre.quantity}
-          onChange={(event) => changeHandler(props.playerInfo, event)}
+          onChange={(event) => changeHandler(event)}
           ref={amountValue}
         />
         <label htmlFor="machinesCount">
@@ -147,7 +194,7 @@ function SettingsPanel(props) {
           id="machinesCount"
           min="1"
           max={props.playerInfo.magazine.poorMagazine.machinesQuantity}
-          onChange={(event) => changeHandler(props.playerInfo, event)}
+          onChange={(event) => changeHandler(event)}
           ref={machinesCount}
         />
         <Button btnText="Start" />

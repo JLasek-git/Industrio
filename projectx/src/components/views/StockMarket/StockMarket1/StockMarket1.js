@@ -1,12 +1,10 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import styles from "./StockMarket1.module.scss";
 import LinkButton from "../../../common/LinkButton/LinkButton";
 import Section from "../../../layout/Section/Section";
 import GameWindow from "../../../layout/GameWindow/GameWindow";
 import ChangeShopButton from "../../../common/ChangeShopButton/ChangeShopButton";
-import Button from "../../../common/Button/Button";
-import IronOre from "./IronOre/IronOre";
-import IronOreConcentrate from "./IronOreConcentrate/IronOreConcentrate";
+import ShopElement from "./ShopElement/ShopElement";
 
 function StockMarket1({ ...props }) {
   return (
@@ -20,8 +18,16 @@ function StockMarket1({ ...props }) {
           />
         </ChangeShopButton> */}
         <div className={styles.materialShopList}>
-          <IronOre {...props} />
-          <IronOreConcentrate {...props} />
+          <ShopElement
+            materialStateName="ironOre"
+            materialDisplayName="Iron ore"
+            {...props}
+          />
+          <ShopElement
+            materialStateName="ironOreConcentrate"
+            materialDisplayName="Iron ore concentrate"
+            {...props}
+          />
         </div>
       </GameWindow>
     </Section>

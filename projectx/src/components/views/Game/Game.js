@@ -23,7 +23,9 @@ const Game = () => {
       <GameWindow>
         <MaterialPanel />
         <MagazineBackground showProductionSettings={showProductionSettings} />
-        {backdrop && <Backdrop hideProductionSettings={hideProductionSettings} />}
+        {backdrop && (
+          <Backdrop hideProductionSettings={hideProductionSettings} />
+        )}
       </GameWindow>
     </Section>
   );
