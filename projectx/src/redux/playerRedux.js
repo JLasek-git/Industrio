@@ -100,8 +100,10 @@ export default function reducer(statePart = [], action = {}) {
           ...statePart.equipment,
           materials: {
             ...statePart.equipment.materials,
-            [action.payload.materialName]: {
-              ...statePart.equipment.materials[action.payload.materialName],
+            [action.payload.materialStateName]: {
+              ...statePart.equipment.materials[
+                action.payload.materialStateName
+              ],
               quantity: action.payload.playerMaterialAfterAction,
             },
           },
@@ -168,15 +170,16 @@ export default function reducer(statePart = [], action = {}) {
     }
 
     case SET_MACHINE_EQ_QUANTITY: {
+      console.log(action.payload.machineStateName);
       return {
         ...statePart,
         equipment: {
           ...statePart.equipment,
           machines: {
             ...statePart.equipment.machines,
-            impactCrusher: {
-              ...statePart.equipment.machines.impactCrusher,
-              owned: action.payload,
+            [action.payload.machineStateName]: {
+              ...statePart.equipment.machines[action.payload.machineStateName],
+              owned: action.payload.machineQuantity,
             },
           },
         },

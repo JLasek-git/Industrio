@@ -6,8 +6,17 @@ import MachineMiniature from "../../common/MachineMiniature/MachineMiniature";
 import machineImg from "../../../images/inpact_hitter_1.png";
 
 function MagazineBackground({ ...props }) {
-  const machinesInMagazineState =
-    props.playerInfo.magazine.poorMagazine.machinePlaces;
+  const reduxStateInfo = {
+    machinesInMagazineState:
+      props.playerInfo.magazine.poorMagazine.machinePlaces,
+    playerMachinesInEquipment:
+      props.playerInfo.equipment.machines.impactCrusher.owned,
+    playerMachinesInMagazine:
+      props.playerInfo.magazine.poorMagazine.machinesQuantity,
+  };
+
+  const machineStateName = "impactCrusher";
+
   const playerMachinesInEquipment =
     props.playerInfo.equipment.machines.impactCrusher.owned;
   const playerMachinesInMagazine =
@@ -18,20 +27,20 @@ function MagazineBackground({ ...props }) {
     const clickedElementId = event.currentTarget.lastChild.id;
 
     if (
-      machinesInMagazineState[clickedElementId] == "" &&
-      playerMachinesInEquipment != 0
+      reduxStateInfo.machinesInMagazineState[clickedElementId] === "" &&
+      playerMachinesInEquipment !== 0
     ) {
       const createdElement = (
         <MachineMiniature source={machineImg} altText="impact-hitter" />
       );
-      const quantityInEq = playerMachinesInEquipment - 1;
+      const machineQuantity = playerMachinesInEquipment - 1;
       const quantityInMagazine = playerMachinesInMagazine + 1;
 
       props.setMachinePlace({ createdElement, clickedElementId });
-      props.setMachineEqQuantity(quantityInEq);
+      props.setMachineEqQuantity({ machineQuantity, machineStateName });
       props.setMachineInMagazineQuantity(quantityInMagazine);
     } else if (
-      machinesInMagazineState[clickedElementId] == "" &&
+      reduxStateInfo.machinesInMagazineState[clickedElementId] === "" &&
       playerMachinesInEquipment <= 0
     ) {
       alert(
@@ -41,11 +50,11 @@ function MagazineBackground({ ...props }) {
   }
 
   function renderMachinesIcons() {
-    for (let place in machinesInMagazineState) {
+    for (let place in reduxStateInfo.machinesInMagazineState) {
       const machineContainer = document.getElementById(`${place}`);
       ReactDOM.render(
         <div onClick={props.showProductionSettings}>
-          {machinesInMagazineState[place].createdElement}
+          {reduxStateInfo.machinesInMagazineState[place].createdElement}
         </div>,
         machineContainer
       );
