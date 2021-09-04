@@ -8,7 +8,6 @@ const GameWindow = ({ children }) => (
 
 GameWindow.propTypes = {
   children: PropTypes.node,
-  image: PropTypes.string,
 };
 
 export default GameWindow;
