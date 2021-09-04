@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./StockMarket2.module.scss";
+// import styles from "./StockMarket2.module.scss";
 import LinkButton from "../../../common/LinkButton/LinkButton";
 import Section from "../../../layout/Section/Section";
 import GameWindow from "../../../layout/GameWindow/GameWindow";

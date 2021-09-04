@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import PropTypes from "prop-types";
 import styles from "./ShopElement.module.scss";
 import Button from "../../../../common/Button/Button";
 
@@ -150,5 +151,10 @@ function ShopElement({ materialStateName, materialDisplayName, ...props }) {
     </div>
   );
 }
+
+ShopElement.propTypes = {
+  materialStateName: PropTypes.string,
+  materialDisplayName: PropTypes.node,
+};
 
 export default ShopElement;

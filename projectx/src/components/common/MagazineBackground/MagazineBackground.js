@@ -15,6 +15,8 @@ function MagazineBackground({ ...props }) {
       props.playerInfo.magazine.poorMagazine.machinesQuantity,
   };
 
+  const machineStateName = "impactCrusher";
+
   const playerMachinesInEquipment =
     props.playerInfo.equipment.machines.impactCrusher.owned;
   const playerMachinesInMagazine =
@@ -25,20 +27,20 @@ function MagazineBackground({ ...props }) {
     const clickedElementId = event.currentTarget.lastChild.id;
 
     if (
-      reduxStateInfo.machinesInMagazineState[clickedElementId] == "" &&
-      playerMachinesInEquipment != 0
+      reduxStateInfo.machinesInMagazineState[clickedElementId] === "" &&
+      playerMachinesInEquipment !== 0
     ) {
       const createdElement = (
         <MachineMiniature source={machineImg} altText="impact-hitter" />
       );
-      const quantityInEq = playerMachinesInEquipment - 1;
+      const machineQuantity = playerMachinesInEquipment - 1;
       const quantityInMagazine = playerMachinesInMagazine + 1;
 
       props.setMachinePlace({ createdElement, clickedElementId });
-      props.setMachineEqQuantity(quantityInEq);
+      props.setMachineEqQuantity({ machineQuantity, machineStateName });
       props.setMachineInMagazineQuantity(quantityInMagazine);
     } else if (
-      reduxStateInfo.machinesInMagazineState[clickedElementId] == "" &&
+      reduxStateInfo.machinesInMagazineState[clickedElementId] === "" &&
       playerMachinesInEquipment <= 0
     ) {
       alert(

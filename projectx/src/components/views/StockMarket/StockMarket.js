@@ -1,7 +1,7 @@
 import React from "react";
 import LinkButton from "../../common/LinkButton/LinkButton";
 import Section from "../../layout/Section/Section";
-import styles from "./StockMarket.module.scss";
+// import styles from "./StockMarket.module.scss";
 import GameWindow from "../../layout/GameWindow/GameWindow";
 
 const StockMarket = () => (
