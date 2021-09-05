@@ -26,6 +26,9 @@ export const SET_MATERIAL_QUANTITY_BUY = createActionName(
   "SET_MATERIAL_QUANTITY_BUY"
 );
 export const SET_MACHINES_CAPACITY = createActionName("SET_MACHINES_CAPACITY");
+export const SET_ALL_MACHINES_QUANTITY = createActionName(
+  "SET_ALL_MACHINES_QUANTITY"
+);
 
 // action creators
 export const setMaterialQuantityUp = (payload) => ({
@@ -59,6 +62,11 @@ export const setMaterialQuantityBuy = (payload) => ({
 export const setMachinesCapacity = (payload) => ({
   payload,
   type: SET_MACHINES_CAPACITY,
+});
+
+export const setAllMachinesQuantity = (payload) => ({
+  payload,
+  type: SET_ALL_MACHINES_QUANTITY,
 });
 
 export default function reducer(statePart = [], action = {}) {
@@ -178,6 +186,19 @@ export default function reducer(statePart = [], action = {}) {
           poorMagazine: {
             ...statePart.magazine.poorMagazine,
             machinesCapacity: action.payload,
+          },
+        },
+      };
+    }
+
+    case SET_ALL_MACHINES_QUANTITY: {
+      return {
+        ...statePart,
+        equipment: {
+          ...statePart.equipment,
+          machines: {
+            ...statePart.equipment.machines,
+            allMachinesQuantity: action.payload,
           },
         },
       };

@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 
 function MachinesPanel({ showProductionSettings, ...props }) {
   const machineWork = props.playerInfo.equipment.machines.impactCrusher.work;
-  const machinesOwned = props.playerInfo.equipment.machines.impactCrusher.owned;
   let color;
 
   if (!machineWork) {

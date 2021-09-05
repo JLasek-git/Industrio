@@ -5,7 +5,7 @@ function MaterialPanel({ ...props }) {
   function calculateFreePlaces() {
     const freePlaces =
       props.playerInfo.magazine.poorMagazine.machinesCapacity -
-      props.playerInfo.equipment.machines.impactCrusher.owned;
+      props.playerInfo.equipment.machines.allMachinesQuantity;
 
     return freePlaces;
   }
@@ -28,11 +28,48 @@ function MaterialPanel({ ...props }) {
             {props.playerInfo.equipment.materials.ironOreConcentrate.quantity}t
           </span>
         </span>
+        <h3>Machines</h3>
         <span>
-          <h3>Machines</h3>
           Impact Crusher:{" "}
           <span className={styles.materialNumber}>
+            {" "}
             {props.playerInfo.equipment.machines.impactCrusher.owned}
+          </span>
+        </span>
+        <span>
+          Jaw Crusher:{" "}
+          <span className={styles.materialNumber}>
+            {props.playerInfo.equipment.machines.jawCrusher.owned}
+          </span>
+        </span>
+        <span>
+          Cone Crusher:{" "}
+          <span className={styles.materialNumber}>
+            {props.playerInfo.equipment.machines.coneCrusher.owned}
+          </span>
+        </span>
+        <span>
+          Hammer Crusher:{" "}
+          <span className={styles.materialNumber}>
+            {props.playerInfo.equipment.machines.hammerCrusher.owned}
+          </span>
+        </span>
+        <span>
+          Ball Drum Mill:{" "}
+          <span className={styles.materialNumber}>
+            {props.playerInfo.equipment.machines.ballDrumMill.owned}
+          </span>
+        </span>
+        <span>
+          Rod Drum Mill:{" "}
+          <span className={styles.materialNumber}>
+            {props.playerInfo.equipment.machines.rodDrumMill.owned}
+          </span>
+        </span>
+        <span>
+          Drum Screen:{" "}
+          <span className={styles.materialNumber}>
+            {props.playerInfo.equipment.machines.drumScreen.owned}
           </span>
         </span>
       </div>

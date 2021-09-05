@@ -14,7 +14,7 @@ const initialState = {
     nickname: "Player 1",
     experience: 0,
     toNextLevel: 4000,
-    money: 60000,
+    money: 100000,
     equipment: {
       machines: {
         impactCrusher: {
@@ -27,7 +27,7 @@ const initialState = {
           performance: 1000,
           work: false,
           timeDuration: 0,
-          owned: 3,
+          owned: 0,
         },
         jawCrusher: {
           id: "jaw-crusher",
@@ -67,7 +67,7 @@ const initialState = {
         },
         ballDrumMill: {
           id: "ball-drum-mill",
-          name: "Ball Drum MIll",
+          name: "Ball Drum Mill",
           price: 100000,
           requirement: 40,
           type: "mill",
@@ -101,6 +101,18 @@ const initialState = {
           timeDuration: 0,
           owned: 0,
         },
+
+        magneticSeparator: {
+          id: "magneticSeparator",
+          name: "Magnetic separator",
+          price: 650000,
+          requirement: 150,
+          type: "screens-and-separators",
+          application: "pre-treatment-of-ore",
+          performance: 200,
+        },
+
+        allMachinesQuantity: 0,
       },
 
       materials: {
