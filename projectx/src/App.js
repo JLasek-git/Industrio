@@ -13,7 +13,11 @@ function App() {
       <BrowserRouter>
         <MainLayout>
           <Switch>
-            <Route exact path={`${process.env.PUBLIC_URL}/`} component={Game} />
+            <Route
+              exact
+              path={`${process.env.PUBLIC_URL}/game`}
+              component={Game}
+            />
             <Route
               exact
               path={`${process.env.PUBLIC_URL}/gameoptions`}
