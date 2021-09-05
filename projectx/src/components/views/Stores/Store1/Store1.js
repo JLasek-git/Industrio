@@ -15,7 +15,36 @@ function Store1({ ...props }) {
           <StoreMachine
             machineImg={impactHitterImg}
             machineStateName="impactCrusher"
-            machineName="Impact Crusher"
+            {...props}
+          />
+          <StoreMachine
+            machineImg={impactHitterImg}
+            machineStateName="jawCrusher"
+            {...props}
+          />
+          <StoreMachine
+            machineImg={impactHitterImg}
+            machineStateName="coneCrusher"
+            {...props}
+          />
+          <StoreMachine
+            machineImg={impactHitterImg}
+            machineStateName="hammerCrusher"
+            {...props}
+          />
+          <StoreMachine
+            machineImg={impactHitterImg}
+            machineStateName="ballDrumMill"
+            {...props}
+          />
+          <StoreMachine
+            machineImg={impactHitterImg}
+            machineStateName="rodDrumMill"
+            {...props}
+          />
+          <StoreMachine
+            machineImg={impactHitterImg}
+            machineStateName="drumScreen"
             {...props}
           />
         </InnerWindow>

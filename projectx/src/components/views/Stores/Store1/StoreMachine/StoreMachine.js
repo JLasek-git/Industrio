@@ -11,6 +11,8 @@ function StoreMachine({ machineImg, machineStateName, machineName, ...props }) {
     machineCost: props.playerInfo.equipment.machines[machineStateName].price,
     playerMagazineCapacity:
       props.playerInfo.magazine.poorMagazine.machinesCapacity,
+    playerMachineName:
+      props.playerInfo.equipment.machines[machineStateName].name,
   };
   const handleBuy = () => {
     const machineQuantity = reduxStateInfo.playerMachineQuantity + 1;
@@ -37,8 +39,9 @@ function StoreMachine({ machineImg, machineStateName, machineName, ...props }) {
   return (
     <div className={styles.singleMachine}>
       <img src={machineImg} alt={machineStateName} />
+      <p>{reduxStateInfo.playerMachineName}</p>
       <div onClick={() => handleBuy()}>
-        <Button btnText={machineName} />
+        <Button btnText="Buy" />
       </div>
       <p>Price: ${reduxStateInfo.machineCost}</p>
     </div>

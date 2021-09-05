@@ -1,5 +1,13 @@
 @import "../../../../../styles/global.scss";
 
+.materialActionsList {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .buyingForm {
   min-width: 400px;
   height: 250px;
