@@ -1,0 +1,12 @@
+@import "../../../styles/global.scss";
+
+.childrenContainer {
+  width: 75%;
+  height: 75%;
+  color: #f3e1ac;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #455a64;
+  border: 1px solid #f3e1ac;
+}

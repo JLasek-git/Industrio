@@ -9,7 +9,6 @@
 body {
   margin: 0;
   padding: 0;
-  background-image: linear-gradient($blue-darker, $blue-lighter);
   font-family: $main-font;
   overflow: hidden;
 }
@@ -18,4 +17,8 @@ a,
 a:hover,
 a:visited {
   text-decoration: none;
+}
+
+h1 {
+  margin: 0;
 }

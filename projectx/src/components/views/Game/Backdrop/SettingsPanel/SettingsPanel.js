@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import styles from "./SettingsPanel.module.scss";
-import Icon from "../Icon/Icon";
-import Button from "../../common/Button/Button";
+import Icon from "../../../../common/Icon/Icon";
+import Button from "../../../../common/Button/Button";
 
 function SettingsPanel(props) {
   const amountValue = useRef();
@@ -193,7 +193,7 @@ function SettingsPanel(props) {
           name="machinesCount"
           id="machinesCount"
           min="1"
-          max={props.playerInfo.magazine.poorMagazine.machinesQuantity}
+          max={props.playerInfo.equipment.machines.impactCrusher.owned}
           onChange={(event) => changeHandler(event)}
           ref={machinesCount}
         />

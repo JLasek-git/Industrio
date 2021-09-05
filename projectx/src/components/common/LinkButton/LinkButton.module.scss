@@ -1,39 +1,14 @@
 @import "../../../styles/global.scss";
 
-.component {
-  width: $button-width;
-}
-
-.linkText {
-  color: $color-white-text;
-  font-size: $button-font-size;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.linkDirection {
-  margin-left: $basic-maring;
-  transition: 0.3s linear;
-}
-
 .linkBtn {
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  width: $button-width;
-  height: $button-heigth;
-  background-image: linear-gradient($blue-lighter, $blue-darker);
-  border-radius: $button-radius;
-  border: 2px solid black;
-  margin: $button-margin;
-  transition: 0.5s linear;
-}
-
-.linkBtn:active {
-  background-image: linear-gradient($blue-lighter, $color-grayish-blue);
-}
-
-.linkBtn:hover .linkDirection {
-  margin-left: 20px;
+  border-bottom: 2px solid rgb(78, 78, 78);
+  background-color: #232323;
+  width: 250px;
+  height: 60px;
+  & .linkDirection {
+    color: #f3e1ac;
+  }
 }

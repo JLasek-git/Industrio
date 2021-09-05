@@ -1,22 +1,16 @@
 import React from "react";
 // import styles from "./Store2.module.scss";
-import LinkButton from "../../../common/LinkButton/LinkButton";
 import Section from "../../../layout/Section/Section";
-import GameWindow from "../../../layout/GameWindow/GameWindow";
-import ChangeShopButton from "../../../common/ChangeShopButton/ChangeShopButton";
+import OuterWindow from "../../../layout/OuterWindow/OuterWindow";
+import InnerWindow from "../../../layout/InnerWindow/InnerWindow";
 
 const Store2 = () => (
   <Section>
-    <GameWindow>
-      <ChangeShopButton>
-        <LinkButton
-          buttonText="Machines"
-          iconName="shopping-basket"
-          link="/stores/store1"
-        />
-      </ChangeShopButton>
-      <h1>Buildings view</h1>
-    </GameWindow>
+    <OuterWindow>
+      <InnerWindow>
+        <h1>Buildings shop is under construction</h1>
+      </InnerWindow>
+    </OuterWindow>
   </Section>
 );
 

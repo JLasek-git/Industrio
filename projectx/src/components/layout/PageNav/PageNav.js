@@ -4,29 +4,26 @@ import LinkButton from "../../common/LinkButton/LinkButton";
 
 const PageNav = () => (
   <nav className={styles.mainNavBar}>
+    <LinkButton className={styles.mainNavBtn} buttonText="Dashboard" link="/" />
     <LinkButton
       className={styles.mainNavBtn}
-      buttonText="Game"
-      iconName="gamepad"
-      link="/"
+      buttonText="Materials"
+      link="/stockmarket/stockmarket1"
     />
     <LinkButton
       className={styles.mainNavBtn}
-      buttonText="Market"
-      iconName="chart-line"
-      link="/stockmarket"
+      buttonText="Machines"
+      link="/stores/store1"
     />
     <LinkButton
       className={styles.mainNavBtn}
-      buttonText="Stores"
-      iconName="shopping-basket"
-      link="/stores"
+      buttonText="Buildings"
+      link="/stores/store2"
     />
     <LinkButton
       className={styles.mainNavBtn}
-      buttonText="Options"
-      iconName="cogs"
-      link="/gameoptions"
+      buttonText="Employees"
+      link="/stockmarket/stockmarket2"
     />
   </nav>
 );

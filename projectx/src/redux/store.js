@@ -27,7 +27,7 @@ const initialState = {
           performance: 1000,
           work: false,
           timeDuration: 0,
-          owned: 1,
+          owned: 3,
         },
       },
 
@@ -54,15 +54,7 @@ const initialState = {
     },
     magazine: {
       poorMagazine: {
-        machinesQuantity: 0,
-        machinePlaces: {
-          place1: "",
-          place2: "",
-          place3: "",
-          place4: "",
-          place5: "",
-          place6: "",
-        },
+        machinesCapacity: 6,
       },
     },
   },

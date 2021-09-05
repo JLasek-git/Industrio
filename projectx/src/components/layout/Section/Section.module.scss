@@ -1,10 +1,9 @@
 @import "../../../styles/global.scss";
 
 .component {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 100vw;
   height: 100vh;
-  margin: $basic-maring;
+  background-color: #232323;
+  display: flex;
+  justify-content: flex-end;
 }

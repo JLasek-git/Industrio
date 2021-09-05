@@ -1,0 +1,11 @@
+@import "../../../../styles/global.scss";
+
+.backdrop {
+  position: absolute;
+  background-color: #232323;
+  width: calc(100% - 250px);
+  height: calc(100% - 20px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

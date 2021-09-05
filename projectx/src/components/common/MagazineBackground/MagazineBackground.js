@@ -6,68 +6,69 @@ import MachineMiniature from "../../common/MachineMiniature/MachineMiniature";
 import machineImg from "../../../images/inpact_hitter_1.png";
 
 function MagazineBackground({ ...props }) {
-  const reduxStateInfo = {
-    machinesInMagazineState:
-      props.playerInfo.magazine.poorMagazine.machinePlaces,
-    playerMachinesInEquipment:
-      props.playerInfo.equipment.machines.impactCrusher.owned,
-    playerMachinesInMagazine:
-      props.playerInfo.magazine.poorMagazine.machinesQuantity,
-  };
+  //   const reduxStateInfo = {
+  //     machinesInMagazineState:
+  //       props.playerInfo.magazine.poorMagazine.machinePlaces,
+  //     playerMachinesInEquipment:
+  //       props.playerInfo.equipment.machines.impactCrusher.owned,
+  //     playerMachinesInMagazine:
+  //       props.playerInfo.magazine.poorMagazine.machinesQuantity,
+  //   };
 
-  const machineStateName = "impactCrusher";
+  //   const machineStateName = "impactCrusher";
 
-  const playerMachinesInEquipment =
-    props.playerInfo.equipment.machines.impactCrusher.owned;
-  const playerMachinesInMagazine =
-    props.playerInfo.magazine.poorMagazine.machinesQuantity;
-  /* This function allow us to place machine in squares */
-  function machinePlaceHandleClick(event) {
-    event.preventDefault();
-    const clickedElementId = event.currentTarget.lastChild.id;
+  //   const playerMachinesInEquipment =
+  //     props.playerInfo.equipment.machines.impactCrusher.owned;
+  //   const playerMachinesInMagazine =
+  //     props.playerInfo.magazine.poorMagazine.machinesQuantity;
+  //   /* This function allow us to place machine in squares */
+  //   function machinePlaceHandleClick(event) {
+  //     event.preventDefault();
+  //     const clickedElementId = event.currentTarget.lastChild.id;
 
-    if (
-      reduxStateInfo.machinesInMagazineState[clickedElementId] === "" &&
-      playerMachinesInEquipment !== 0
-    ) {
-      const createdElement = (
-        <MachineMiniature source={machineImg} altText="impact-hitter" />
-      );
-      const machineQuantity = playerMachinesInEquipment - 1;
-      const quantityInMagazine = playerMachinesInMagazine + 1;
+  //     if (
+  //       reduxStateInfo.machinesInMagazineState[clickedElementId] === "" &&
+  //       playerMachinesInEquipment !== 0
+  //     ) {
+  //       const createdElement = (
+  //         <MachineMiniature source={machineImg} altText="impact-hitter" />
+  //       );
+  //       const machineQuantity = playerMachinesInEquipment - 1;
+  //       const quantityInMagazine = playerMachinesInMagazine + 1;
 
-      props.setMachinePlace({ createdElement, clickedElementId });
-      props.setMachineEqQuantity({ machineQuantity, machineStateName });
-      props.setMachineInMagazineQuantity(quantityInMagazine);
-    } else if (
-      reduxStateInfo.machinesInMagazineState[clickedElementId] === "" &&
-      playerMachinesInEquipment <= 0
-    ) {
-      alert(
-        "You don't have that machine in your equipment. First you have to buy one."
-      );
-    }
-  }
+  //       props.setMachinePlace({ createdElement, clickedElementId });
+  //       props.setMachineEqQuantity({ machineQuantity, machineStateName });
+  //       props.setMachineInMagazineQuantity(quantityInMagazine);
+  //     } else if (
+  //       reduxStateInfo.machinesInMagazineState[clickedElementId] === "" &&
+  //       playerMachinesInEquipment <= 0
+  //     ) {
+  //       alert(
+  //         "You don't have that machine in your equipment. First you have to buy one."
+  //       );
+  //     }
+  //   }
 
-  function renderMachinesIcons() {
-    for (let place in reduxStateInfo.machinesInMagazineState) {
-      const machineContainer = document.getElementById(`${place}`);
-      ReactDOM.render(
-        <div onClick={props.showProductionSettings}>
-          {reduxStateInfo.machinesInMagazineState[place].createdElement}
-        </div>,
-        machineContainer
-      );
-    }
-  }
+  //   function renderMachinesIcons() {
+  //     for (let place in reduxStateInfo.machinesInMagazineState) {
+  //       const machineContainer = document.getElementById(`${place}`);
+  //       ReactDOM.render(
+  //         <div onClick={props.showProductionSettings}>
+  //           {reduxStateInfo.machinesInMagazineState[place].createdElement}
+  //         </div>,
+  //         machineContainer
+  //       );
+  //     }
+  //   }
 
-  useEffect(() => {
-    renderMachinesIcons();
-  });
+  //   useEffect(() => {
+  //     renderMachinesIcons();
+  //   });
 
   return (
     <div className={styles.background}>
-      <img src={magazineImg} alt="magazine" />
+      Magazine View
+      {/* <img src={magazineImg} alt="magazine" />
       <div className={styles.machinePlacement}>
         <div className={styles.machinePlacementUp}>
           <div
@@ -109,7 +110,7 @@ function MagazineBackground({ ...props }) {
             <div id="place6" className={styles.machineButton}></div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
