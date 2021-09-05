@@ -21,12 +21,11 @@ export const SET_MACHINE_PLACE = createActionName("SET_MACHINE_PLACE");
 export const SET_MACHINE_EQ_QUANTITY = createActionName(
   "SET_MACHINE_EQ_QUANTITY"
 );
-export const SET_MACHINE_IN_MAGAZINE_QUANTITY = createActionName(
-  "SET_MACHINE_IN_MAGAZINE_QUANTITY"
-);
+
 export const SET_MATERIAL_QUANTITY_BUY = createActionName(
   "SET_MATERIAL_QUANTITY_BUY"
 );
+export const SET_MACHINES_CAPACITY = createActionName("SET_MACHINES_CAPACITY");
 
 // action creators
 export const setMaterialQuantityUp = (payload) => ({
@@ -52,13 +51,14 @@ export const setMachineEqQuantity = (payload) => ({
   payload,
   type: SET_MACHINE_EQ_QUANTITY,
 });
-export const setMachineInMagazineQuantity = (payload) => ({
-  payload,
-  type: SET_MACHINE_IN_MAGAZINE_QUANTITY,
-});
+
 export const setMaterialQuantityBuy = (payload) => ({
   payload,
   type: SET_MATERIAL_QUANTITY_BUY,
+});
+export const setMachinesCapacity = (payload) => ({
+  payload,
+  type: SET_MACHINES_CAPACITY,
 });
 
 export default function reducer(statePart = [], action = {}) {
@@ -153,22 +153,6 @@ export default function reducer(statePart = [], action = {}) {
         },
       };
 
-    case SET_MACHINE_PLACE: {
-      return {
-        ...statePart,
-        magazine: {
-          ...statePart.magazine,
-          poorMagazine: {
-            ...statePart.magazine.poorMagazine,
-            machinePlaces: {
-              ...statePart.magazine.poorMagazine.machinePlaces,
-              [action.payload.clickedElementId]: action.payload,
-            },
-          },
-        },
-      };
-    }
-
     case SET_MACHINE_EQ_QUANTITY: {
       console.log(action.payload.machineStateName);
       return {
@@ -186,14 +170,14 @@ export default function reducer(statePart = [], action = {}) {
       };
     }
 
-    case SET_MACHINE_IN_MAGAZINE_QUANTITY: {
+    case SET_MACHINES_CAPACITY: {
       return {
         ...statePart,
         magazine: {
           ...statePart.magazine,
           poorMagazine: {
             ...statePart.magazine.poorMagazine,
-            machinesQuantity: action.payload,
+            machinesCapacity: action.payload,
           },
         },
       };

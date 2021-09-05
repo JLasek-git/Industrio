@@ -1,32 +1,26 @@
 import React, { useState } from "react";
+import styles from "./Game.module.scss";
 import Section from "../../layout/Section/Section";
-import GameWindow from "../../layout/GameWindow/GameWindow";
-import Backdrop from "../../common/Backdrop/Backdrop";
-import MaterialPanel from "../../layout/MaterialPanel/MaterialPanelContainer";
-import MagazineBackground from "../../common/MagazineBackground/MagazineBackgroundContainer";
-
-//SET MONEY WORKS
+import MagazinePanel from "./MagazinePanel/MagazinePanelContainer";
+import MachinesPanel from "./MachinePanel/MachinesPanelContainer";
+import Backdrop from "./Backdrop/Backdrop";
 
 const Game = () => {
   const [backdrop, isVisible] = useState(false);
 
-  const showProductionSettings = () => {
-    isVisible(true);
-  };
-
-  const hideProductionSettings = () => {
-    isVisible(false);
+  const productionSettingsBackdrop = () => {
+    isVisible(!backdrop);
   };
 
   return (
     <Section>
-      <GameWindow>
-        <MaterialPanel />
-        <MagazineBackground showProductionSettings={showProductionSettings} />
+      <div className={styles.gameContainer}>
+        <MachinesPanel showProductionSettings={productionSettingsBackdrop} />
+        <MagazinePanel />
         {backdrop && (
-          <Backdrop hideProductionSettings={hideProductionSettings} />
+          <Backdrop hideProductionSettings={productionSettingsBackdrop} />
         )}
-      </GameWindow>
+      </div>
     </Section>
   );
 };

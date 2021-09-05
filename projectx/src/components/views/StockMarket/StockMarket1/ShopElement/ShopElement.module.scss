@@ -1,15 +1,13 @@
 @import "../../../../../styles/global.scss";
 
-.materialActionsList {
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
 .buyingForm {
+  min-width: 400px;
+  height: 250px;
+  margin: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border: 1px solid #f3e1ac;
+  background-color: #2e4f5e;
 }

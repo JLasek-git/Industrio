@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Backdrop.module.scss";
-import SettingsPanel from "../SettingsPanel/SettingsPanelContainer";
+import SettingsPanel from "./SettingsPanel/SettingsPanelContainer";
 
 function MachinePanel(props) {
   return (

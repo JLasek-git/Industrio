@@ -1,8 +1,21 @@
 @import "../../../../styles/global.scss";
 
-.materialShopList {
+.materialShopContainer {
+  width: calc(100% - 250px);
+  height: calc(100% - 20px);
+  color: #f3e1ac;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-left: 2px solid rgb(78, 78, 78);
+
+  & .materialShopList {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 70%;
+    height: 70%;
+    background-color: #455a64;
+    border: 1px solid #f3e1ac;
+  }
 }

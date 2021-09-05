@@ -9,20 +9,28 @@ function StoreMachine({ machineImg, machineStateName, machineName, ...props }) {
       props.playerInfo.equipment.machines[machineStateName].owned,
     playerMoney: props.playerInfo.money,
     machineCost: props.playerInfo.equipment.machines[machineStateName].price,
+    playerMagazineCapacity:
+      props.playerInfo.magazine.poorMagazine.machinesCapacity,
   };
   const handleBuy = () => {
     const machineQuantity = reduxStateInfo.playerMachineQuantity + 1;
     const playerMoneyAfterBuy =
       reduxStateInfo.playerMoney - reduxStateInfo.machineCost;
 
-    if (playerMoneyAfterBuy >= 0) {
+    if (
+      playerMoneyAfterBuy >= 0 &&
+      reduxStateInfo.playerMachineQuantity <
+        reduxStateInfo.playerMagazineCapacity
+    ) {
       props.setMachineEqQuantity({
         machineQuantity,
         machineStateName,
       });
       props.setMoney(playerMoneyAfterBuy);
     } else {
-      alert("You don't have enough money to buy this machine.");
+      alert(
+        "You don't have enough money to buy this machine or you have reached the limit of machines in the hall."
+      );
     }
   };
 

@@ -1,10 +1,10 @@
 @import "../../../styles/global.scss";
 
-.gameContainer {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
+.outerWindow {
   width: calc(100% - 250px);
   height: calc(100% - 20px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-left: 2px solid rgb(78, 78, 78);
 }

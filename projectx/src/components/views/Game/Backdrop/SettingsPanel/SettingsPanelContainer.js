@@ -6,7 +6,7 @@ import {
   getAllPlayerInfo,
   setTime,
   setExperience,
-} from "../../../redux/playerRedux";
+} from "../../../../../redux/playerRedux";
 import SettingsPanel from "./SettingsPanel";
 import { connect } from "react-redux";
 
