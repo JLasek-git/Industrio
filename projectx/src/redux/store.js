@@ -6,9 +6,33 @@ import profileIcon from "../images/profileIcon.png";
 
 import globalReducer from "./globalRedux";
 import playerReducer from "./playerRedux";
+import { loadState, saveState } from "./localStorage";
 
+const localStorageState = localStorage.state === undefined ? 'localStorageState' : JSON.parse(localStorage.state);
+
+/* local storage state settings */
+if(localStorageState !== "localStorageState"){
+  const machinesObjectInPlayerEq = localStorageState.playerInfo.equipment.machines;
+  let materialsReturned = 0;
+  let moneyReturned = 0;
+  for(let machine in machinesObjectInPlayerEq )
+  {
+    if(machine != 'allMachinesQuantity'){
+      if(machinesObjectInPlayerEq[machine].materialFromProduction > 0){
+        localStorageState.playerInfo.equipment.materials.ironOre.quantity += machinesObjectInPlayerEq[machine].materialFromProduction;
+        localStorageState.playerInfo.money += machinesObjectInPlayerEq[machine].materialFromProduction * 10 * localStorageState.playerInfo.equipment.machines[machine].machineWorking;
+        localStorageState.playerInfo.equipment.machines[machine].machineWorking = 0;
+      }
+      machinesObjectInPlayerEq[machine].work = false;
+      machinesObjectInPlayerEq[machine].timeDuration = 0;
+      machinesObjectInPlayerEq[machine].materialFromProduction = 0;
+    }
+  }
+  console.log(materialsReturned);
+  console.log(moneyReturned);
+}
 /* make initial state */
-const initialState = {
+const initialState = localStorage.state !== undefined ? localStorageState : {
   playerInfo: {
     avatar: profileIcon,
     nickname: "Player 1",
@@ -26,6 +50,7 @@ const initialState = {
           application: "pre-treatment-of-ore",
           performance: 15,
           work: false,
+          machineWorking: 0,
           timeDuration: 0,
           materialFromProduction: 0,
           owned: 0,
@@ -39,6 +64,7 @@ const initialState = {
           application: "pre-treatment-of-ore",
           performance: 25,
           work: false,
+          machineWorking: 0,
           timeDuration: 0,
           materialFromProduction: 0,
           owned: 0,
@@ -52,6 +78,7 @@ const initialState = {
           application: "pre-treatment-of-ore",
           performance: 50,
           work: false,
+          machineWorking: 0,
           timeDuration: 0,
           materialFromProduction: 0,
           owned: 0,
@@ -65,6 +92,7 @@ const initialState = {
           application: "pre-treatment-of-ore",
           performance: 80,
           work: false,
+          machineWorking: 0,
           timeDuration: 0,
           materialFromProduction: 0,
           owned: 0,
@@ -78,6 +106,7 @@ const initialState = {
           application: "pre-treatment-of-ore",
           performance: 150,
           work: false,
+          machineWorking: 0,
           timeDuration: 0,
           materialFromProduction: 0,
           owned: 0,
@@ -91,6 +120,7 @@ const initialState = {
           application: "pre-treatment-of-ore",
           performance: 250,
           work: false,
+          machineWorking: 0,
           timeDuration: 0,
           materialFromProduction: 0,
           owned: 0,
@@ -104,6 +134,7 @@ const initialState = {
           application: "pre-treatment-of-ore",
           performance: 750,
           work: false,
+          machineWorking: 0,
           timeDuration: 0,
           materialFromProduction: 0,
           owned: 0,
@@ -118,6 +149,7 @@ const initialState = {
           application: "pre-treatment-of-ore",
           performance: 2000,
           work: false,
+          machineWorking: 0,
           timeDuration: 0,
           materialFromProduction: 0,
           owned: 0,
@@ -153,15 +185,15 @@ const initialState = {
       },
     },
   },
-
   materialsInfo: materials,
   machinesInfo: machinesPreTreatment,
 };
-
+ 
 /* define reducers */
 const reducers = {
   playerInfo: playerReducer,
 };
+
 
 /* make initial state null for all keys in initial state not declared in reducers */
 Object.keys(initialState).forEach((item) => {
@@ -180,10 +212,20 @@ const storeReducer = (state, action) => {
   return combinedReducers(modifiedState, action);
 };
 
+const persistedState = loadState();
+
+
 const store = createStore(
   storeReducer,
   initialState,
-  // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  // persistedState,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
+
+store.subscribe(() => {
+  saveState({
+    playerInfo: store.getState().playerInfo
+  });
+});
 
 export default store;

@@ -30,6 +30,7 @@ export const SET_MACHINES_CAPACITY = createActionName("SET_MACHINES_CAPACITY");
 export const SET_ALL_MACHINES_QUANTITY = createActionName(
   "SET_ALL_MACHINES_QUANTITY"
 );
+export const SET_AMOUNT_MACHINES_WORKING = createActionName("SET_AMOUNT_MACHINES_WORKING");
 
 
 
@@ -75,7 +76,10 @@ export const setAllMachinesQuantity = (payload) => ({
   payload,
   type: SET_ALL_MACHINES_QUANTITY,
 });
-
+export const setAmountMachinesWorking = (payload) => ({
+  payload,
+  type: SET_AMOUNT_MACHINES_WORKING
+});
 export default function reducer(statePart = [], action = {}) {
   switch (action.type) {
     case SET_MATERIAL_QUANTITY_UP:
@@ -220,6 +224,22 @@ export default function reducer(statePart = [], action = {}) {
           machines: {
             ...statePart.equipment.machines,
             allMachinesQuantity: action.payload,
+          },
+        },
+      };
+    }
+
+    case SET_AMOUNT_MACHINES_WORKING: {
+      return{
+        ...statePart,
+        equipment: {
+          ...statePart.equipment,
+          machines: {
+            ...statePart.equipment.machines,
+            [action.payload.currentMachinePicked]:{
+              ...statePart.equipment.machines[action.payload.currentMachinePicked],
+              machineWorking: action.payload.pickedMachinesAmount,
+            },
           },
         },
       };
