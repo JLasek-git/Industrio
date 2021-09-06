@@ -45,6 +45,7 @@ function SettingsPanel(props) {
 
     pickedMachineQuantity:
       props.playerInfo.equipment.machines[currentMachinePicked].owned,
+
   };
 
   function calculateProductionCost(pickedAmount, pickedMachinesAmount) {
@@ -58,7 +59,14 @@ function SettingsPanel(props) {
   }
 
   function calculateMaterialReceived(pickedAmount) {
-    return reduxStateInfo.playerEqReceivedMaterialQuantity + pickedAmount;
+    let materialInEqAfterProduction = 0;
+    materialInEqAfterProduction += pickedAmount + reduxStateInfo.playerEqReceivedMaterialQuantity;
+    for(let machine in props.playerInfo.equipment.machines){
+      if(machine !== "allMachinesQuantity" && machine !== currentMachinePicked){
+        materialInEqAfterProduction += props.playerInfo.equipment.machines[machine].materialFromProduction 
+      }
+    }
+    return materialInEqAfterProduction;
   }
 
   function calculateMaterialUsed(pickedAmount) {
@@ -90,6 +98,9 @@ function SettingsPanel(props) {
       const pickedAmount = parseInt(amountValue.current.value);
       const pickedMachinesAmount = parseInt(machinesCount.current.value);
 
+      /* This line allow us to properly add materials for player production */
+      let amountAfter = pickedAmount;
+      props.setMaterialReceivedFromProduction({amountAfter, currentMachinePicked})
       /* calculations passed to state depending on props */
       const wholeProductionCost = calculateProductionCost(
         pickedAmount,
@@ -109,6 +120,8 @@ function SettingsPanel(props) {
       );
       const playerReceivedExperience = calculateReceivedExp(pickedAmount);
 
+
+      props.setMaterialReceivedFromProduction({amountAfter, currentMachinePicked})
       /* variable used in setInterval to count duration to end of production*/
       let counter = productionDuration;
 
@@ -130,6 +143,9 @@ function SettingsPanel(props) {
           setTimeout(() => {
             /* here we're passing changed values to reducer. Values are calculated before set timeout function. In this part of code, we only changing them in Redux state */
             bool = false;
+            amountAfter = 0;
+            props.setMaterialReceivedFromProduction({amountAfter, currentMachinePicked})
+
             props.setMaterialQuantityUp(playerReceivedMaterialAfterProduction);
             props.setExperience(playerReceivedExperience);
             props.setMachineState({bool, currentMachinePicked});
@@ -169,7 +185,7 @@ function SettingsPanel(props) {
     reduxStateInfo.pickedMachineQuantity =
       props.playerInfo.equipment.machines[pickedProductionMachine].owned;
 
-      console.log(props.playerInfo.equipment.machines[pickedProductionMachine]);
+      // console.log(props.playerInfo.equipment.machines[pickedProductionMachine]);
     const timeToProduct = (
       ((reduxStateInfo.materialDurability / reduxStateInfo.machinePerformance) *
         pickedAmount) /

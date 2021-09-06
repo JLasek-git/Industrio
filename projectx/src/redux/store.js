@@ -14,7 +14,7 @@ const initialState = {
     nickname: "Player 1",
     experience: 0,
     toNextLevel: 4000,
-    money: 100000,
+    money: 50000,
     equipment: {
       machines: {
         impactCrusher: {
@@ -24,10 +24,11 @@ const initialState = {
           requirement: 0,
           type: "crusher",
           application: "pre-treatment-of-ore",
-          performance: 1000,
+          performance: 1.5,
           work: false,
           timeDuration: 0,
-          owned: 0,
+          materialFromProduction: 0,
+          owned: 3,
         },
         jawCrusher: {
           id: "jaw-crusher",
@@ -39,6 +40,7 @@ const initialState = {
           performance: 2.5,
           work: false,
           timeDuration: 0,
+          materialFromProduction: 0,
           owned: 0,
         },
         coneCrusher: {
@@ -51,6 +53,7 @@ const initialState = {
           performance: 5,
           work: false,
           timeDuration: 0,
+          materialFromProduction: 0,
           owned: 0,
         },
         hammerCrusher: {
@@ -63,6 +66,7 @@ const initialState = {
           performance: 8,
           work: false,
           timeDuration: 0,
+          materialFromProduction: 0,
           owned: 0,
         },
         ballDrumMill: {
@@ -75,6 +79,7 @@ const initialState = {
           performance: 15,
           work: false,
           timeDuration: 0,
+          materialFromProduction: 0,
           owned: 0,
         },
         rodDrumMill: {
@@ -87,6 +92,7 @@ const initialState = {
           performance: 25,
           work: false,
           timeDuration: 0,
+          materialFromProduction: 0,
           owned: 0,
         },
         drumScreen: {
@@ -99,6 +105,7 @@ const initialState = {
           performance: 75,
           work: false,
           timeDuration: 0,
+          materialFromProduction: 0,
           owned: 0,
         },
 
@@ -112,6 +119,7 @@ const initialState = {
           performance: 200,
           work: false,
           timeDuration: 0,
+          materialFromProduction: 0,
           owned: 0,
         },
 
@@ -126,7 +134,7 @@ const initialState = {
           durability: 300,
           experience: 7.5,
           productionCost: 10,
-          quantity: 100,
+          quantity: 10000,
         },
 
         ironOreConcentrate: {

@@ -13,6 +13,7 @@ export const SET_MATERIAL_QUANTITY_UP = createActionName(
 export const SET_MATERIAL_QUANTITY_DOWN = createActionName(
   "SET_MATERIAL_QUANTITY_DOWN"
 );
+export const SET_MATERIAL_RECEIVED_FROM_PRODUCTION = createActionName("SET_MATERIAL_RECEIVED_FROM_PRODUCTION");
 export const SET_MONEY = createActionName("SET_MONEY");
 export const SET_MACHINE_STATE = createActionName("SET_MACHINE_STATE");
 export const SET_TIME = createActionName("SET_TIME");
@@ -30,6 +31,8 @@ export const SET_ALL_MACHINES_QUANTITY = createActionName(
   "SET_ALL_MACHINES_QUANTITY"
 );
 
+
+
 // action creators
 export const setMaterialQuantityUp = (payload) => ({
   payload,
@@ -38,6 +41,10 @@ export const setMaterialQuantityUp = (payload) => ({
 export const setMaterialQuantityDown = (payload) => ({
   payload,
   type: SET_MATERIAL_QUANTITY_DOWN,
+});
+export const setMaterialReceivedFromProduction = (payload) => ({
+  payload,
+  type: SET_MATERIAL_RECEIVED_FROM_PRODUCTION,
 });
 export const setMoney = (payload) => ({ payload, type: SET_MONEY });
 export const setMachineState = (payload) => ({
@@ -101,6 +108,20 @@ export default function reducer(statePart = [], action = {}) {
         },
       };
 
+    case SET_MATERIAL_RECEIVED_FROM_PRODUCTION:
+      return {
+        ...statePart,
+        equipment: {
+          ...statePart.equipment,
+          machines: {
+            ...statePart.equipment.machines,
+            [action.payload.currentMachinePicked]: {
+              ...statePart.equipment.machines[action.payload.currentMachinePicked],
+              materialFromProduction: action.payload.amountAfter,
+            }
+          }
+        }
+      };
     case SET_MATERIAL_QUANTITY_BUY:
       return {
         ...statePart,
