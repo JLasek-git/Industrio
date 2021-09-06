@@ -125,9 +125,9 @@ export default function reducer(statePart = [], action = {}) {
           ...statePart.equipment,
           machines: {
             ...statePart.equipment.machines,
-            impactCrusher: {
-              ...statePart.equipment.machines.impactCrusher,
-              work: action.payload,
+            [action.payload.currentMachinePicked]: {
+              ...statePart.equipment.machines[action.payload.currentMachinePicked],
+              work: action.payload.bool,
             },
           },
         },
@@ -153,9 +153,9 @@ export default function reducer(statePart = [], action = {}) {
           ...statePart.equipment,
           machines: {
             ...statePart.equipment.machines,
-            impactCrusher: {
-              ...statePart.equipment.machines.impactCrusher,
-              timeDuration: action.payload,
+            [action.payload.currentMachinePicked]: {
+              ...statePart.equipment.machines[action.payload.currentMachinePicked],
+              timeDuration: action.payload.counter,
             },
           },
         },

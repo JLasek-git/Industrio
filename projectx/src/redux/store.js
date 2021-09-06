@@ -110,6 +110,9 @@ const initialState = {
           type: "screens-and-separators",
           application: "pre-treatment-of-ore",
           performance: 200,
+          work: false,
+          timeDuration: 0,
+          owned: 0,
         },
 
         allMachinesQuantity: 0,

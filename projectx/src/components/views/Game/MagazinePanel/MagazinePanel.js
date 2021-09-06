@@ -72,6 +72,12 @@ function MaterialPanel({ ...props }) {
             {props.playerInfo.equipment.machines.drumScreen.owned}
           </span>
         </span>
+        <span>
+          Magnetic Separator:{" "}
+          <span className={styles.materialNumber}>
+            {props.playerInfo.equipment.machines.magneticSeparator.owned}
+          </span>
+        </span>
       </div>
     </div>
   );

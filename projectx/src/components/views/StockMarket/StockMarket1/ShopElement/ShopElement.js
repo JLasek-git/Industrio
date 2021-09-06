@@ -118,7 +118,8 @@ function ShopElement({
           type="range"
           name="buyingAmount"
           id="buyingAmount"
-          min="1"
+          defaultValue="0"
+          min="0"
           max={calculateMaxPlayerCanBuy()}
           onChange={(event) =>
             changeBuyingAmountHandler(props.playerInfo, event)
@@ -139,7 +140,8 @@ function ShopElement({
           type="range"
           name="sellingAmount"
           id="sellingAmount"
-          min="1"
+          defaultValue="0"
+          min="0"
           max={reduxStateInfo.playerMaterialAmount}
           onChange={(event) =>
             changeSellingAmountHandler(props.playerInfo, event)
