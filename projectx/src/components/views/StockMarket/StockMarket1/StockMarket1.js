@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./StockMarket1.module.scss";
 import Section from "../../../layout/Section/Section";
 import ShopElement from "./ShopElement/ShopElement";
 import InnerWindow from "../../../layout/InnerWindow/InnerWindow";
@@ -19,16 +18,6 @@ function StockMarket1({ ...props }) {
               {...props}
             />
           ))}
-          {/* <ShopElement
-            materialStateName="ironOre"
-            materialDisplayName="Iron ore"
-            {...props}
-          />
-          <ShopElement
-            materialStateName="ironOreConcentrate"
-            materialDisplayName="Iron ore concentrate"
-            {...props}
-          /> */}
         </InnerWindow>
       </OuterWindow>
     </Section>

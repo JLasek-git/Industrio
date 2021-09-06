@@ -6,18 +6,16 @@ import profileIcon from "../images/profileIcon.png";
 
 import globalReducer from "./globalRedux";
 import playerReducer from "./playerRedux";
-import { loadState, saveState } from "./localStorage";
+import { saveState } from "./localStorage";
 
 const localStorageState = localStorage.state === undefined ? 'localStorageState' : JSON.parse(localStorage.state);
 
 /* local storage state settings */
 if(localStorageState !== "localStorageState"){
   const machinesObjectInPlayerEq = localStorageState.playerInfo.equipment.machines;
-  let materialsReturned = 0;
-  let moneyReturned = 0;
   for(let machine in machinesObjectInPlayerEq )
   {
-    if(machine != 'allMachinesQuantity'){
+    if(machine !== 'allMachinesQuantity'){
       if(machinesObjectInPlayerEq[machine].materialFromProduction > 0){
         localStorageState.playerInfo.equipment.materials.ironOre.quantity += machinesObjectInPlayerEq[machine].materialFromProduction;
         localStorageState.playerInfo.money += machinesObjectInPlayerEq[machine].materialFromProduction * 10 * localStorageState.playerInfo.equipment.machines[machine].machineWorking;
@@ -28,8 +26,6 @@ if(localStorageState !== "localStorageState"){
       machinesObjectInPlayerEq[machine].materialFromProduction = 0;
     }
   }
-  console.log(materialsReturned);
-  console.log(moneyReturned);
 }
 /* make initial state */
 const initialState = localStorage.state !== undefined ? localStorageState : {
@@ -212,13 +208,13 @@ const storeReducer = (state, action) => {
   return combinedReducers(modifiedState, action);
 };
 
-const persistedState = loadState();
+
 
 
 const store = createStore(
   storeReducer,
   initialState,
-  // persistedState,
+
   // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 

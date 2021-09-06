@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./Store1.module.scss";
 import Section from "../../../layout/Section/Section";
 import impactHitterImg from "../../../../images/inpact_hitter_1.png";
 import StoreMachine from "./StoreMachine/StoreMachineContainer";
