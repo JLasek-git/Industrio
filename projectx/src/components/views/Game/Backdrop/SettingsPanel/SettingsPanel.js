@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import styles from "./SettingsPanel.module.scss";
 import Icon from "../../../../common/Icon/Icon";
 import Button from "../../../../common/Button/Button";
@@ -153,6 +153,7 @@ function SettingsPanel(props) {
         props.setMaterialQuantityDown(playerUsedMaterialAfterProduction);
         props.setMoney(playerMoneyAfterProduction);
         props.setMachineState({ bool, currentMachinePicked });
+        props.setAmountMachinesWorking({ pickedMachinesAmount, currentMachinePicked })
 
         setTimeout(() => {
           /* here we're passing changed values to reducer. Values are calculated before set timeout function. In this part of code, we only changing them in Redux state */
@@ -215,6 +216,7 @@ function SettingsPanel(props) {
     setCurrentCost(costToProduct);
     setCurrentTime(timeToProduct);
   }
+
 
   return (
     <div className={styles.panelCard}>
