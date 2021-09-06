@@ -132,7 +132,7 @@ function SettingsPanel(props) {
       ) {
         alert("You do not have sufficient materials or funds for production.");
       } else {
-        if (currentMaterialValue == 0 || currentMachinesCount == 0) {
+        if (currentMaterialValue == 0 || currentMachinesCount == 0 || reduxStateInfo.pickedMachineQuantity < currentMachinesCount) {
           alert("You can't start production without material or machines!");
         } else {
           let bool = true;
@@ -228,7 +228,7 @@ function SettingsPanel(props) {
         <select
           name="machineType"
           id="machineType"
-          onChange={changeHandler}
+          onClick={changeHandler}
           defalutValue="impactCrusher"
           ref={machineType}
         >

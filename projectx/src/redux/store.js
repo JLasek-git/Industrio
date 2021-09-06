@@ -28,7 +28,7 @@ const initialState = {
           work: false,
           timeDuration: 0,
           materialFromProduction: 0,
-          owned: 3,
+          owned: 0,
         },
         jawCrusher: {
           id: "jaw-crusher",
