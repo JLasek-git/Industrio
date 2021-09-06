@@ -12,12 +12,12 @@ function SettingsPanel(props) {
   
 
   /* state used only in form */
-  const [currentMaterialValue, setCurrentValue] = useState(0);
+  const [currentMaterialValue, setCurrentValue] = useState(1);
   const [currentProductionCost, setCurrentCost] = useState(0);
   const [currentProductionTime, setCurrentTime] = useState(0);
   const [currentMachinePicked, setCurrentMachinePicked] =
   useState("impactCrusher");
-  const [currentMachinesCount, setCurrentMachinesCount] = useState(props.playerInfo.equipment.machines[currentMachinePicked].owned);
+  const [currentMachinesCount, setCurrentMachinesCount] = useState(1);
 
   /* object to make used Redux state object keys shorter */
   const reduxStateInfo = {
@@ -142,7 +142,7 @@ function SettingsPanel(props) {
         playerUsedMaterialAfterProduction < 0
       ) {
         alert("You do not have sufficient materials or funds for production.");
-      } else if (currentMaterialValue == 0 || currentMachinesCount == 0) {
+      } else if (currentMaterialValue <= 0 || currentMachinesCount <= 0) {
         alert(
           "To start production you have to pick amount of material and machines."
         );
@@ -203,7 +203,7 @@ function SettingsPanel(props) {
       props.playerInfo.equipment.machines[pickedProductionMachine].owned;
 
       /* This line is used for DOM element to display porper amount of machines */
-      setCurrentMachinesCount(reduxStateInfo.pickedMachineQuantity);
+      setCurrentMachinesCount(pickedMachinesAmount);
     // console.log(props.playerInfo.equipment.machines[pickedProductionMachine]);
     const timeToProduct = (
       ((reduxStateInfo.materialDurability / reduxStateInfo.machinePerformance) *
@@ -217,6 +217,9 @@ function SettingsPanel(props) {
     setCurrentTime(timeToProduct);
   }
 
+  useEffect(() => {
+    changeHandler();
+  }, []);
 
   return (
     <div className={styles.panelCard}>
@@ -229,14 +232,14 @@ function SettingsPanel(props) {
       >
         <label htmlFor="amount">
           How much Iron ore you want to use?
-          <p>{currentMaterialValue}</p>
+          <p>{props.playerInfo.equipment.materials.ironOre.quantity > 0 ? currentMaterialValue : "0"}</p>
         </label>
         <input
           type="range"
           name="amount"
           id="amount"
           defaultValue="0"
-          min="0"
+          min="1"
           max={props.playerInfo.equipment.materials.ironOre.quantity}
           onChange={changeHandler}
           ref={amountValue}
@@ -259,14 +262,14 @@ function SettingsPanel(props) {
         </select>
         <label htmlFor="machinesCount">
           How many machines you would like to include in production?
-          <p>{currentMachinesCount}</p>
+          <p>{ reduxStateInfo.pickedMachineQuantity > 0 ? currentMachinesCount : "0"}</p>
         </label>
         <input
           type="range"
           name="machinesCount"
           id="machinesCount"
-          defalutValue={currentMachinesCount}
-          min="0"
+          defaultValue="0"
+          min="1"
           max={reduxStateInfo.pickedMachineQuantity}
           onChange={changeHandler}
           ref={machinesCount}
