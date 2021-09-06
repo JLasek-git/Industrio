@@ -9,13 +9,15 @@ function SettingsPanel(props) {
   const machinesCount = useRef();
   const machineType = useRef();
 
+  
+
   /* state used only in form */
   const [currentMaterialValue, setCurrentValue] = useState(0);
   const [currentProductionCost, setCurrentCost] = useState(0);
   const [currentProductionTime, setCurrentTime] = useState(0);
-  const [currentMachinesCount, setCurrentMachinesCount] = useState(0);
   const [currentMachinePicked, setCurrentMachinePicked] =
-    useState("impactCrusher");
+  useState("impactCrusher");
+  const [currentMachinesCount, setCurrentMachinesCount] = useState(props.playerInfo.equipment.machines[currentMachinePicked].owned);
 
   /* object to make used Redux state object keys shorter */
   const reduxStateInfo = {
@@ -199,6 +201,8 @@ function SettingsPanel(props) {
     reduxStateInfo.pickedMachineQuantity =
       props.playerInfo.equipment.machines[pickedProductionMachine].owned;
 
+      /* This line is used for DOM element to display porper amount of machines */
+      setCurrentMachinesCount(reduxStateInfo.pickedMachineQuantity);
     // console.log(props.playerInfo.equipment.machines[pickedProductionMachine]);
     const timeToProduct = (
       ((reduxStateInfo.materialDurability / reduxStateInfo.machinePerformance) *
@@ -208,7 +212,6 @@ function SettingsPanel(props) {
     const costToProduct =
       pickedAmount * reduxStateInfo.singleProductionCost * pickedMachinesAmount;
     setCurrentValue(pickedAmount);
-    setCurrentMachinesCount(pickedMachinesAmount);
     setCurrentCost(costToProduct);
     setCurrentTime(timeToProduct);
   }
@@ -247,7 +250,7 @@ function SettingsPanel(props) {
           ref={machineType}
         >
           {MACHINES.map((option) => (
-            <option key={option.id} value={option.id}>
+            <option key={option.id} value={option.id} onClick={changeHandler}>
               {option.name}
             </option>
           ))}
@@ -260,7 +263,7 @@ function SettingsPanel(props) {
           type="range"
           name="machinesCount"
           id="machinesCount"
-          defalutValue="0"
+          defalutValue={currentMachinesCount}
           min="0"
           max={reduxStateInfo.pickedMachineQuantity}
           onChange={changeHandler}
@@ -274,7 +277,7 @@ function SettingsPanel(props) {
         <p>
           Time left:{" "}
           {(
-            props.playerInfo.equipment.machines.impactCrusher.timeDuration /
+            props.playerInfo.equipment.machines[currentMachinePicked].timeDuration /
             60000
           ).toFixed(2)}{" "}
           min
