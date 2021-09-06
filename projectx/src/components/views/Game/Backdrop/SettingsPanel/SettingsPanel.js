@@ -2,16 +2,20 @@ import React, { useRef, useState } from "react";
 import styles from "./SettingsPanel.module.scss";
 import Icon from "../../../../common/Icon/Icon";
 import Button from "../../../../common/Button/Button";
+import MACHINES from "../../../../../data/machinesPreTreatment.json";
 
 function SettingsPanel(props) {
   const amountValue = useRef();
   const machinesCount = useRef();
+  const machineType = useRef();
 
   /* state used only in form */
-  const [currentMaterialValue, setCurrentValue] = useState(1);
+  const [currentMaterialValue, setCurrentValue] = useState(0);
   const [currentProductionCost, setCurrentCost] = useState(0);
   const [currentProductionTime, setCurrentTime] = useState(0);
-  const [currentMachinesCount, setCurrentMachinesCount] = useState(1);
+  const [currentMachinesCount, setCurrentMachinesCount] = useState(0);
+  const [currentMachinePicked, setCurrentMachinePicked] =
+    useState("impactCrusher");
 
   /* object to make used Redux state object keys shorter */
   const reduxStateInfo = {
@@ -29,14 +33,19 @@ function SettingsPanel(props) {
     materialDurability: props.playerInfo.equipment.materials.ironOre.durability,
 
     machinePerformance:
-      props.playerInfo.equipment.machines.impactCrusher.performance,
+      props.playerInfo.equipment.machines[currentMachinePicked].performance,
 
-    machineState: props.playerInfo.equipment.machines.impactCrusher.work,
+    currentMachineState:
+      props.playerInfo.equipment.machines[currentMachinePicked].work,
 
     playerExperience: props.playerInfo.experience,
 
     materialGivenExperience:
       props.playerInfo.equipment.materials.ironOre.experience,
+
+    pickedMachineQuantity:
+      props.playerInfo.equipment.machines[currentMachinePicked].owned,
+
   };
 
   function calculateProductionCost(pickedAmount, pickedMachinesAmount) {
@@ -50,7 +59,14 @@ function SettingsPanel(props) {
   }
 
   function calculateMaterialReceived(pickedAmount) {
-    return reduxStateInfo.playerEqReceivedMaterialQuantity + pickedAmount;
+    let materialInEqAfterProduction = 0;
+    materialInEqAfterProduction += pickedAmount + reduxStateInfo.playerEqReceivedMaterialQuantity;
+    for(let machine in props.playerInfo.equipment.machines){
+      if(machine !== "allMachinesQuantity" && machine !== currentMachinePicked){
+        materialInEqAfterProduction += props.playerInfo.equipment.machines[machine].materialFromProduction 
+      }
+    }
+    return materialInEqAfterProduction;
   }
 
   function calculateMaterialUsed(pickedAmount) {
@@ -77,13 +93,14 @@ function SettingsPanel(props) {
     event.preventDefault();
 
     /* this part of code handle work start, and changing state depending on passed parameters (changing quantity of player material (how much he will be given), taking costs of work) */
-    if (!reduxStateInfo.machineState) {
-      props.setMachineState(true);
-
+    if (!reduxStateInfo.currentMachineState) {
       /* this defines our pickedAmount on input and parses to int*/
       const pickedAmount = parseInt(amountValue.current.value);
       const pickedMachinesAmount = parseInt(machinesCount.current.value);
 
+      /* This line allow us to properly add materials for player production */
+      let amountAfter = pickedAmount;
+      props.setMaterialReceivedFromProduction({amountAfter, currentMachinePicked})
       /* calculations passed to state depending on props */
       const wholeProductionCost = calculateProductionCost(
         pickedAmount,
@@ -103,6 +120,8 @@ function SettingsPanel(props) {
       );
       const playerReceivedExperience = calculateReceivedExp(pickedAmount);
 
+
+      props.setMaterialReceivedFromProduction({amountAfter, currentMachinePicked})
       /* variable used in setInterval to count duration to end of production*/
       let counter = productionDuration;
 
@@ -112,27 +131,36 @@ function SettingsPanel(props) {
         playerUsedMaterialAfterProduction < 0
       ) {
         alert("You do not have sufficient materials or funds for production.");
-        props.setMachineState(false);
       } else {
-        props.setMaterialQuantityDown(playerUsedMaterialAfterProduction);
-        props.setMoney(playerMoneyAfterProduction);
+        if (currentMaterialValue == 0 || currentMachinesCount == 0) {
+          alert("You can't start production without material or machines!");
+        } else {
+          let bool = true;
+          props.setMaterialQuantityDown(playerUsedMaterialAfterProduction);
+          props.setMoney(playerMoneyAfterProduction);
+          props.setMachineState({bool, currentMachinePicked});
 
-        setTimeout(() => {
-          /* here we're passing changed values to reducer. Values are calculated before set timeout function. In this part of code, we only changing them in Redux state */
-          props.setMaterialQuantityUp(playerReceivedMaterialAfterProduction);
-          props.setExperience(playerReceivedExperience);
-          props.setMachineState(false);
-          alert("Productions has finished.");
-        }, productionDuration);
+          setTimeout(() => {
+            /* here we're passing changed values to reducer. Values are calculated before set timeout function. In this part of code, we only changing them in Redux state */
+            bool = false;
+            amountAfter = 0;
+            props.setMaterialReceivedFromProduction({amountAfter, currentMachinePicked})
 
-        /* counter which shows time to end of production */
-        const counterInterval = setInterval(() => {
-          counter -= 1000;
-          if (counter <= 0) {
-            clearInterval(counterInterval);
-          }
-          props.setTime(counter);
-        }, 1000);
+            props.setMaterialQuantityUp(playerReceivedMaterialAfterProduction);
+            props.setExperience(playerReceivedExperience);
+            props.setMachineState({bool, currentMachinePicked});
+            alert("Productions has finished.");
+          }, productionDuration);
+
+          /* counter which shows time to end of production */
+          const counterInterval = setInterval(() => {
+            counter -= 1000;
+            if (counter <= 0) {
+              clearInterval(counterInterval);
+            }
+            props.setTime({counter, currentMachinePicked});
+          }, 1000);
+        }
       }
 
       /* if machine is still working player can't start second work*/
@@ -143,12 +171,21 @@ function SettingsPanel(props) {
 
   /* Handler for range form, which allow us to show currentCost, currentAmount of items and currentTime to produce*/
 
-  function changeHandler(event) {
-    event.preventDefault();
-
+  function changeHandler() {
     const pickedAmount = amountValue.current.value;
     const pickedMachinesAmount = machinesCount.current.value;
+    const pickedProductionMachine = machineType.current.value;
 
+    setCurrentMachinePicked(pickedProductionMachine);
+
+    reduxStateInfo.machinePerformance =
+      props.playerInfo.equipment.machines[pickedProductionMachine].performance;
+    reduxStateInfo.machineState =
+      props.playerInfo.equipment.machines[pickedProductionMachine].work;
+    reduxStateInfo.pickedMachineQuantity =
+      props.playerInfo.equipment.machines[pickedProductionMachine].owned;
+
+      // console.log(props.playerInfo.equipment.machines[pickedProductionMachine]);
     const timeToProduct = (
       ((reduxStateInfo.materialDurability / reduxStateInfo.machinePerformance) *
         pickedAmount) /
@@ -179,11 +216,28 @@ function SettingsPanel(props) {
           type="range"
           name="amount"
           id="amount"
-          min="1"
+          defaultValue="0"
+          min="0"
           max={props.playerInfo.equipment.materials.ironOre.quantity}
-          onChange={(event) => changeHandler(event)}
+          onChange={changeHandler}
           ref={amountValue}
         />
+        <label htmlFor="machineType">
+          Which machine you would like to use?
+        </label>
+        <select
+          name="machineType"
+          id="machineType"
+          onChange={changeHandler}
+          defalutValue="impactCrusher"
+          ref={machineType}
+        >
+          {MACHINES.map((option) => (
+            <option key={option.id} value={option.id}>
+              {option.name}
+            </option>
+          ))}
+        </select>
         <label htmlFor="machinesCount">
           How many machines you would like to include in production?
           <p>{currentMachinesCount}</p>
@@ -192,9 +246,10 @@ function SettingsPanel(props) {
           type="range"
           name="machinesCount"
           id="machinesCount"
-          min="1"
-          max={props.playerInfo.equipment.machines.impactCrusher.owned}
-          onChange={(event) => changeHandler(event)}
+          defalutValue="0"
+          min="0"
+          max={reduxStateInfo.pickedMachineQuantity}
+          onChange={changeHandler}
           ref={machinesCount}
         />
         <Button btnText="Start" />

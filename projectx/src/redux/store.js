@@ -14,7 +14,7 @@ const initialState = {
     nickname: "Player 1",
     experience: 0,
     toNextLevel: 4000,
-    money: 60000,
+    money: 50000,
     equipment: {
       machines: {
         impactCrusher: {
@@ -24,11 +24,106 @@ const initialState = {
           requirement: 0,
           type: "crusher",
           application: "pre-treatment-of-ore",
-          performance: 1000,
+          performance: 1.5,
           work: false,
           timeDuration: 0,
+          materialFromProduction: 0,
           owned: 3,
         },
+        jawCrusher: {
+          id: "jaw-crusher",
+          name: "Jaw Crusher",
+          price: 20000,
+          requirement: 10,
+          type: "crusher",
+          application: "pre-treatment-of-ore",
+          performance: 2.5,
+          work: false,
+          timeDuration: 0,
+          materialFromProduction: 0,
+          owned: 0,
+        },
+        coneCrusher: {
+          id: "cone-crusher",
+          name: "Cone Crusher",
+          price: 35000,
+          requirement: 20,
+          type: "crusher",
+          application: "pre-treatment-of-ore",
+          performance: 5,
+          work: false,
+          timeDuration: 0,
+          materialFromProduction: 0,
+          owned: 0,
+        },
+        hammerCrusher: {
+          id: "hammer-crusher",
+          name: "Hammer Crusher",
+          price: 50000,
+          requirement: 30,
+          type: "crusher",
+          application: "pre-treatment-of-ore",
+          performance: 8,
+          work: false,
+          timeDuration: 0,
+          materialFromProduction: 0,
+          owned: 0,
+        },
+        ballDrumMill: {
+          id: "ball-drum-mill",
+          name: "Ball Drum Mill",
+          price: 100000,
+          requirement: 40,
+          type: "mill",
+          application: "pre-treatment-of-ore",
+          performance: 15,
+          work: false,
+          timeDuration: 0,
+          materialFromProduction: 0,
+          owned: 0,
+        },
+        rodDrumMill: {
+          id: "rod-drum-mill",
+          name: "Rod Drum Mill",
+          price: 180000,
+          requirement: 70,
+          type: "mill",
+          application: "pre-treatment-of-ore",
+          performance: 25,
+          work: false,
+          timeDuration: 0,
+          materialFromProduction: 0,
+          owned: 0,
+        },
+        drumScreen: {
+          id: "drum-screen",
+          name: "Drum Screen",
+          price: 250000,
+          requirement: 100,
+          type: "screens-and-separators",
+          application: "pre-treatment-of-ore",
+          performance: 75,
+          work: false,
+          timeDuration: 0,
+          materialFromProduction: 0,
+          owned: 0,
+        },
+
+        magneticSeparator: {
+          id: "magneticSeparator",
+          name: "Magnetic separator",
+          price: 650000,
+          requirement: 150,
+          type: "screens-and-separators",
+          application: "pre-treatment-of-ore",
+          performance: 200,
+          work: false,
+          timeDuration: 0,
+          materialFromProduction: 0,
+          owned: 0,
+        },
+
+        allMachinesQuantity: 0,
       },
 
       materials: {
@@ -39,7 +134,7 @@ const initialState = {
           durability: 300,
           experience: 7.5,
           productionCost: 10,
-          quantity: 100,
+          quantity: 10000,
         },
 
         ironOreConcentrate: {
@@ -87,8 +182,8 @@ const storeReducer = (state, action) => {
 
 const store = createStore(
   storeReducer,
-  initialState
-  // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  initialState,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 export default store;

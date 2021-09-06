@@ -3,7 +3,12 @@ import PropTypes from "prop-types";
 import styles from "./ShopElement.module.scss";
 import Button from "../../../../common/Button/Button";
 
-function ShopElement({ materialStateName, materialDisplayName, ...props }) {
+function ShopElement({
+  materialStateName,
+  materialDisplayName,
+  materialPrice,
+  ...props
+}) {
   const buyingAmount = useRef();
   const sellingAmount = useRef();
   const [currentBuyingAmount, setCurrentBuyingAmount] = useState(0);
@@ -15,16 +20,14 @@ function ShopElement({ materialStateName, materialDisplayName, ...props }) {
     playerMoney: props.playerInfo.money,
     playerMaterialAmount:
       props.playerInfo.equipment.materials[materialStateName].quantity,
-    materialPrice:
-      props.playerInfo.equipment.materials[materialStateName].price,
   };
   /* All functions for buying materials */
   function calculateMaxPlayerCanBuy() {
-    return reduxStateInfo.playerMoney / reduxStateInfo.materialPrice;
+    return reduxStateInfo.playerMoney / materialPrice;
   }
 
   function calculateBuyingCost(pickedAmount) {
-    return reduxStateInfo.materialPrice * pickedAmount;
+    return materialPrice * pickedAmount;
   }
 
   function calculatePlayerMoneyAfterBuy(buyingCost) {
@@ -56,7 +59,7 @@ function ShopElement({ materialStateName, materialDisplayName, ...props }) {
 
   /* All functions for selling materials  */
   function calculateItemsWorth(pickedAmount) {
-    return reduxStateInfo.materialPrice * pickedAmount;
+    return materialPrice * pickedAmount;
   }
 
   function calculatePlayerMoneyAfterSell(sellingItemsWorth) {
@@ -92,14 +95,14 @@ function ShopElement({ materialStateName, materialDisplayName, ...props }) {
   const changeBuyingAmountHandler = () => {
     const pickedAmount = parseInt(buyingAmount.current.value);
 
-    setCurrentBuyingCost(pickedAmount * reduxStateInfo.materialPrice);
+    setCurrentBuyingCost(pickedAmount * materialPrice);
     setCurrentBuyingAmount(pickedAmount);
   };
 
   const changeSellingAmountHandler = () => {
     const pickedAmount = sellingAmount.current.value;
 
-    setCurrentSellingIncome(pickedAmount * reduxStateInfo.materialPrice);
+    setCurrentSellingIncome(pickedAmount * materialPrice);
     setCurrentSellingAmount(pickedAmount);
   };
 
@@ -115,7 +118,8 @@ function ShopElement({ materialStateName, materialDisplayName, ...props }) {
           type="range"
           name="buyingAmount"
           id="buyingAmount"
-          min="1"
+          defaultValue="0"
+          min="0"
           max={calculateMaxPlayerCanBuy()}
           onChange={(event) =>
             changeBuyingAmountHandler(props.playerInfo, event)
@@ -136,7 +140,8 @@ function ShopElement({ materialStateName, materialDisplayName, ...props }) {
           type="range"
           name="sellingAmount"
           id="sellingAmount"
-          min="1"
+          defaultValue="0"
+          min="0"
           max={reduxStateInfo.playerMaterialAmount}
           onChange={(event) =>
             changeSellingAmountHandler(props.playerInfo, event)
@@ -155,6 +160,7 @@ function ShopElement({ materialStateName, materialDisplayName, ...props }) {
 ShopElement.propTypes = {
   materialStateName: PropTypes.string,
   materialDisplayName: PropTypes.node,
+  materialPrice: PropTypes.number,
 };
 
 export default ShopElement;

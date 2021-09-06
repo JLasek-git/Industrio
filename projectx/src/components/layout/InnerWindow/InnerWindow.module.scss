@@ -5,8 +5,16 @@
   height: 75%;
   color: #f3e1ac;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   background-color: #455a64;
   border: 1px solid #f3e1ac;
+  overflow-y: scroll;
+
+  & > * {
+    height: 40%;
+    flex: 1 1 40%;
+    margin: 20px;
+  }
 }

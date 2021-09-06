@@ -4,7 +4,11 @@ import LinkButton from "../../common/LinkButton/LinkButton";
 
 const PageNav = () => (
   <nav className={styles.mainNavBar}>
-    <LinkButton className={styles.mainNavBtn} buttonText="Dashboard" link="/" />
+    <LinkButton
+      className={styles.mainNavBtn}
+      buttonText="Dashboard"
+      link="/game"
+    />
     <LinkButton
       className={styles.mainNavBtn}
       buttonText="Materials"

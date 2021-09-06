@@ -2,9 +2,10 @@ import React from "react";
 import styles from "./Store1.module.scss";
 import Section from "../../../layout/Section/Section";
 import impactHitterImg from "../../../../images/inpact_hitter_1.png";
-import StoreMachine from "./StoreMachine/StoreMachine";
+import StoreMachine from "./StoreMachine/StoreMachineContainer";
 import InnerWindow from "../../../layout/InnerWindow/InnerWindow";
 import OuterWindow from "../../../layout/OuterWindow/OuterWindow";
+import MACHINES from "../../../../data/machinesPreTreatment.json";
 /* Machines store */
 
 function Store1({ ...props }) {
@@ -12,12 +13,15 @@ function Store1({ ...props }) {
     <Section>
       <OuterWindow>
         <InnerWindow>
-          <StoreMachine
-            machineImg={impactHitterImg}
-            machineStateName="impactCrusher"
-            machineName="Impact Crusher"
-            {...props}
-          />
+          {MACHINES.map((machine) => (
+            <StoreMachine
+              key={machine.id}
+              machineImg={impactHitterImg}
+              machineStateName={machine.id}
+              machinePrice={machine.price}
+              machineName={machine.name}
+            />
+          ))}
         </InnerWindow>
       </OuterWindow>
     </Section>
