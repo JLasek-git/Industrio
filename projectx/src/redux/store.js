@@ -134,7 +134,7 @@ const initialState = {
           durability: 300,
           experience: 7.5,
           productionCost: 10,
-          quantity: 10000,
+          quantity: 100,
         },
 
         ironOreConcentrate: {
@@ -183,7 +183,7 @@ const storeReducer = (state, action) => {
 const store = createStore(
   storeReducer,
   initialState,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 export default store;
