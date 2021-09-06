@@ -24,7 +24,7 @@ const initialState = {
           requirement: 0,
           type: "crusher",
           application: "pre-treatment-of-ore",
-          performance: 10000,
+          performance: 1.5,
           work: false,
           timeDuration: 0,
           materialFromProduction: 0,
