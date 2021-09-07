@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "./PageLayout.module.scss";
 import PageNav from "../PageNav/PageNav";
 import ProfilePanel from "../ProfilePanel/ProfilePanelContainer";
