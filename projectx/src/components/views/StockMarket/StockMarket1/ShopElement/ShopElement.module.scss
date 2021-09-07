@@ -6,16 +6,28 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
 
-.buyingForm {
-  min-width: 400px;
-  height: 250px;
-  margin: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid #f3e1ac;
-  background-color: #2e4f5e;
+  & .buyingForm {
+    min-width: 400px;
+    height: 250px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #f3e1ac;
+    background-color: #2e4f5e;
+
+    & .prices {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+
+      & p {
+        margin: 0;
+      }
+    }
+  }
 }

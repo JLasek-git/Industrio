@@ -126,7 +126,10 @@ function ShopElement({
           }
           ref={buyingAmount}
         />
-        <p>You will pay: $ {currentBuyingCost}</p>
+        <div className={styles.prices}>
+          <p>${materialPrice} / 1t</p>
+          <p>You will pay: ${currentBuyingCost}</p>
+        </div>
         <div onClick={(event) => handleShopActionBuy(event)}>
           <Button btnText="Buy" />
         </div>
@@ -148,7 +151,10 @@ function ShopElement({
           }
           ref={sellingAmount}
         />
-        <p>You will receive: $ {currentSellingIncome}</p>
+        <div className={styles.prices}>
+          <p>${materialPrice} / 1t</p>
+          <p>You will receive: ${currentBuyingCost}</p>
+        </div>
         <div onClick={(event) => handleShopActionSell(event)}>
           <Button btnText="Sell" />
         </div>
