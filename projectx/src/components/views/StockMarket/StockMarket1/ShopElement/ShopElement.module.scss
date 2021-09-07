@@ -31,3 +31,16 @@
     }
   }
 }
+
+@media (max-width: 1200px) {
+  .materialActionsList {
+    min-width: 95%;
+    align-items: center;
+
+    & .buyingForm {
+      text-align: center;
+      min-width: 100%;
+      padding: 20px;
+    }
+  }
+}

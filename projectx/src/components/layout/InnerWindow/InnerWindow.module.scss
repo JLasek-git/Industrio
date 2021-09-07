@@ -14,7 +14,18 @@
 
   & > * {
     height: 40%;
-    flex: 1 1 40%;
     margin: 20px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .childrenContainer {
+    width: 100vw;
+    height: 100vh;
+    border: 0;
+
+    & > * {
+      margin: 25px;
+    }
   }
 }

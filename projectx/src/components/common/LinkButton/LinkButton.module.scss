@@ -16,3 +16,10 @@
 .navLinkActive .linkBtn {
   background-color: #343434;
 }
+
+@media (max-width: 1200px) {
+  .linkBtn {
+    width: 100vw;
+    height: calc(100vh / 6);
+  }
+}

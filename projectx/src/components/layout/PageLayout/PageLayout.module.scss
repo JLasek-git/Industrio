@@ -44,4 +44,32 @@
     left: 0;
     top: 20px;
   }
+
+  & .hamburgerIconWrapper {
+    width: 45px;
+    height: 45px;
+    background: #343434;
+    border-radius: 50%;
+    position: fixed;
+    top: 3%;
+    right: -100%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .pageLayoutContainer {
+    & .hamburgerIconWrapper {
+      right: 2%;
+
+      & .hamburgerIcon {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 26px;
+        color: #f3e1ac;
+      }
+    }
+  }
 }
