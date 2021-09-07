@@ -3,6 +3,7 @@ import styles from "./PageLayout.module.scss";
 import PageNav from "../PageNav/PageNav";
 import ProfilePanel from "../ProfilePanel/ProfilePanelContainer";
 import Icon from "../../common/Icon/Icon";
+// import useWindowDimensions from "../../utils/utils";
 
 function PageLayout() {
   const [panels, isVisible] = useState(true);
@@ -10,6 +11,14 @@ function PageLayout() {
   const showPanels = () => {
     isVisible(!panels);
   };
+
+  // const { width } = useWindowDimensions();
+
+  // window.addEventListener("resize", () => {
+  //   if (width >= 1200) {
+  //     isVisible(true);
+  //   }
+  // });
 
   return (
     <div className={styles.pageLayoutContainer}>
@@ -24,7 +33,6 @@ function PageLayout() {
           <Icon name="bars" />
         </div>
       </div>
-
       {panels && (
         <div className={styles.leftPanels}>
           <ProfilePanel closePanels={showPanels} />
