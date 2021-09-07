@@ -1,6 +1,7 @@
 import React from "react";
 // import PropTypes from "prop-types";
 import styles from "./ProfilePanel.module.scss";
+import Icon from "../../common/Icon/Icon";
 
 // const linearColors = {
 //   green: "#017D01",
@@ -10,6 +11,9 @@ import styles from "./ProfilePanel.module.scss";
 function ProfilePanel({ ...props }) {
   return (
     <div className={styles.profilePanel}>
+      <div className={styles.closeBtn} onClick={props.closePanels}>
+        <Icon name="times" />
+      </div>
       <div className={styles.avatarContainer}></div>
       <div className={styles.avatar}>
         <img src={props.playerInfo.avatar} alt="avatar"></img>

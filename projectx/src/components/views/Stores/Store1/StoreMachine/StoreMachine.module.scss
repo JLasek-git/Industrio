@@ -36,3 +36,17 @@
     }
   }
 }
+
+@media (max-width: 1200px) {
+  .singleMachine {
+    min-width: 95%;
+
+    & .actionHandlers {
+      width: 70%;
+    }
+
+    & .pricesContainer {
+      width: 100%;
+    }
+  }
+}
