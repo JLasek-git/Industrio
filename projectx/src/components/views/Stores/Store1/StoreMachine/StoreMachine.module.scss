@@ -14,4 +14,25 @@
   align-items: center;
   border: 1px solid #f3e1ac;
   background-color: #2e4f5e;
+
+  & .actionHandlers {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 50%;
+    margin-bottom: 20px;
+  }
+
+  & .pricesContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 50%;
+
+    & p {
+      margin: 0;
+    }
+  }
 }
