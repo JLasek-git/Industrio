@@ -231,7 +231,7 @@ function SettingsPanel(props) {
         onSubmit={(event) => submitHandler(event)}
       >
         <label htmlFor="amount">
-          How much Iron ore you want to use?
+          Iron Ore
           <p>{props.playerInfo.equipment.materials.ironOre.quantity > 0 ? currentMaterialValue : "0"}</p>
         </label>
         <input
@@ -245,30 +245,28 @@ function SettingsPanel(props) {
           ref={amountValue}
         />
         <label htmlFor="machineType">
-          Which machine you would like to use?
+          Machine settings: 
         </label>
         <select
           name="machineType"
           id="machineType"
-          onClick={changeHandler}
+          onChange={changeHandler}
           defalutValue="impactCrusher"
           ref={machineType}
         >
           {MACHINES.map((option) => (
-            <option key={option.id} value={option.id} onClick={changeHandler}>
+            <option key={option.id} value={option.id}>
               {option.name}
             </option>
           ))}
         </select>
         <label htmlFor="machinesCount">
-          How many machines you would like to include in production?
-          <p>{ reduxStateInfo.pickedMachineQuantity > 0 ? currentMachinesCount : "0"}</p>
         </label>
         <input
-          type="range"
+          type="number"
           name="machinesCount"
           id="machinesCount"
-          defaultValue="0"
+          defaultValue = {reduxStateInfo.pickedMachineQuantity}
           min="1"
           max={reduxStateInfo.pickedMachineQuantity}
           onChange={changeHandler}
@@ -277,8 +275,8 @@ function SettingsPanel(props) {
         <Button btnText="Start" />
       </form>
       <span>
-        <p>It will cost you: {currentProductionCost}$</p>
-        <p>It will take: {(currentProductionTime / 60).toFixed(2)} min</p>
+        <p>Production cost: {currentProductionCost}$</p>
+        <p>Production time: {(currentProductionTime / 60).toFixed(2)} min</p>
         <p>
           Time left:{" "}
           {(
