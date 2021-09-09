@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./StoreMachine.module.scss";
-import Button from "../../../../common/Button/Button";
+import ButtonBuy from "../../../../common/ButtonBuy/ButtonBuy";
+import ButtonSell from "../../../../common/ButtonSell/ButtonSell";
 
 function StoreMachine({
   machineImg,
@@ -72,14 +73,14 @@ function StoreMachine({
       <p>{machineName}</p>
       <div className={styles.actionHandlers}>
         <div onClick={() => handleBuy()}>
-          <Button btnText="Purchase" />
+          <ButtonBuy />
         </div>
         <div onClick={() => handleSell()}>
-          <Button btnText="Sell" />
+          <ButtonSell />
         </div>
       </div>
       <div className={styles.pricesContainer}>
-        <p>Purchase price: ${machinePrice}</p>
+        <p>Buying price: ${machinePrice}</p>
         <p>Selling price: ${machinePrice / 2}</p>
       </div>
     </div>
