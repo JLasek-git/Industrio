@@ -7,7 +7,7 @@
     "experienceBoost": 0.2,
     "productionCostBoost": 0.1,
     "quantityBoost": 0.3,
-    "hireTime": 1,
+    "worksCount": 20,
     "workCost": 1000
   },
 
@@ -19,7 +19,7 @@
     "experienceBoost": 0.2,
     "productionCostBoost": 0.1,
     "quantityBoost": 0.3,
-    "hireTime": 1,
+    "worksCount": 20,
     "workCost": 1000
   },
 
@@ -31,7 +31,7 @@
     "experienceBoost": 0.2,
     "productionCostBoost": 0.1,
     "quantityBoost": 0.3,
-    "hireTime": 1,
+    "worksCount": 20,
     "workCost": 1000
   },
   {
@@ -42,7 +42,7 @@
     "experienceBoost": 0.2,
     "productionCostBoost": 0.1,
     "quantityBoost": 0.3,
-    "hireTime": 1,
+    "worksCount": 20,
     "workCost": 1000
   },
   {
@@ -53,7 +53,7 @@
     "experienceBoost": 0.2,
     "productionCostBoost": 0.1,
     "quantityBoost": 0.3,
-    "hireTime": 1,
+    "worksCount": 20,
     "workCost": 1000
   },
   {
@@ -64,7 +64,7 @@
     "experienceBoost": 0.2,
     "productionCostBoost": 0.1,
     "quantityBoost": 0.3,
-    "hireTime": 1,
+    "worksCount": 20,
     "workCost": 1000
   }
 ]

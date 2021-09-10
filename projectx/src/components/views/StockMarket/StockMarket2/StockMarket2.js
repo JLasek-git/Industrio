@@ -13,13 +13,14 @@ const StockMarket2 = ({ ...props }) => (
         {EMPLOYEES.map((employee) => (
           <EmployeeElement
             key={employee.id}
+            id={employee.id}
             name={employee.name}
             perfomanceIncreased={employee.performanceIncreased}
             productionTimeBoost={employee.productionTimeBoost}
             experienceBoost={employee.experienceBoost}
             productionCostBoost={employee.productionCostBoost}
-            qunatityBoost={employee.quantityBoost}
-            hireTime={employee.hireTime}
+            quantityBoost={employee.quantityBoost}
+            worksCount={employee.worksCount}
             workCost={employee.workCost}
           />
         ))}

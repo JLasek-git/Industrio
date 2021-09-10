@@ -1,9 +1,14 @@
 export function calculateProductionCost(
   pickedAmount,
   pickedMachinesAmount,
-  singleProductionCost
+  singleProductionCost,
+  employeeBonuses
 ) {
-  return pickedAmount * singleProductionCost * pickedMachinesAmount;
+  const productionCostRaw =
+    pickedAmount * singleProductionCost * pickedMachinesAmount;
+  const productionCostWithBonuses =
+    productionCostRaw - productionCostRaw * employeeBonuses.productionCostBoost;
+  return productionCostWithBonuses;
 }
 
 export function claculatePlayerMoneyAfter(wholeProductionCost, playerMoney) {
@@ -15,11 +20,14 @@ export function calculateMaterialReceived(
   playerReceivedMaterialQuantityInEq,
   playerMachines,
   currentlyPickedMachine,
-  playerInfo
+  playerInfo,
+  employeeBonuses
 ) {
   let materialInEqAfterProduction = 0;
-  materialInEqAfterProduction +=
-    pickedAmount + playerReceivedMaterialQuantityInEq;
+  const playerMaterialRaw = pickedAmount + playerReceivedMaterialQuantityInEq;
+  const playerMaterialWithBoost =
+    playerMaterialRaw + playerMaterialRaw * employeeBonuses.quantityBoost;
+  materialInEqAfterProduction += playerMaterialWithBoost;
   for (let machine in playerMachines) {
     if (
       machine !== "allMachinesQuantity" &&
@@ -43,18 +51,27 @@ export function calculateDuration(
   pickedAmount,
   pickedMachinesAmount,
   materialDurability,
-  machinePerformance
+  machinePerformance,
+  employeeBonuses
 ) {
-  return (
+  const rawDuration =
     ((materialDurability / machinePerformance) * 1000 * pickedAmount) /
-    pickedMachinesAmount
-  );
+    pickedMachinesAmount;
+
+  const boostedDuration =
+    rawDuration - rawDuration * employeeBonuses.productionTimeBoost;
+  return boostedDuration;
 }
 
 export function calculateReceivedExp(
   pickedAmount,
   materialGivenExperience,
-  playerExperience
+  playerExperience,
+  employeeBonuses
 ) {
-  return materialGivenExperience * pickedAmount + playerExperience;
+  const rawExperience =
+    materialGivenExperience * pickedAmount + playerExperience;
+  const boostedExperience =
+    rawExperience + rawExperience * employeeBonuses.experienceBoost;
+  return boostedExperience;
 }

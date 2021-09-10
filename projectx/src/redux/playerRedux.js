@@ -36,6 +36,9 @@ export const SET_AMOUNT_MACHINES_WORKING = createActionName(
   "SET_AMOUNT_MACHINES_WORKING"
 );
 export const SET_EMPLOYEES_ARRAY = createActionName("SET_EMPLOYEES_ARRAY");
+export const SET_EMPLOYEES_WORK_COUNT = createActionName(
+  "SET_EMPLOYEES_WORK_COUNT"
+);
 
 // action creators
 export const setMaterialQuantityUp = (payload) => ({
@@ -87,6 +90,11 @@ export const setAmountMachinesWorking = (payload) => ({
 export const setEmployeesArray = (payload) => ({
   payload,
   type: SET_EMPLOYEES_ARRAY,
+});
+
+export const setEmployeesWorkCount = (payload) => ({
+  payload,
+  type: SET_EMPLOYEES_WORK_COUNT,
 });
 export default function reducer(statePart = [], action = {}) {
   switch (action.type) {
@@ -262,6 +270,13 @@ export default function reducer(statePart = [], action = {}) {
     }
 
     case SET_EMPLOYEES_ARRAY: {
+      return {
+        ...statePart,
+        employees: action.payload,
+      };
+    }
+
+    case SET_EMPLOYEES_WORK_COUNT: {
       return {
         ...statePart,
         employees: action.payload,

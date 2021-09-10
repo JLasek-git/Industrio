@@ -5,30 +5,36 @@ import Button from "../../../../common/Button/Button";
 import employeeImg from "../../../../../images/profileIcon.png";
 
 function EmployeeElement({
+  id,
   name,
   perfomanceIncreased,
   productionTimeBoost,
   experienceBoost,
   productionCostBoost,
-  qunatityBoost,
-  hireTime,
+  quantityBoost,
+  worksCount,
   workCost,
   ...props
 }) {
   function handleHire() {
     const employeesArray = props.playerInfo.employees;
     const employeeInfo = {
-      name: { name },
-      perfomanceIncreased: { perfomanceIncreased },
-      productionTimeBoost: { productionTimeBoost },
-      experienceBoost: { experienceBoost },
-      productionCostBoost: { productionCostBoost },
-      qunatityBoost: { qunatityBoost },
-      hireTime: { hireTime },
-      workCost: { workCost },
+      id: id,
+      name: name,
+      perfomanceIncreased: perfomanceIncreased,
+      productionTimeBoost: productionTimeBoost,
+      experienceBoost: experienceBoost,
+      productionCostBoost: productionCostBoost,
+      quantityBoost: quantityBoost,
+      worksCount: worksCount,
+      workCost: workCost,
     };
-    employeesArray.push(employeeInfo);
-    props.setEmployeesArray(employeesArray);
+    if (employeesArray.some((employee) => employee.id === id)) {
+      alert("You already hired that employee.");
+    } else {
+      employeesArray.push(employeeInfo);
+      props.setEmployeesArray(employeesArray);
+    }
   }
   return (
     <div className={styles.employeesContainer}>
@@ -56,11 +62,11 @@ function EmployeeElement({
           </p>
           <p className={styles.infoElement}>
             <span>Material quantity boost: </span>
-            {qunatityBoost * 100}%
+            {quantityBoost * 100}%
           </p>
           <p className={styles.infoElement}>
-            <span>Hire time: </span>
-            {hireTime} h
+            <span>Works count: </span>
+            {worksCount}
           </p>
           <p className={styles.infoElement}>
             <span>Work cost: </span>${workCost}
