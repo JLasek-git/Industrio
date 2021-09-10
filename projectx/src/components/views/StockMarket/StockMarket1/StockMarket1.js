@@ -12,6 +12,7 @@ function StockMarket1({ ...props }) {
         <InnerWindow>
           {MATERIALS.map((material) => (
             <ShopElement
+              key={material.id}
               materialStateName={material.id}
               materialDisplayName={material.name}
               materialPrice={material.price}

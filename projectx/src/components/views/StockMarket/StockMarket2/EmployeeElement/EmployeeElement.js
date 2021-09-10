@@ -5,16 +5,41 @@ import Button from "../../../../common/Button/Button";
 import employeeImg from "../../../../../images/profileIcon.png";
 
 function EmployeeElement({
+  id,
   name,
   perfomanceIncreased,
   productionTimeBoost,
   experienceBoost,
   productionCostBoost,
-  qunatityBoost,
-  hireTime,
+  quantityBoost,
+  worksCount,
   hireCost,
   ...props
 }) {
+  function handleHire() {
+    const employeesArray = props.playerInfo.employees;
+    const employeeInfo = {
+      id: id,
+      name: name,
+      perfomanceIncreased: perfomanceIncreased,
+      productionTimeBoost: productionTimeBoost,
+      experienceBoost: experienceBoost,
+      productionCostBoost: productionCostBoost,
+      quantityBoost: quantityBoost,
+      worksCount: worksCount,
+      hireCost: hireCost,
+    };
+    if (employeesArray.some((employee) => employee.id === id)) {
+      alert("You already hired that employee.");
+    } else if (props.playerInfo.money < hireCost) {
+      alert("You can't afford to hire that person.");
+    } else {
+      const playerMoneyAfterHire = props.playerInfo.money - hireCost;
+      props.setMoney(playerMoneyAfterHire);
+      employeesArray.push(employeeInfo);
+      props.setEmployeesArray(employeesArray);
+    }
+  }
   return (
     <div className={styles.employeesContainer}>
       <div className={styles.singleEmployee}>
@@ -25,34 +50,33 @@ function EmployeeElement({
           <p className={styles.employeeName}>{name}</p>
           <p className={styles.infoElement}>
             <span>Performance boost: </span>
-            {perfomanceIncreased}
+            {perfomanceIncreased * 100}%
           </p>
           <p className={styles.infoElement}>
             <span>Production time boost: </span>
-            {productionTimeBoost}
+            {productionTimeBoost * 100}%
           </p>
           <p className={styles.infoElement}>
             <span>Expereince boost: </span>
-            {experienceBoost}
+            {experienceBoost * 100}%
           </p>
           <p className={styles.infoElement}>
             <span>Production cost boost: </span>
-            {productionCostBoost}
+            {productionCostBoost * 100}%
           </p>
           <p className={styles.infoElement}>
             <span>Material quantity boost: </span>
-            {qunatityBoost}
+            {quantityBoost * 100}%
           </p>
           <p className={styles.infoElement}>
-            <span>Hire time: </span>
-            {hireTime}
+            <span>Works count: </span>
+            {worksCount}
           </p>
           <p className={styles.infoElement}>
-            <span>Hire cost: </span>
-            {hireCost}
+            <span>Hire cost: </span>${hireCost}
           </p>
         </div>
-        <div className={styles.hireBtn}>
+        <div className={styles.hireBtn} onClick={handleHire}>
           <Button btnText="Hire" />
         </div>
       </div>

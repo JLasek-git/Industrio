@@ -193,6 +193,18 @@ const initialState =
               machinesCapacity: 6,
             },
           },
+          employees: [
+            {
+              id: "none",
+              name: "None",
+              performanaceIncreased: 0,
+              productionTimeBoost: 0,
+              experienceBoost: 0,
+              productionCostBoost: 0,
+              quantityBoost: 0,
+              workCost: 0,
+            },
+          ],
         },
         materialsInfo: materials,
         machinesInfo: machinesPreTreatment,
@@ -223,7 +235,6 @@ const storeReducer = (state, action) => {
 const store = createStore(
   storeReducer,
   initialState
-
   // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 

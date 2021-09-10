@@ -1,0 +1,37 @@
+@import "../../../../styles/global.scss";
+
+.workersContainer {
+  width: 25%;
+  min-height: 20%;
+  padding: 10px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #455a64;
+  border: 1px solid #f3e1ac;
+  color: #f3e1ac;
+
+  & .singleWorker {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.descriptions {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+}
+
+@media (max-width: 1200px) {
+  .workersContainer {
+    width: 90%;
+    min-height: 70%;
+    margin-bottom: 40px;
+  }
+}

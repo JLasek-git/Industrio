@@ -3,6 +3,15 @@ import PropTypes from "prop-types";
 import styles from "./ShopElement.module.scss";
 import ButtonBuy from "../../../../common/ButtonBuy/ButtonBuy";
 import ButtonSell from "../../../../common/ButtonSell/ButtonSell";
+import {
+  calculateBuyingCost,
+  calculateItemsWorth,
+  calculateMaxPlayerCanBuy,
+  calculatePlayerMaterialAfterBuy,
+  calculatePlayerMaterialAfterSell,
+  calculatePlayerMoneyAfterBuy,
+  calculatePlayerMoneyAfterSell,
+} from "./ShopElementUtils";
 
 function ShopElement({
   materialStateName,
@@ -22,30 +31,19 @@ function ShopElement({
     playerMaterialAmount:
       props.playerInfo.equipment.materials[materialStateName].quantity,
   };
-  /* All functions for buying materials */
-  function calculateMaxPlayerCanBuy() {
-    return reduxStateInfo.playerMoney / materialPrice;
-  }
-
-  function calculateBuyingCost(pickedAmount) {
-    return materialPrice * pickedAmount;
-  }
-
-  function calculatePlayerMoneyAfterBuy(buyingCost) {
-    return reduxStateInfo.playerMoney - buyingCost;
-  }
-
-  function calculatePlayerMaterialAfterBuy(pickedAmount) {
-    return reduxStateInfo.playerMaterialAmount + pickedAmount;
-  }
 
   const handleShopActionBuy = (event) => {
     event.preventDefault();
     const pickedAmount = parseInt(buyingAmount.current.value);
-    const buyingCost = calculateBuyingCost(pickedAmount);
-    const playerMoneyAfterAction = calculatePlayerMoneyAfterBuy(buyingCost);
-    const playerMaterialAfterAction =
-      calculatePlayerMaterialAfterBuy(pickedAmount);
+    const buyingCost = calculateBuyingCost(pickedAmount, materialPrice);
+    const playerMoneyAfterAction = calculatePlayerMoneyAfterBuy(
+      buyingCost,
+      reduxStateInfo.playerMoney
+    );
+    const playerMaterialAfterAction = calculatePlayerMaterialAfterBuy(
+      pickedAmount,
+      reduxStateInfo.playerMaterialAmount
+    );
 
     if (playerMoneyAfterAction < 0) {
       alert("You need more money!");
@@ -58,28 +56,19 @@ function ShopElement({
     }
   };
 
-  /* All functions for selling materials  */
-  function calculateItemsWorth(pickedAmount) {
-    return materialPrice * pickedAmount;
-  }
-
-  function calculatePlayerMoneyAfterSell(sellingItemsWorth) {
-    return reduxStateInfo.playerMoney + sellingItemsWorth;
-  }
-
-  function calculatePlayerMaterialAfterSell(pickedAmount) {
-    return reduxStateInfo.playerMaterialAmount - pickedAmount;
-  }
-
   const handleShopActionSell = (event) => {
     event.preventDefault();
     const pickedAmount = sellingAmount.current.value;
 
-    const sellingItemsWorth = calculateItemsWorth(pickedAmount);
-    const playerMoneyAfterAction =
-      calculatePlayerMoneyAfterSell(sellingItemsWorth);
-    const playerMaterialAfterAction =
-      calculatePlayerMaterialAfterSell(pickedAmount);
+    const sellingItemsWorth = calculateItemsWorth(pickedAmount, materialPrice);
+    const playerMoneyAfterAction = calculatePlayerMoneyAfterSell(
+      sellingItemsWorth,
+      reduxStateInfo.playerMoney
+    );
+    const playerMaterialAfterAction = calculatePlayerMaterialAfterSell(
+      pickedAmount,
+      reduxStateInfo.playerMaterialAmount
+    );
 
     if (reduxStateInfo.playerMaterialAmount <= 0) {
       alert("You don't have that much material in stock!");
@@ -121,7 +110,10 @@ function ShopElement({
             id="buyingAmount"
             defaultValue="0"
             min="0"
-            max={calculateMaxPlayerCanBuy()}
+            max={calculateMaxPlayerCanBuy(
+              reduxStateInfo.playerMoney,
+              materialPrice
+            )}
             onChange={(event) =>
               changeBuyingAmountHandler(props.playerInfo, event)
             }

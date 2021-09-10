@@ -1,23 +1,34 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import styles from "./SettingsPanel.module.scss";
 import Icon from "../../../../common/Icon/Icon";
 import Button from "../../../../common/Button/Button";
 import MACHINES from "../../../../../data/machinesPreTreatment.json";
+import {
+  calculateProductionCost,
+  calculateMaterialReceived,
+  calculateDuration,
+  calculateMaterialUsed,
+  calculateReceivedExp,
+  claculatePlayerMoneyAfter,
+} from "./SettingsPanelUtils";
+import { setEmployeesWorkCount } from "../../../../../redux/playerRedux";
 
 function SettingsPanel(props) {
   const amountValue = useRef();
   const machinesCount = useRef();
   const machineType = useRef();
-
-  
+  const shiftSupervisor = useRef();
 
   /* state used only in form */
   const [currentMaterialValue, setCurrentValue] = useState(1);
   const [currentProductionCost, setCurrentCost] = useState(0);
   const [currentProductionTime, setCurrentTime] = useState(0);
   const [currentMachinePicked, setCurrentMachinePicked] =
-  useState("impactCrusher");
+    useState("impactCrusher");
   const [currentMachinesCount, setCurrentMachinesCount] = useState(1);
+  const [currentSupervisor, setCurrentSupervisor] = useState(
+    props.playerInfo.employees[0].id
+  );
 
   /* object to make used Redux state object keys shorter */
   const reduxStateInfo = {
@@ -47,54 +58,11 @@ function SettingsPanel(props) {
 
     pickedMachineQuantity:
       props.playerInfo.equipment.machines[currentMachinePicked].owned,
+
+    employeesStateArray: props.playerInfo.employees,
   };
 
-  function calculateProductionCost(pickedAmount, pickedMachinesAmount) {
-    return (
-      pickedAmount * reduxStateInfo.singleProductionCost * pickedMachinesAmount
-    );
-  }
-
-  function claculatePlayerMoneyAfter(wholeProductionCost) {
-    return reduxStateInfo.playerMoney - wholeProductionCost;
-  }
-
-  function calculateMaterialReceived(pickedAmount) {
-    let materialInEqAfterProduction = 0;
-    materialInEqAfterProduction +=
-      pickedAmount + reduxStateInfo.playerEqReceivedMaterialQuantity;
-    for (let machine in props.playerInfo.equipment.machines) {
-      if (
-        machine !== "allMachinesQuantity" &&
-        machine !== currentMachinePicked
-      ) {
-        materialInEqAfterProduction +=
-          props.playerInfo.equipment.machines[machine].materialFromProduction;
-      }
-    }
-    return materialInEqAfterProduction;
-  }
-
-  function calculateMaterialUsed(pickedAmount) {
-    return reduxStateInfo.playerEqUsedMaterialQuantity - pickedAmount;
-  }
-
-  function calculateDuration(pickedAmount, pickedMachinesAmount) {
-    return (
-      ((reduxStateInfo.materialDurability / reduxStateInfo.machinePerformance) *
-        1000 *
-        pickedAmount) /
-      pickedMachinesAmount
-    );
-  }
-
-  function calculateReceivedExp(pickedAmount) {
-    return (
-      reduxStateInfo.materialGivenExperience * pickedAmount +
-      reduxStateInfo.playerExperience
-    );
-  }
-
+  /* START PRODUCTION HANDLER */
   function submitHandler(event) {
     event.preventDefault();
 
@@ -103,6 +71,11 @@ function SettingsPanel(props) {
       /* this defines our pickedAmount on input and parses to int*/
       const pickedAmount = parseInt(amountValue.current.value);
       const pickedMachinesAmount = parseInt(machinesCount.current.value);
+      const pickedSupervisorIndex = reduxStateInfo.employeesStateArray
+        .map((employee) => {
+          return employee.id;
+        })
+        .indexOf(currentSupervisor);
 
       /* This line allow us to properly add materials for player production */
       let amountAfter = pickedAmount;
@@ -110,24 +83,46 @@ function SettingsPanel(props) {
         amountAfter,
         currentMachinePicked,
       });
-      /* calculations passed to state depending on props */
+
+      /* START calculations passed to state depending on props */
       const wholeProductionCost = calculateProductionCost(
         pickedAmount,
-        pickedMachinesAmount
+        pickedMachinesAmount,
+        reduxStateInfo.singleProductionCost,
+        reduxStateInfo.employeesStateArray[pickedSupervisorIndex]
       );
 
-      const playerMoneyAfterProduction =
-        claculatePlayerMoneyAfter(wholeProductionCost);
-      const playerReceivedMaterialAfterProduction =
-        calculateMaterialReceived(pickedAmount);
+      const playerMoneyAfterProduction = claculatePlayerMoneyAfter(
+        wholeProductionCost,
+        reduxStateInfo.playerMoney
+      );
+      const playerReceivedMaterialAfterProduction = calculateMaterialReceived(
+        pickedAmount,
+        reduxStateInfo.playerEqReceivedMaterialQuantity,
+        props.playerInfo.equipment.machines,
+        currentMachinePicked,
+        props.playerInfo,
+        reduxStateInfo.employeesStateArray[pickedSupervisorIndex]
+      );
 
-      const playerUsedMaterialAfterProduction =
-        calculateMaterialUsed(pickedAmount);
+      const playerUsedMaterialAfterProduction = calculateMaterialUsed(
+        pickedAmount,
+        reduxStateInfo.playerEqUsedMaterialQuantity
+      );
       const productionDuration = calculateDuration(
         pickedAmount,
-        pickedMachinesAmount
+        pickedMachinesAmount,
+        reduxStateInfo.materialDurability,
+        reduxStateInfo.machinePerformance,
+        reduxStateInfo.employeesStateArray[pickedSupervisorIndex]
       );
-      const playerReceivedExperience = calculateReceivedExp(pickedAmount);
+      const playerReceivedExperience = calculateReceivedExp(
+        pickedAmount,
+        reduxStateInfo.materialGivenExperience,
+        reduxStateInfo.playerExperience,
+        reduxStateInfo.employeesStateArray[pickedSupervisorIndex]
+      );
+      /* END */
 
       props.setMaterialReceivedFromProduction({
         amountAfter,
@@ -148,12 +143,27 @@ function SettingsPanel(props) {
         );
       } else if (reduxStateInfo.pickedMachineQuantity < currentMachinesCount) {
         alert("Sorry, you doesn't have that many machines.");
-      }  else {
+      } else {
         let bool = true;
+
+        if (
+          props.playerInfo.employees[pickedSupervisorIndex].worksCount !==
+          undefined
+        ) {
+          const employees = reduxStateInfo.employeesStateArray;
+          const newWorkCount = employees[pickedSupervisorIndex].worksCount - 1;
+
+          employees[pickedSupervisorIndex].worksCount = newWorkCount;
+          props.setEmployeesWorkCount(employees);
+          console.log(employees);
+        }
         props.setMaterialQuantityDown(playerUsedMaterialAfterProduction);
         props.setMoney(playerMoneyAfterProduction);
         props.setMachineState({ bool, currentMachinePicked });
-        props.setAmountMachinesWorking({ pickedMachinesAmount, currentMachinePicked })
+        props.setAmountMachinesWorking({
+          pickedMachinesAmount,
+          currentMachinePicked,
+        });
 
         setTimeout(() => {
           /* here we're passing changed values to reducer. Values are calculated before set timeout function. In this part of code, we only changing them in Redux state */
@@ -167,6 +177,14 @@ function SettingsPanel(props) {
           props.setMaterialQuantityUp(playerReceivedMaterialAfterProduction);
           props.setExperience(playerReceivedExperience);
           props.setMachineState({ bool, currentMachinePicked });
+          if (
+            reduxStateInfo.employeesStateArray[pickedSupervisorIndex]
+              .worksCount <= 0
+          ) {
+            const employees = reduxStateInfo.employeesStateArray;
+            employees.splice(pickedSupervisorIndex, 1);
+            setEmployeesWorkCount(employees);
+          }
           alert("Productions has finished.");
         }, productionDuration);
 
@@ -180,7 +198,7 @@ function SettingsPanel(props) {
         }, 1000);
       }
     } else {
-      alert("Machine is still working.")
+      alert("Machine is still working.");
     }
 
     /* if machine is still working player can't start second work*/
@@ -192,8 +210,15 @@ function SettingsPanel(props) {
     const pickedAmount = amountValue.current.value;
     const pickedMachinesAmount = machinesCount.current.value;
     const pickedProductionMachine = machineType.current.value;
+    const pickedSupervisor = shiftSupervisor.current.value;
 
     setCurrentMachinePicked(pickedProductionMachine);
+    setCurrentSupervisor(pickedSupervisor);
+    const pickedSupervisorIndex = reduxStateInfo.employeesStateArray
+      .map((employee) => {
+        return employee.id;
+      })
+      .indexOf(currentSupervisor);
 
     reduxStateInfo.machinePerformance =
       props.playerInfo.equipment.machines[pickedProductionMachine].performance;
@@ -202,24 +227,33 @@ function SettingsPanel(props) {
     reduxStateInfo.pickedMachineQuantity =
       props.playerInfo.equipment.machines[pickedProductionMachine].owned;
 
-      /* This line is used for DOM element to display porper amount of machines */
-      setCurrentMachinesCount(pickedMachinesAmount);
-    // console.log(props.playerInfo.equipment.machines[pickedProductionMachine]);
-    const timeToProduct = (
+    /* This line is used for DOM element to display porper amount of machines */
+    setCurrentMachinesCount(pickedMachinesAmount);
+
+    const productionTimeRaw =
       ((reduxStateInfo.materialDurability / reduxStateInfo.machinePerformance) *
         pickedAmount) /
-      pickedMachinesAmount
-    ).toFixed(1);
-    const costToProduct =
+      pickedMachinesAmount;
+    const productionTimeWithBoost =
+      productionTimeRaw -
+      productionTimeRaw *
+        reduxStateInfo.employeesStateArray[pickedSupervisorIndex]
+          .productionTimeBoost;
+    const timeToProduct = productionTimeWithBoost.toFixed(1);
+
+    const costToProductRaw =
       pickedAmount * reduxStateInfo.singleProductionCost * pickedMachinesAmount;
+    const costToProductBoost =
+      costToProductRaw -
+      costToProductRaw *
+        reduxStateInfo.employeesStateArray[pickedSupervisorIndex]
+          .productionCostBoost;
+    const costToProduct = costToProductBoost;
+
     setCurrentValue(pickedAmount);
     setCurrentCost(costToProduct);
     setCurrentTime(timeToProduct);
   }
-
-  useEffect(() => {
-    changeHandler();
-  }, []);
 
   return (
     <div className={styles.panelCard}>
@@ -232,7 +266,11 @@ function SettingsPanel(props) {
       >
         <label htmlFor="amount">
           Iron Ore
-          <p>{props.playerInfo.equipment.materials.ironOre.quantity > 0 ? currentMaterialValue : "0"}</p>
+          <p>
+            {props.playerInfo.equipment.materials.ironOre.quantity > 0
+              ? currentMaterialValue
+              : "0"}
+          </p>
         </label>
         <input
           type="range"
@@ -244,9 +282,7 @@ function SettingsPanel(props) {
           onChange={changeHandler}
           ref={amountValue}
         />
-        <label htmlFor="machineType">
-          Machine settings: 
-        </label>
+        <label htmlFor="machineType">Machine settings:</label>
         <select
           name="machineType"
           id="machineType"
@@ -255,23 +291,40 @@ function SettingsPanel(props) {
           ref={machineType}
         >
           {MACHINES.map((option) => (
-            <option key={option.id} value={option.id}>
+            <option key={option.id} value={option.id} onClick={changeHandler}>
               {option.name}
             </option>
           ))}
         </select>
-        <label htmlFor="machinesCount">
-        </label>
+        <label htmlFor="machinesCount"></label>
         <input
           type="number"
           name="machinesCount"
           id="machinesCount"
-          defaultValue = {reduxStateInfo.pickedMachineQuantity}
+          defaultValue={reduxStateInfo.pickedMachineQuantity}
           min="1"
           max={reduxStateInfo.pickedMachineQuantity}
           onChange={changeHandler}
           ref={machinesCount}
         />
+        <label htmlFor="shiftSupervisor">Supervisor: </label>
+        <select
+          name="shiftSupervisor"
+          id="shiftSupervisor"
+          onChange={changeHandler}
+          defaultValue="none"
+          ref={shiftSupervisor}
+        >
+          {props.playerInfo.employees.map((employee) => (
+            <option
+              key={employee.id}
+              value={employee.id}
+              onClick={changeHandler}
+            >
+              {employee.name}
+            </option>
+          ))}
+        </select>
         <Button btnText="Start" />
       </form>
       <span>
@@ -280,8 +333,8 @@ function SettingsPanel(props) {
         <p>
           Time left:{" "}
           {(
-            props.playerInfo.equipment.machines[currentMachinePicked].timeDuration /
-            60000
+            props.playerInfo.equipment.machines[currentMachinePicked]
+              .timeDuration / 60000
           ).toFixed(2)}{" "}
           min
         </p>
