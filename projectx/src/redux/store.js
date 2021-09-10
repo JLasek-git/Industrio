@@ -17,6 +17,7 @@ const localStorageState =
 if (localStorageState !== "localStorageState") {
   const machinesObjectInPlayerEq =
     localStorageState.playerInfo.equipment.machines;
+  const playerInfoElements = [];
   for (let machine in machinesObjectInPlayerEq) {
     if (machine !== "allMachinesQuantity") {
       if (machinesObjectInPlayerEq[machine].materialFromProduction > 0) {
@@ -36,7 +37,16 @@ if (localStorageState !== "localStorageState") {
       machinesObjectInPlayerEq[machine].materialFromProduction = 0;
     }
   }
+
+  for (let playerElement in localStorageState.playerInfo) {
+    playerInfoElements.push(playerElement);
+  }
+
+  if (!playerInfoElements.includes("employees")) {
+    localStorage.clear();
+  }
 }
+
 /* make initial state */
 const initialState =
   localStorage.state !== undefined
