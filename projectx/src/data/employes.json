@@ -7,8 +7,8 @@
     "experienceBoost": 0.2,
     "productionCostBoost": 0.1,
     "quantityBoost": 0.3,
-    "worksCount": 20,
-    "workCost": 1000
+    "worksCount": 1,
+    "hireCost": 1000
   },
 
   {
@@ -20,7 +20,7 @@
     "productionCostBoost": 0.1,
     "quantityBoost": 0.3,
     "worksCount": 20,
-    "workCost": 1000
+    "hireCost": 1000
   },
 
   {
@@ -32,7 +32,7 @@
     "productionCostBoost": 0.1,
     "quantityBoost": 0.3,
     "worksCount": 20,
-    "workCost": 1000
+    "hireCost": 1000
   },
   {
     "id": "poppyStewart",
@@ -43,7 +43,7 @@
     "productionCostBoost": 0.1,
     "quantityBoost": 0.3,
     "worksCount": 20,
-    "workCost": 1000
+    "hireCost": 1000
   },
   {
     "id": "roseDixon",
@@ -54,7 +54,7 @@
     "productionCostBoost": 0.1,
     "quantityBoost": 0.3,
     "worksCount": 20,
-    "workCost": 1000
+    "hireCost": 1000
   },
   {
     "id": "elenaCole",
@@ -65,6 +65,6 @@
     "productionCostBoost": 0.1,
     "quantityBoost": 0.3,
     "worksCount": 20,
-    "workCost": 1000
+    "hireCost": 1000
   }
 ]

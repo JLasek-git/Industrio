@@ -21,7 +21,7 @@ const StockMarket2 = ({ ...props }) => (
             productionCostBoost={employee.productionCostBoost}
             quantityBoost={employee.quantityBoost}
             worksCount={employee.worksCount}
-            workCost={employee.workCost}
+            hireCost={employee.hireCost}
           />
         ))}
       </InnerWindow>
