@@ -11,7 +11,9 @@
 
   & .singleEmployee {
     width: 60%;
-    height: 90%;
+    min-height: 90%;
+    padding: 20px 0;
+    margin: 10px 0;
     background-color: #2e4f5e;
     border: 1px solid #f3e1ac;
     display: flex;
@@ -54,6 +56,14 @@
       display: flex;
       justify-content: center;
       align-items: center;
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .employeesContainer {
+    & .singleEmployee {
+      width: 90%;
     }
   }
 }

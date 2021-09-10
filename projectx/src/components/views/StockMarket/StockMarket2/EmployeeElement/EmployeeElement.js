@@ -12,9 +12,24 @@ function EmployeeElement({
   productionCostBoost,
   qunatityBoost,
   hireTime,
-  hireCost,
+  workCost,
   ...props
 }) {
+  function handleHire() {
+    const employeesArray = props.playerInfo.employees;
+    const employeeInfo = {
+      name: { name },
+      perfomanceIncreased: { perfomanceIncreased },
+      productionTimeBoost: { productionTimeBoost },
+      experienceBoost: { experienceBoost },
+      productionCostBoost: { productionCostBoost },
+      qunatityBoost: { qunatityBoost },
+      hireTime: { hireTime },
+      workCost: { workCost },
+    };
+    employeesArray.push(employeeInfo);
+    props.setEmployeesArray(employeesArray);
+  }
   return (
     <div className={styles.employeesContainer}>
       <div className={styles.singleEmployee}>
@@ -25,34 +40,33 @@ function EmployeeElement({
           <p className={styles.employeeName}>{name}</p>
           <p className={styles.infoElement}>
             <span>Performance boost: </span>
-            {perfomanceIncreased}
+            {perfomanceIncreased * 100}%
           </p>
           <p className={styles.infoElement}>
             <span>Production time boost: </span>
-            {productionTimeBoost}
+            {productionTimeBoost * 100}%
           </p>
           <p className={styles.infoElement}>
             <span>Expereince boost: </span>
-            {experienceBoost}
+            {experienceBoost * 100}%
           </p>
           <p className={styles.infoElement}>
             <span>Production cost boost: </span>
-            {productionCostBoost}
+            {productionCostBoost * 100}%
           </p>
           <p className={styles.infoElement}>
             <span>Material quantity boost: </span>
-            {qunatityBoost}
+            {qunatityBoost * 100}%
           </p>
           <p className={styles.infoElement}>
             <span>Hire time: </span>
-            {hireTime}
+            {hireTime} h
           </p>
           <p className={styles.infoElement}>
-            <span>Hire cost: </span>
-            {hireCost}
+            <span>Work cost: </span>${workCost}
           </p>
         </div>
-        <div className={styles.hireBtn}>
+        <div className={styles.hireBtn} onClick={handleHire}>
           <Button btnText="Hire" />
         </div>
       </div>

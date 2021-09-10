@@ -4,7 +4,7 @@ import OuterWindow from "../../../layout/OuterWindow/OuterWindow";
 // import styles from "./StockMarket2.module.scss";
 import Section from "../../../layout/Section/Section";
 import EMPLOYEES from "../../../../data/employes.json";
-import EmployeeElement from "./EmployeeElement/EmployeeElement";
+import EmployeeElement from "./EmployeeElement/EmployeeElementContainer";
 
 const StockMarket2 = ({ ...props }) => (
   <Section>
@@ -20,8 +20,7 @@ const StockMarket2 = ({ ...props }) => (
             productionCostBoost={employee.productionCostBoost}
             qunatityBoost={employee.quantityBoost}
             hireTime={employee.hireTime}
-            hireCost={employee.hireCost}
-            {...props}
+            workCost={employee.workCost}
           />
         ))}
       </InnerWindow>

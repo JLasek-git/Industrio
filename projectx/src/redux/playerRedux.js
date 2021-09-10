@@ -13,7 +13,9 @@ export const SET_MATERIAL_QUANTITY_UP = createActionName(
 export const SET_MATERIAL_QUANTITY_DOWN = createActionName(
   "SET_MATERIAL_QUANTITY_DOWN"
 );
-export const SET_MATERIAL_RECEIVED_FROM_PRODUCTION = createActionName("SET_MATERIAL_RECEIVED_FROM_PRODUCTION");
+export const SET_MATERIAL_RECEIVED_FROM_PRODUCTION = createActionName(
+  "SET_MATERIAL_RECEIVED_FROM_PRODUCTION"
+);
 export const SET_MONEY = createActionName("SET_MONEY");
 export const SET_MACHINE_STATE = createActionName("SET_MACHINE_STATE");
 export const SET_TIME = createActionName("SET_TIME");
@@ -30,9 +32,10 @@ export const SET_MACHINES_CAPACITY = createActionName("SET_MACHINES_CAPACITY");
 export const SET_ALL_MACHINES_QUANTITY = createActionName(
   "SET_ALL_MACHINES_QUANTITY"
 );
-export const SET_AMOUNT_MACHINES_WORKING = createActionName("SET_AMOUNT_MACHINES_WORKING");
-
-
+export const SET_AMOUNT_MACHINES_WORKING = createActionName(
+  "SET_AMOUNT_MACHINES_WORKING"
+);
+export const SET_EMPLOYEES_ARRAY = createActionName("SET_EMPLOYEES_ARRAY");
 
 // action creators
 export const setMaterialQuantityUp = (payload) => ({
@@ -78,7 +81,12 @@ export const setAllMachinesQuantity = (payload) => ({
 });
 export const setAmountMachinesWorking = (payload) => ({
   payload,
-  type: SET_AMOUNT_MACHINES_WORKING
+  type: SET_AMOUNT_MACHINES_WORKING,
+});
+
+export const setEmployeesArray = (payload) => ({
+  payload,
+  type: SET_EMPLOYEES_ARRAY,
 });
 export default function reducer(statePart = [], action = {}) {
   switch (action.type) {
@@ -120,11 +128,13 @@ export default function reducer(statePart = [], action = {}) {
           machines: {
             ...statePart.equipment.machines,
             [action.payload.currentMachinePicked]: {
-              ...statePart.equipment.machines[action.payload.currentMachinePicked],
+              ...statePart.equipment.machines[
+                action.payload.currentMachinePicked
+              ],
               materialFromProduction: action.payload.amountAfter,
-            }
-          }
-        }
+            },
+          },
+        },
       };
     case SET_MATERIAL_QUANTITY_BUY:
       return {
@@ -151,7 +161,9 @@ export default function reducer(statePart = [], action = {}) {
           machines: {
             ...statePart.equipment.machines,
             [action.payload.currentMachinePicked]: {
-              ...statePart.equipment.machines[action.payload.currentMachinePicked],
+              ...statePart.equipment.machines[
+                action.payload.currentMachinePicked
+              ],
               work: action.payload.bool,
             },
           },
@@ -179,7 +191,9 @@ export default function reducer(statePart = [], action = {}) {
           machines: {
             ...statePart.equipment.machines,
             [action.payload.currentMachinePicked]: {
-              ...statePart.equipment.machines[action.payload.currentMachinePicked],
+              ...statePart.equipment.machines[
+                action.payload.currentMachinePicked
+              ],
               timeDuration: action.payload.counter,
             },
           },
@@ -230,18 +244,27 @@ export default function reducer(statePart = [], action = {}) {
     }
 
     case SET_AMOUNT_MACHINES_WORKING: {
-      return{
+      return {
         ...statePart,
         equipment: {
           ...statePart.equipment,
           machines: {
             ...statePart.equipment.machines,
-            [action.payload.currentMachinePicked]:{
-              ...statePart.equipment.machines[action.payload.currentMachinePicked],
+            [action.payload.currentMachinePicked]: {
+              ...statePart.equipment.machines[
+                action.payload.currentMachinePicked
+              ],
               machineWorking: action.payload.pickedMachinesAmount,
             },
           },
         },
+      };
+    }
+
+    case SET_EMPLOYEES_ARRAY: {
+      return {
+        ...statePart,
+        employees: action.payload,
       };
     }
     default:
