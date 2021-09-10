@@ -7,7 +7,7 @@
     "experienceBoost": 0.2,
     "productionCostBoost": 0.1,
     "quantityBoost": 0.3,
-    "worksCount": 1,
+    "worksCount": 20,
     "hireCost": 1000
   },
 
