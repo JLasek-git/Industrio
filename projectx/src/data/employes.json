@@ -3,36 +3,36 @@
     "id": "danielJoseph",
     "name": "Daniel Joseph",
     "performanceIncreased": 0.1,
-    "productionTimeBoost": 0.3,
-    "experienceBoost": 0.2,
-    "productionCostBoost": 0.1,
-    "quantityBoost": 0.3,
-    "worksCount": 20,
-    "hireCost": 1000
+    "productionTimeBoost": 0.8,
+    "experienceBoost": 0.1,
+    "productionCostBoost": 0.2,
+    "quantityBoost": 0.4,
+    "worksCount": 26,
+    "hireCost": 7985
   },
 
   {
     "id": "thomasJack",
     "name": "Thomas Jack",
-    "performanceIncreased": 0.1,
-    "productionTimeBoost": 0.3,
-    "experienceBoost": 0.2,
+    "performanceIncreased": 0.8,
+    "productionTimeBoost": 0.15,
+    "experienceBoost": 0.6,
     "productionCostBoost": 0.1,
-    "quantityBoost": 0.3,
-    "worksCount": 20,
-    "hireCost": 1000
+    "quantityBoost": 0.12,
+    "worksCount": 30,
+    "hireCost": 1851
   },
 
   {
     "id": "harryLewis",
     "name": "Harry Lewis",
     "performanceIncreased": 0.1,
-    "productionTimeBoost": 0.3,
-    "experienceBoost": 0.2,
+    "productionTimeBoost": 0.6,
+    "experienceBoost": 0.1,
     "productionCostBoost": 0.1,
     "quantityBoost": 0.3,
-    "worksCount": 20,
-    "hireCost": 1000
+    "worksCount": 29,
+    "hireCost": 4321
   },
   {
     "id": "poppyStewart",
@@ -40,21 +40,21 @@
     "performanceIncreased": 0.1,
     "productionTimeBoost": 0.3,
     "experienceBoost": 0.2,
-    "productionCostBoost": 0.1,
-    "quantityBoost": 0.3,
-    "worksCount": 20,
-    "hireCost": 1000
+    "productionCostBoost": 0.6,
+    "quantityBoost": 0.8,
+    "worksCount": 23,
+    "hireCost": 11847
   },
   {
     "id": "roseDixon",
     "name": "Rose Dixon",
     "performanceIncreased": 0.1,
-    "productionTimeBoost": 0.3,
-    "experienceBoost": 0.2,
+    "productionTimeBoost": 0.6,
+    "experienceBoost": 0.1,
     "productionCostBoost": 0.1,
-    "quantityBoost": 0.3,
-    "worksCount": 20,
-    "hireCost": 1000
+    "quantityBoost": 0.5,
+    "worksCount": 14,
+    "hireCost": 7694
   },
   {
     "id": "elenaCole",
@@ -62,9 +62,9 @@
     "performanceIncreased": 0.1,
     "productionTimeBoost": 0.3,
     "experienceBoost": 0.2,
-    "productionCostBoost": 0.1,
-    "quantityBoost": 0.3,
-    "worksCount": 20,
-    "hireCost": 1000
+    "productionCostBoost": 0.8,
+    "quantityBoost": 0.6,
+    "worksCount": 14,
+    "hireCost": 9832
   }
 ]
