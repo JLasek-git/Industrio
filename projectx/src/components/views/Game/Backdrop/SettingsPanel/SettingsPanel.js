@@ -165,6 +165,12 @@ function SettingsPanel(props) {
           currentMachinePicked,
         });
 
+        let productionCost = wholeProductionCost;
+        props.setProductionCost({
+          currentMachinePicked,
+          productionCost,
+        });
+
         setTimeout(() => {
           /* here we're passing changed values to reducer. Values are calculated before set timeout function. In this part of code, we only changing them in Redux state */
           bool = false;
@@ -174,6 +180,11 @@ function SettingsPanel(props) {
             currentMachinePicked,
           });
 
+          productionCost = 0;
+          props.setProductionCost({
+            currentMachinePicked,
+            productionCost,
+          });
           props.setMaterialQuantityUp(playerReceivedMaterialAfterProduction);
           props.setExperience(playerReceivedExperience);
           props.setMachineState({ bool, currentMachinePicked });

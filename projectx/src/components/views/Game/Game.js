@@ -6,7 +6,7 @@ import MachinesPanel from "./MachinePanel/MachinesPanelContainer";
 import Backdrop from "./Backdrop/Backdrop";
 import WorkersPanel from "./WorkersPanel/WorkersPanelContainer";
 
-const Game = ({ ...props }) => {
+const Game = () => {
   const [backdrop, isVisible] = useState(false);
 
   const productionSettingsBackdrop = () => {

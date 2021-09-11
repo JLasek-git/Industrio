@@ -9,6 +9,7 @@ import {
   setMaterialReceivedFromProduction,
   setAmountMachinesWorking,
   setEmployeesWorkCount,
+  setProductionCost,
 } from "../../../../../redux/playerRedux";
 import SettingsPanel from "./SettingsPanel";
 import { connect } from "react-redux";
@@ -31,6 +32,7 @@ const mapDispatchToProps = (dispatch) => ({
   setAmountMachinesWorking: (amount) =>
     dispatch(setAmountMachinesWorking(amount)),
   setEmployeesWorkCount: (count) => dispatch(setEmployeesWorkCount(count)),
+  setProductionCost: (cost) => dispatch(setProductionCost(cost)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SettingsPanel);

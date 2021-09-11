@@ -18,16 +18,14 @@ if (localStorageState !== "localStorageState") {
   const machinesObjectInPlayerEq =
     localStorageState.playerInfo.equipment.machines;
   const playerInfoElements = [];
+  const machinesElement = [];
   for (let machine in machinesObjectInPlayerEq) {
     if (machine !== "allMachinesQuantity") {
       if (machinesObjectInPlayerEq[machine].materialFromProduction > 0) {
         localStorageState.playerInfo.equipment.materials.ironOre.quantity +=
           machinesObjectInPlayerEq[machine].materialFromProduction;
         localStorageState.playerInfo.money +=
-          machinesObjectInPlayerEq[machine].materialFromProduction *
-          10 *
-          localStorageState.playerInfo.equipment.machines[machine]
-            .machineWorking;
+          machinesObjectInPlayerEq[machine].productionCost;
         localStorageState.playerInfo.equipment.machines[
           machine
         ].machineWorking = 0;
@@ -72,6 +70,7 @@ const initialState =
                 machineWorking: 0,
                 timeDuration: 0,
                 materialFromProduction: 0,
+                productionCost: 0,
                 owned: 0,
               },
               jawCrusher: {
@@ -86,6 +85,7 @@ const initialState =
                 machineWorking: 0,
                 timeDuration: 0,
                 materialFromProduction: 0,
+                productionCost: 0,
                 owned: 0,
               },
               coneCrusher: {
@@ -100,6 +100,7 @@ const initialState =
                 machineWorking: 0,
                 timeDuration: 0,
                 materialFromProduction: 0,
+                productionCost: 0,
                 owned: 0,
               },
               hammerCrusher: {
@@ -114,6 +115,7 @@ const initialState =
                 machineWorking: 0,
                 timeDuration: 0,
                 materialFromProduction: 0,
+                productionCost: 0,
                 owned: 0,
               },
               ballDrumMill: {
@@ -128,6 +130,7 @@ const initialState =
                 machineWorking: 0,
                 timeDuration: 0,
                 materialFromProduction: 0,
+                productionCost: 0,
                 owned: 0,
               },
               rodDrumMill: {
@@ -142,6 +145,7 @@ const initialState =
                 machineWorking: 0,
                 timeDuration: 0,
                 materialFromProduction: 0,
+                productionCost: 0,
                 owned: 0,
               },
               drumScreen: {
@@ -156,6 +160,7 @@ const initialState =
                 machineWorking: 0,
                 timeDuration: 0,
                 materialFromProduction: 0,
+                productionCost: 0,
                 owned: 0,
               },
 
@@ -171,6 +176,7 @@ const initialState =
                 machineWorking: 0,
                 timeDuration: 0,
                 materialFromProduction: 0,
+                productionCost: 0,
                 owned: 0,
               },
 
@@ -244,8 +250,8 @@ const storeReducer = (state, action) => {
 
 const store = createStore(
   storeReducer,
-  initialState
-  // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  initialState,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 store.subscribe(() => {
