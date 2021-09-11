@@ -19,13 +19,16 @@ function MaterialPanel({ ...props }) {
         <span>
           Iron ore:{" "}
           <span className={styles.materialNumber}>
-            {props.playerInfo.equipment.materials.ironOre.quantity}t
+            {props.playerInfo.equipment.materials.ironOre.quantity.toFixed(0)}t
           </span>
         </span>
         <span>
           Iron ore concentrate:{" "}
           <span className={styles.materialNumber}>
-            {props.playerInfo.equipment.materials.ironOreConcentrate.quantity}t
+            {props.playerInfo.equipment.materials.ironOreConcentrate.quantity.toFixed(
+              0
+            )}
+            t
           </span>
         </span>
         <h3>Machines</h3>
