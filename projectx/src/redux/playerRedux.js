@@ -40,6 +40,8 @@ export const SET_EMPLOYEES_WORK_COUNT = createActionName(
   "SET_EMPLOYEES_WORK_COUNT"
 );
 
+export const SET_PRODUCTION_COST = createActionName("SET_PRODUCTION_COST");
+
 // action creators
 export const setMaterialQuantityUp = (payload) => ({
   payload,
@@ -95,6 +97,11 @@ export const setEmployeesArray = (payload) => ({
 export const setEmployeesWorkCount = (payload) => ({
   payload,
   type: SET_EMPLOYEES_WORK_COUNT,
+});
+
+export const setProductionCost = (payload) => ({
+  payload,
+  type: SET_PRODUCTION_COST,
 });
 export default function reducer(statePart = [], action = {}) {
   switch (action.type) {
@@ -280,6 +287,24 @@ export default function reducer(statePart = [], action = {}) {
       return {
         ...statePart,
         employees: action.payload,
+      };
+    }
+
+    case SET_PRODUCTION_COST: {
+      return {
+        ...statePart,
+        equipment: {
+          ...statePart.equipment,
+          machines: {
+            ...statePart.equipment.machines,
+            [action.payload.currentMachinePicked]: {
+              ...statePart.equipment.machines[
+                action.payload.currentMachinePicked
+              ],
+              productionCost: action.payload.productionCost,
+            },
+          },
+        },
       };
     }
     default:
