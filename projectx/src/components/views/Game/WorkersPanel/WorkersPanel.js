@@ -12,7 +12,7 @@ function WorkersPanel({ ...props }) {
       {props.playerInfo.employees.map(
         (employee) =>
           employee.id !== "none" && (
-            <div className={styles.singleWorker}>
+            <div key={employee.id} className={styles.singleWorker}>
               <span>{employee.name}</span>
               <span className={styles.workCounter}>{employee.worksCount}</span>
             </div>

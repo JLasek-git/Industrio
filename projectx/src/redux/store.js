@@ -18,7 +18,6 @@ if (localStorageState !== "localStorageState") {
   const machinesObjectInPlayerEq =
     localStorageState.playerInfo.equipment.machines;
   const playerInfoElements = [];
-  const machinesElement = [];
   for (let machine in machinesObjectInPlayerEq) {
     if (machine !== "allMachinesQuantity") {
       if (machinesObjectInPlayerEq[machine].materialFromProduction > 0) {
@@ -250,8 +249,8 @@ const storeReducer = (state, action) => {
 
 const store = createStore(
   storeReducer,
-  initialState,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  initialState
+  // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 store.subscribe(() => {

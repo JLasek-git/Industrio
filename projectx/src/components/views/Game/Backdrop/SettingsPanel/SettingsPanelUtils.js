@@ -11,7 +11,7 @@ export function calculateProductionCost(
   return productionCostWithBonuses;
 }
 
-export function claculatePlayerMoneyAfter(wholeProductionCost, playerMoney) {
+export function calculatePlayerMoneyAfter(wholeProductionCost, playerMoney) {
   return playerMoney - wholeProductionCost;
 }
 

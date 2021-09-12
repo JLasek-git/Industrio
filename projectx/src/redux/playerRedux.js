@@ -41,6 +41,7 @@ export const SET_EMPLOYEES_WORK_COUNT = createActionName(
 );
 
 export const SET_PRODUCTION_COST = createActionName("SET_PRODUCTION_COST");
+export const SET_MAGAZINE_CAPACITY = createActionName("SET_MAGAZINE_CAPACITY");
 
 // action creators
 export const setMaterialQuantityUp = (payload) => ({
@@ -102,6 +103,10 @@ export const setEmployeesWorkCount = (payload) => ({
 export const setProductionCost = (payload) => ({
   payload,
   type: SET_PRODUCTION_COST,
+});
+export const setMagazineCapacity = (payload) => ({
+  payload,
+  type: SET_MAGAZINE_CAPACITY,
 });
 export default function reducer(statePart = [], action = {}) {
   switch (action.type) {
@@ -303,6 +308,19 @@ export default function reducer(statePart = [], action = {}) {
               ],
               productionCost: action.payload.productionCost,
             },
+          },
+        },
+      };
+    }
+
+    case SET_MAGAZINE_CAPACITY: {
+      return {
+        ...statePart,
+        magazine: {
+          ...statePart.magazine,
+          poorMagazine: {
+            ...statePart.magazine.poorMagazine,
+            machinesCapacity: action.payload,
           },
         },
       };

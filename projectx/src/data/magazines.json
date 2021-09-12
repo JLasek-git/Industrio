@@ -1,0 +1,36 @@
+[
+  {
+    "id": "littleExpansion",
+    "name": "Little Expansion",
+    "improvement": 1,
+    "cost": 30000
+  },
+
+  {
+    "id": "smallExpansion",
+    "name": "Small Expansion",
+    "improvement": 3,
+    "cost": 80000
+  },
+
+  {
+    "id": "mediumExpansion",
+    "name": "Medium Expansion",
+    "improvement": 7,
+    "cost": 135000
+  },
+
+  {
+    "id": "bigExpansion",
+    "name": "Big Expansion",
+    "improvement": 15,
+    "cost": 240000
+  },
+
+  {
+    "id": "giantExpansion",
+    "name": "Giant Expansion",
+    "improvement": 40,
+    "cost": 600000
+  }
+]
