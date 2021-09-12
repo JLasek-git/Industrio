@@ -52,6 +52,7 @@ const initialState =
         playerInfo: {
           avatar: profileIcon,
           nickname: "Player 1",
+          level: 1,
           experience: 0,
           toNextLevel: 4000,
           money: 50000,
