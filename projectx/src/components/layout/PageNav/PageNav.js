@@ -21,7 +21,7 @@ const PageNav = () => (
     />
     <LinkButton
       className={styles.mainNavBtn}
-      buttonText="Buildings"
+      buttonText="Expansions"
       link="/stores/store2"
     />
     <LinkButton

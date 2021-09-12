@@ -4,7 +4,7 @@ import Section from "../../../layout/Section/Section";
 import OuterWindow from "../../../layout/OuterWindow/OuterWindow";
 import InnerWindow from "../../../layout/InnerWindow/InnerWindow";
 import EXPANSIONS from "../../../../data/magazines.json";
-import StoreExpansion from "./StoreExpansion/StoreExpansion";
+import StoreExpansion from "./StoreExpansion/StoreExpansionContainer";
 
 const Store2 = () => (
   <Section>
