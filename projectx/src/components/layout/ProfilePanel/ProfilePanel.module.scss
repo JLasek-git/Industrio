@@ -31,6 +31,28 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    & .experience {
+      cursor: pointer;
+      width: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: black;
+      border-radius: 20px;
+
+      & .experienceAmount {
+        display: none;
+      }
+
+      &:hover .experienceAmount {
+        display: block;
+      }
+
+      &:hover .levelInfo {
+        display: none;
+      }
+    }
   }
 
   & .closeBtn {

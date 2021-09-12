@@ -64,7 +64,7 @@ const initialState =
                 requirement: 0,
                 type: "crusher",
                 application: "pre-treatment-of-ore",
-                performance: 15,
+                performance: 1000000,
                 work: false,
                 machineWorking: 0,
                 timeDuration: 0,
@@ -249,8 +249,8 @@ const storeReducer = (state, action) => {
 
 const store = createStore(
   storeReducer,
-  initialState
-  // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  initialState,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 store.subscribe(() => {
