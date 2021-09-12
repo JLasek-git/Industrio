@@ -3,10 +3,10 @@ import React from "react";
 import styles from "./ProfilePanel.module.scss";
 import Icon from "../../common/Icon/Icon";
 
-// const linearColors = {
-//   green: "#017D01",
-//   white: "#FFFFFF",
-// };
+const linearColors = {
+  green: "#017D01",
+  white: "#FFFFFF",
+};
 
 function ProfilePanel({ ...props }) {
   return (
@@ -20,7 +20,7 @@ function ProfilePanel({ ...props }) {
       </div>
       <div className={styles.playerInfo}>
         <div className={styles.playerNickname}>{props.playerInfo.nickname}</div>
-        {/* <div
+        <div
           className={styles.experience}
           style={{
             backgroundImage: `linear-gradient(to right, ${linearColors.green} ${
@@ -32,7 +32,7 @@ function ProfilePanel({ ...props }) {
           <span className={styles.experienceAmount}>
             {props.playerInfo.experience}/{props.playerInfo.toNextLevel}
           </span>
-        </div> */}
+        </div>
         <div className={styles.money}>
           <span className={styles.moneyCount}>${props.playerInfo.money}</span>
         </div>
