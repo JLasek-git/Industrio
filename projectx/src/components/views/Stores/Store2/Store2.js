@@ -3,12 +3,21 @@ import React from "react";
 import Section from "../../../layout/Section/Section";
 import OuterWindow from "../../../layout/OuterWindow/OuterWindow";
 import InnerWindow from "../../../layout/InnerWindow/InnerWindow";
+import EXPANSIONS from "../../../../data/magazines.json";
+import StoreExpansion from "./StoreExpansion/StoreExpansion";
 
 const Store2 = () => (
   <Section>
     <OuterWindow>
       <InnerWindow>
-        <h1>Buildings shop is under construction</h1>
+        {EXPANSIONS.map((expansion) => (
+          <StoreExpansion
+            key={expansion.id}
+            name={expansion.name}
+            improvement={expansion.improvement}
+            cost={expansion.cost}
+          />
+        ))}
       </InnerWindow>
     </OuterWindow>
   </Section>

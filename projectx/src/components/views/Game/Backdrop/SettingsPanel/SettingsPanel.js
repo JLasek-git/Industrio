@@ -9,7 +9,7 @@ import {
   calculateDuration,
   calculateMaterialUsed,
   calculateReceivedExp,
-  claculatePlayerMoneyAfter,
+  calculatePlayerMoneyAfter,
 } from "./SettingsPanelUtils";
 import { setEmployeesWorkCount } from "../../../../../redux/playerRedux";
 
@@ -92,7 +92,7 @@ function SettingsPanel(props) {
         reduxStateInfo.employeesStateArray[pickedSupervisorIndex]
       );
 
-      const playerMoneyAfterProduction = claculatePlayerMoneyAfter(
+      const playerMoneyAfterProduction = calculatePlayerMoneyAfter(
         wholeProductionCost,
         reduxStateInfo.playerMoney
       );
@@ -238,7 +238,7 @@ function SettingsPanel(props) {
     reduxStateInfo.pickedMachineQuantity =
       props.playerInfo.equipment.machines[pickedProductionMachine].owned;
 
-    /* This line is used for DOM element to display porper amount of machines */
+    /* This line is used for DOM element to display proper amount of machines */
     setCurrentMachinesCount(pickedMachinesAmount);
 
     const productionTimeRaw =
@@ -298,7 +298,7 @@ function SettingsPanel(props) {
           name="machineType"
           id="machineType"
           onChange={changeHandler}
-          defalutValue="impactCrusher"
+          defaultValue="impactCrusher"
           ref={machineType}
         >
           {MACHINES.map((option) => (
