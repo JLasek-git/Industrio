@@ -7,7 +7,6 @@ import employeeImg from "../../../../../images/profileIcon.png";
 function EmployeeElement({
   id,
   name,
-  perfomanceIncreased,
   productionTimeBoost,
   experienceBoost,
   productionCostBoost,
@@ -21,7 +20,6 @@ function EmployeeElement({
     const employeeInfo = {
       id: id,
       name: name,
-      perfomanceIncreased: perfomanceIncreased,
       productionTimeBoost: productionTimeBoost,
       experienceBoost: experienceBoost,
       productionCostBoost: productionCostBoost,
@@ -49,15 +47,11 @@ function EmployeeElement({
           </div>
           <p className={styles.employeeName}>{name}</p>
           <p className={styles.infoElement}>
-            <span>Performance boost: </span>
-            {perfomanceIncreased * 100}%
-          </p>
-          <p className={styles.infoElement}>
             <span>Production time boost: </span>
             {productionTimeBoost * 100}%
           </p>
           <p className={styles.infoElement}>
-            <span>Expereince boost: </span>
+            <span>Experience boost: </span>
             {experienceBoost * 100}%
           </p>
           <p className={styles.infoElement}>

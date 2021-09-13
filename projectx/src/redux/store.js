@@ -197,7 +197,7 @@ const initialState =
               ironOreConcentrate: {
                 id: "iron-ore-concentrate",
                 name: "Iron ore concentrate",
-                price: 200,
+                price: 170,
                 durability: 450,
                 experience: 7.5,
                 quantity: 0,

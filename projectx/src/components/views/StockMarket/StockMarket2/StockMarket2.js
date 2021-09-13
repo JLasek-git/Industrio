@@ -15,7 +15,6 @@ const StockMarket2 = ({ ...props }) => (
             key={employee.id}
             id={employee.id}
             name={employee.name}
-            perfomanceIncreased={employee.performanceIncreased}
             productionTimeBoost={employee.productionTimeBoost}
             experienceBoost={employee.experienceBoost}
             productionCostBoost={employee.productionCostBoost}
