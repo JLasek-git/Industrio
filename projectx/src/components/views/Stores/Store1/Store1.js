@@ -5,6 +5,7 @@ import StoreMachine from "./StoreMachine/StoreMachineContainer";
 import InnerWindow from "../../../layout/InnerWindow/InnerWindow";
 import OuterWindow from "../../../layout/OuterWindow/OuterWindow";
 import MACHINES from "../../../../data/machinesPreTreatment.json";
+import styles from "./Store1.module.scss";
 /* Machines store */
 
 function Store1({ ...props }) {

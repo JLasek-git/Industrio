@@ -2,69 +2,66 @@
   {
     "id": "danielJoseph",
     "name": "Daniel Joseph",
-    "performanceIncreased": 0.1,
-    "productionTimeBoost": 0.8,
+    "productionTimeBoost": 0.5,
     "experienceBoost": 0.1,
-    "productionCostBoost": 0.2,
-    "quantityBoost": 0.4,
-    "worksCount": 26,
-    "hireCost": 7985
+    "productionCostBoost": 0.1,
+    "quantityBoost": 0,
+    "worksCount": 20,
+    "hireCost": 20000
+  },
+
+  {
+    "id": "roseDixon",
+    "name": "Rose Dixon",
+    "productionTimeBoost": 0.1,
+    "experienceBoost": 0,
+    "productionCostBoost": 0.1,
+    "quantityBoost": 0.5,
+    "worksCount": 20,
+    "hireCost": 20000
   },
 
   {
     "id": "thomasJack",
     "name": "Thomas Jack",
-    "performanceIncreased": 0.8,
-    "productionTimeBoost": 0.15,
-    "experienceBoost": 0.6,
+    "productionTimeBoost": 0.3,
+    "experienceBoost": 0.1,
     "productionCostBoost": 0.1,
-    "quantityBoost": 0.12,
-    "worksCount": 30,
-    "hireCost": 1851
+    "quantityBoost": 0.3,
+    "worksCount": 20,
+    "hireCost": 40000
+  },
+
+  {
+    "id": "poppyStewart",
+    "name": "Poppy Stewart",
+    "productionTimeBoost": 0.1,
+    "experienceBoost": 0.1,
+    "productionCostBoost": 0.3,
+    "quantityBoost": 0.3,
+    "worksCount": 20,
+    "hireCost": 40000
   },
 
   {
     "id": "harryLewis",
     "name": "Harry Lewis",
-    "performanceIncreased": 0.1,
     "productionTimeBoost": 0.6,
     "experienceBoost": 0.1,
-    "productionCostBoost": 0.1,
-    "quantityBoost": 0.3,
-    "worksCount": 29,
-    "hireCost": 4321
+    "productionCostBoost": 0.3,
+    "quantityBoost": 0.4,
+    "worksCount": 30,
+    "hireCost": 80000
   },
-  {
-    "id": "poppyStewart",
-    "name": "Poppy Stewart",
-    "performanceIncreased": 0.1,
-    "productionTimeBoost": 0.3,
-    "experienceBoost": 0.2,
-    "productionCostBoost": 0.6,
-    "quantityBoost": 0.8,
-    "worksCount": 23,
-    "hireCost": 11847
-  },
-  {
-    "id": "roseDixon",
-    "name": "Rose Dixon",
-    "performanceIncreased": 0.1,
-    "productionTimeBoost": 0.6,
-    "experienceBoost": 0.1,
-    "productionCostBoost": 0.1,
-    "quantityBoost": 0.5,
-    "worksCount": 14,
-    "hireCost": 7694
-  },
+
   {
     "id": "elenaCole",
     "name": "Elena Cole",
-    "performanceIncreased": 0.1,
     "productionTimeBoost": 0.3,
-    "experienceBoost": 0.2,
-    "productionCostBoost": 0.8,
+    "experienceBoost": 0.1,
+    "productionCostBoost": 0.4,
     "quantityBoost": 0.6,
-    "worksCount": 14,
-    "hireCost": 9832
+    "worksCount": 30,
+    "hireCost": 80000
   }
 ]

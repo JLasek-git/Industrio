@@ -91,8 +91,10 @@ function ShopElement({
 
   const changeSellingAmountHandler = () => {
     const pickedAmount = sellingAmount.current.value;
+    const sellingIncome =
+      pickedAmount * materialPrice - pickedAmount * materialPrice * 0.2;
 
-    setCurrentSellingIncome(pickedAmount * materialPrice);
+    setCurrentSellingIncome(sellingIncome);
     setCurrentSellingAmount(pickedAmount);
   };
 
@@ -143,7 +145,7 @@ function ShopElement({
             ref={sellingAmount}
           />
           <div className={styles.prices}>
-            <p>Price: ${materialPrice} / 1t</p>
+            <p>Price: ${materialPrice - materialPrice * 0.2} / 1t</p>
             <p>Income: ${currentSellingIncome}</p>
           </div>
           <div onClick={(event) => handleShopActionSell(event)}>
