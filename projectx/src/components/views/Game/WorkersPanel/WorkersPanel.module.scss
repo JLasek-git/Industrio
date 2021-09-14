@@ -18,6 +18,8 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    cursor: pointer;
+    margin: 10px 0;
 
     & .detailsText {
       margin-left: 20px;

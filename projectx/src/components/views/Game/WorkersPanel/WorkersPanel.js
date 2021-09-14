@@ -16,7 +16,7 @@ function WorkersPanel({ ...props }) {
               <details>
                 <summary>{employee.name}</summary>
                 <p className={styles.detailsText}>
-                  Production time: {employee.productionTimeBoost * 100}%
+                  Production time boost: {employee.productionTimeBoost * 100}%
                 </p>
                 <p className={styles.detailsText}>
                   Experience boost: {employee.experienceBoost * 100}%

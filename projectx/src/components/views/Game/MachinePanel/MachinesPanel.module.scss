@@ -23,11 +23,19 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      & .workIndicator {
-        width: 15px;
-        height: 15px;
-        border-radius: 50%;
-        background-color: red;
+      margin: 10px 0;
+
+      & .machineStateInfo {
+        min-width: 20%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        & .workIndicator {
+          width: 15px;
+          height: 15px;
+          border-radius: 50%;
+          background-color: red;
+        }
       }
     }
   }
