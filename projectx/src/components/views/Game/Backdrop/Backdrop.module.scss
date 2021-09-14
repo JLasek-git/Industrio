@@ -5,7 +5,10 @@
   background-color: #232323;
   width: calc(100% - 250px);
   height: calc(100% - 20px);
+  right: 0;
+  bottom: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-left: 2px solid #4e4e4e;
 }
