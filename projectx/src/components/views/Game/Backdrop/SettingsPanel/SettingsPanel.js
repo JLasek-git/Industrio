@@ -20,12 +20,12 @@ function SettingsPanel(props) {
   const shiftSupervisor = useRef();
 
   /* state used only in form */
-  const [currentMaterialValue, setCurrentValue] = useState(1);
+  const [currentMaterialValue, setCurrentValue] = useState(0);
   const [currentProductionCost, setCurrentCost] = useState(0);
   const [currentProductionTime, setCurrentTime] = useState(0);
   const [currentMachinePicked, setCurrentMachinePicked] =
     useState("impactCrusher");
-  const [currentMachinesCount, setCurrentMachinesCount] = useState(1);
+  const [currentMachinesCount, setCurrentMachinesCount] = useState(0);
   const [currentSupervisor, setCurrentSupervisor] = useState(
     props.playerInfo.employees[0].id
   );
@@ -217,7 +217,6 @@ function SettingsPanel(props) {
           } else {
             props.setExperience(playerReceivedExperience);
           }
-          /* Reset timeDuration after end */
           alert("Productions has finished.");
         }, productionDuration);
 
@@ -312,7 +311,7 @@ function SettingsPanel(props) {
           name="amount"
           id="amount"
           defaultValue="0"
-          min="1"
+          min="0"
           max={props.playerInfo.equipment.materials.ironOre.quantity}
           onChange={changeHandler}
           ref={amountValue}
@@ -337,7 +336,7 @@ function SettingsPanel(props) {
           name="machinesCount"
           id="machinesCount"
           defaultValue={reduxStateInfo.pickedMachineQuantity}
-          min="1"
+          min="0"
           max={reduxStateInfo.pickedMachineQuantity}
           onChange={changeHandler}
           ref={machinesCount}
