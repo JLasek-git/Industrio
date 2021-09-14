@@ -65,7 +65,7 @@ const initialState =
                 requirement: 0,
                 type: "crusher",
                 application: "pre-treatment-of-ore",
-                performance: 15,
+                performance: 100000000,
                 work: false,
                 machineWorking: 0,
                 timeDuration: 0,

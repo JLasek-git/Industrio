@@ -43,6 +43,9 @@ export const SET_EMPLOYEES_WORK_COUNT = createActionName(
 export const SET_PRODUCTION_COST = createActionName("SET_PRODUCTION_COST");
 export const SET_MAGAZINE_CAPACITY = createActionName("SET_MAGAZINE_CAPACITY");
 export const SET_PLAYER_LEVEL = createActionName("SET_PLAYER_LEVEL");
+export const SET_EXPERIENCE_TO_NEXT_LEVEL = createActionName(
+  "SET_EXPERIENCE_TO_NEXT_LEVEL"
+);
 
 // action creators
 export const setMaterialQuantityUp = (payload) => ({
@@ -113,6 +116,10 @@ export const setMagazineCapacity = (payload) => ({
 export const setPlayerLevel = (payload) => ({
   payload,
   type: SET_PLAYER_LEVEL,
+});
+export const setExperienceToNextLevel = (payload) => ({
+  payload,
+  type: SET_EXPERIENCE_TO_NEXT_LEVEL,
 });
 export default function reducer(statePart = [], action = {}) {
   switch (action.type) {
@@ -336,6 +343,13 @@ export default function reducer(statePart = [], action = {}) {
       return {
         ...statePart,
         level: action.payload,
+      };
+    }
+
+    case SET_EXPERIENCE_TO_NEXT_LEVEL: {
+      return {
+        ...statePart,
+        toNextLevel: action.payload,
       };
     }
     default:

@@ -10,6 +10,8 @@ import {
   setAmountMachinesWorking,
   setEmployeesWorkCount,
   setProductionCost,
+  setPlayerLevel,
+  setExperienceToNextLevel,
 } from "../../../../../redux/playerRedux";
 import SettingsPanel from "./SettingsPanel";
 import { connect } from "react-redux";
@@ -33,6 +35,9 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(setAmountMachinesWorking(amount)),
   setEmployeesWorkCount: (count) => dispatch(setEmployeesWorkCount(count)),
   setProductionCost: (cost) => dispatch(setProductionCost(cost)),
+  setPlayerLevel: (level) => dispatch(setPlayerLevel(level)),
+  setExperienceToNextLevel: (experience) =>
+    dispatch(setExperienceToNextLevel(experience)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SettingsPanel);

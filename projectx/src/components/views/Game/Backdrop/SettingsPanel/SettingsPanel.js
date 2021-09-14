@@ -60,6 +60,7 @@ function SettingsPanel(props) {
       props.playerInfo.equipment.machines[currentMachinePicked].owned,
 
     employeesStateArray: props.playerInfo.employees,
+    playerLevel: props.playerInfo.level,
   };
 
   /* START PRODUCTION HANDLER */
@@ -171,6 +172,16 @@ function SettingsPanel(props) {
           productionCost,
         });
 
+        /* If statement which delete employee from array, when worksCount is 0 */
+        if (
+          reduxStateInfo.employeesStateArray[pickedSupervisorIndex]
+            .worksCount <= 0
+        ) {
+          const employees = reduxStateInfo.employeesStateArray;
+          employees.splice(pickedSupervisorIndex, 1);
+          setEmployeesWorkCount(employees);
+        }
+
         setTimeout(() => {
           /* here we're passing changed values to reducer. Values are calculated before set timeout function. In this part of code, we only changing them in Redux state */
           bool = false;
@@ -186,15 +197,25 @@ function SettingsPanel(props) {
             productionCost,
           });
           props.setMaterialQuantityUp(playerReceivedMaterialAfterProduction);
-          props.setExperience(playerReceivedExperience);
           props.setMachineState({ bool, currentMachinePicked });
           if (
-            reduxStateInfo.employeesStateArray[pickedSupervisorIndex]
-              .worksCount <= 0
+            props.playerInfo.experience +
+              reduxStateInfo.materialGivenExperience * pickedAmount >=
+            props.playerInfo.toNextLevel
           ) {
-            const employees = reduxStateInfo.employeesStateArray;
-            employees.splice(pickedSupervisorIndex, 1);
-            setEmployeesWorkCount(employees);
+            const playerLevelUp = reduxStateInfo.playerLevel + 1;
+            const experienceAfterProduction =
+              props.playerInfo.experience + playerReceivedExperience;
+            const experienceAfterLevelUp =
+              experienceAfterProduction - props.playerInfo.toNextLevel;
+            const nextLevelCap =
+              props.playerInfo.toNextLevel * playerLevelUp -
+              props.playerInfo.toNextLevel * playerLevelUp * 0.3;
+            props.setPlayerLevel(playerLevelUp);
+            props.setExperience(experienceAfterLevelUp);
+            props.setExperienceToNextLevel(nextLevelCap);
+          } else {
+            props.setExperience(playerReceivedExperience);
           }
           alert("Productions has finished.");
         }, productionDuration);
