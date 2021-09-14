@@ -203,17 +203,23 @@ function SettingsPanel(props) {
               reduxStateInfo.materialGivenExperience * pickedAmount >=
             props.playerInfo.toNextLevel
           ) {
-            const playerLevelUp = reduxStateInfo.playerLevel + 1;
-            const experienceAfterProduction =
-              props.playerInfo.experience + playerReceivedExperience;
-            const experienceAfterLevelUp =
-              experienceAfterProduction - props.playerInfo.toNextLevel;
-            const nextLevelCap =
-              props.playerInfo.toNextLevel * playerLevelUp -
-              props.playerInfo.toNextLevel * playerLevelUp * 0.3;
-            props.setPlayerLevel(playerLevelUp);
-            props.setExperience(experienceAfterLevelUp);
-            props.setExperienceToNextLevel(nextLevelCap);
+            for (
+              let level = reduxStateInfo.playerLevel;
+              props.playerInfo.experience < props.playerInfo.toNextLevel;
+              level++
+            ) {
+              const playerLevelUp = reduxStateInfo.playerLevel + 1;
+              const experienceAfterProduction =
+                props.playerInfo.experience + playerReceivedExperience;
+              const experienceAfterLevelUp =
+                experienceAfterProduction - props.playerInfo.toNextLevel;
+              const nextLevelCap =
+                props.playerInfo.toNextLevel * playerLevelUp -
+                props.playerInfo.toNextLevel * playerLevelUp * 0.3;
+              props.setPlayerLevel(playerLevelUp);
+              props.setExperience(experienceAfterLevelUp);
+              props.setExperienceToNextLevel(nextLevelCap);
+            }
           } else {
             props.setExperience(playerReceivedExperience);
           }
