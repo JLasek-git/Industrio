@@ -28,7 +28,9 @@ function ProfilePanel({ ...props }) {
             }%, ${linearColors.white} 0)`,
           }}
         >
-          <span className={styles.levelInfo}>Level 1</span>
+          <span className={styles.levelInfo}>
+            Level {props.playerInfo.level}
+          </span>
           <span className={styles.experienceAmount}>
             {props.playerInfo.experience}/{props.playerInfo.toNextLevel}
           </span>
