@@ -11,22 +11,22 @@ const PageNav = () => (
     />
     <LinkButton
       className={styles.mainNavBtn}
-      buttonText="Materials"
+      buttonText="Materials Shop"
       link="/stockmarket/stockmarket1"
     />
     <LinkButton
       className={styles.mainNavBtn}
-      buttonText="Machines"
+      buttonText="Machines Shop"
       link="/stores/store1"
     />
     <LinkButton
       className={styles.mainNavBtn}
-      buttonText="Expansions"
+      buttonText="Expansions Shop"
       link="/stores/store2"
     />
     <LinkButton
       className={styles.mainNavBtn}
-      buttonText="Employees"
+      buttonText="Employees Market"
       link="/stockmarket/stockmarket2"
     />
   </nav>
