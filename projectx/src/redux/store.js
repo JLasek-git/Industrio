@@ -39,7 +39,7 @@ if (localStorageState !== "localStorageState") {
     playerInfoElements.push(playerElement);
   }
 
-  if (!playerInfoElements.includes("employees")) {
+  if (!playerInfoElements.includes("reset")) {
     localStorage.clear();
   }
 }
@@ -56,6 +56,7 @@ const initialState =
           experience: 0,
           toNextLevel: 4000,
           money: 50000,
+          reset: "true",
           equipment: {
             machines: {
               impactCrusher: {
