@@ -55,7 +55,7 @@ const initialState =
           level: 1,
           experience: 0,
           toNextLevel: 4000,
-          money: 50000,
+          money: 5000000,
           reset: "true",
           equipment: {
             machines: {
