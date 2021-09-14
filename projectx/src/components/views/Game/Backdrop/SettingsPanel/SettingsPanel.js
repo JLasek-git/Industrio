@@ -217,6 +217,7 @@ function SettingsPanel(props) {
           } else {
             props.setExperience(playerReceivedExperience);
           }
+          /* Reset timeDuration after end */
           alert("Productions has finished.");
         }, productionDuration);
 
@@ -224,6 +225,8 @@ function SettingsPanel(props) {
         const counterInterval = setInterval(() => {
           counter -= 1000;
           if (counter <= 0) {
+            counter = 0;
+            props.setTime({ counter, currentMachinePicked });
             clearInterval(counterInterval);
           }
           props.setTime({ counter, currentMachinePicked });
