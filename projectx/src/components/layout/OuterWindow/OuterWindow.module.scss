@@ -1,6 +1,7 @@
 @import "../../../styles/global.scss";
 
 .outerWindow {
+  position: relative;
   width: calc(100% - 250px);
   height: calc(100% - 20px);
   display: flex;

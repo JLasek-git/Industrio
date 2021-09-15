@@ -43,6 +43,7 @@
     position: absolute;
     left: 0;
     top: 20px;
+    z-index: 11;
   }
 
   & .hamburgerIconWrapper {
@@ -51,8 +52,9 @@
     background: #343434;
     border-radius: 50%;
     position: fixed;
-    top: 3%;
+    top: 5%;
     right: -100%;
+    z-index: 10;
   }
 }
 
