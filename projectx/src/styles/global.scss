@@ -22,3 +22,43 @@ a:visited {
 h1 {
   margin: 0;
 }
+
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  & input {
+    background-color: #2e4f5e;
+    color: #f3e1ac;
+    cursor: pointer;
+    border: none;
+    width: 150px;
+    height: 35px;
+    font-family: $main-font;
+    text-align: center;
+    margin: 15px;
+    border: 1px solid #f3e1ac;
+    border-radius: 5px;
+  }
+
+  & label {   
+    text-align: center;
+  }
+
+  & select {
+    width: 150px;
+    height: 35px;
+    margin: 5px;
+    background-color: #2e4f5e;
+    color: #f3e1ac;
+    border: none;
+    font-family: $main-font;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid #f3e1ac;
+  }
+}
