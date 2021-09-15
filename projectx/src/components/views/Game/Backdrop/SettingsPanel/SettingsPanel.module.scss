@@ -12,22 +12,7 @@
   color: #f3e1ac;
   border: 1px solid #f3e1ac;
 
-  & form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    & label {
-      text-align: center;
-    }
-
-    & input[type=number] {
-      margin: 10px 0;
-      width: 150px;
-    }
-
-  }
+  
 
   & .closeBtn {
     position: absolute;
