@@ -1,0 +1,28 @@
+@import "../../../styles/global.scss";
+
+.alertBoxBackground {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 75%;
+  height: 75%;
+  background-color: rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  .alertBoxContainer {
+    position: absolute;
+    background-color: #2e4f5e;
+    color: #ff5b53;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 700px;
+    height: 300px;
+    border: 2px solid #ff5b53;
+
+    & .alertBoxTextContainer {
+      text-align: center;
+    }
+  }
+}

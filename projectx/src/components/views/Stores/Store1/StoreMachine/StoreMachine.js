@@ -9,6 +9,7 @@ function StoreMachine({
   machineStateName,
   machinePrice,
   machineName,
+  handleError,
   ...props
 }) {
   const reduxStateInfo = {
@@ -40,9 +41,7 @@ function StoreMachine({
       props.setMoney(playerMoneyAfterBuy);
       props.setAllMachinesQuantity(allMachinesQuantity);
     } else {
-      alert(
-        "You don't have enough money to buy this machine or you have reached the limit of machines in the hall."
-      );
+      handleError();
     }
   };
 
@@ -59,11 +58,12 @@ function StoreMachine({
         });
         props.setMoney(playerMoneyAfterSell);
         props.setAllMachinesQuantity(playerAllMachinesQunatityOnSell);
+        alert(`You sucessfully sold ${machineName} for ${machinePrice}$`);
       } else {
-        alert("You can't sell machine that currently works");
+        handleError();
       }
     } else {
-      alert("You don't have more machines to sell.");
+      handleError();
     }
   };
 
@@ -92,6 +92,7 @@ StoreMachine.propTypes = {
   machineStateName: PropTypes.string,
   machineName: PropTypes.node,
   machinePrice: PropTypes.number,
+  handleError: PropTypes.func,
 };
 
 export default StoreMachine;
