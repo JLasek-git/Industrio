@@ -5,10 +5,10 @@ import StoreMachine from "./StoreMachine/StoreMachineContainer";
 import InnerWindow from "../../../layout/InnerWindow/InnerWindow";
 import OuterWindow from "../../../layout/OuterWindow/OuterWindow";
 import MACHINES from "../../../../data/machinesPreTreatment.json";
-import AlertBox from "../../../common/AlertBox/AlertBox";
+import AlertBox from "../../../common/AlertBox/AlertBoxContainer";
 /* Machines store */
 
-function Store1() {
+function Store1({ ...props }) {
   const [warningIsVisible, setWarningIsVisible] = useState(false);
 
   function handleError() {

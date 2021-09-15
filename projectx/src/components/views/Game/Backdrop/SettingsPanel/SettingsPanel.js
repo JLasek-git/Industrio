@@ -3,6 +3,7 @@ import styles from "./SettingsPanel.module.scss";
 import Icon from "../../../../common/Icon/Icon";
 import Button from "../../../../common/Button/Button";
 import MACHINES from "../../../../../data/machinesPreTreatment.json";
+import AlertBox from "../../../../common/AlertBox/AlertBoxContainer";
 import {
   calculateProductionCost,
   calculateMaterialReceived,
@@ -29,6 +30,11 @@ function SettingsPanel(props) {
   const [currentSupervisor, setCurrentSupervisor] = useState(
     props.playerInfo.employees[0].id
   );
+  const [alertBoxIsVisible, setAlertBoxIsVisible] = useState(false);
+
+  function handleError() {
+    setAlertBoxIsVisible(!alertBoxIsVisible);
+  }
 
   /* object to make used Redux state object keys shorter */
   const reduxStateInfo = {
@@ -137,13 +143,20 @@ function SettingsPanel(props) {
         playerMoneyAfterProduction < 0 ||
         playerUsedMaterialAfterProduction < 0
       ) {
-        alert("You do not have sufficient materials or funds for production.");
+        props.setCurrentAlertText(
+          "You do not have sufficient materials or funds for production."
+        );
+        handleError();
       } else if (currentMaterialValue <= 0 || currentMachinesCount <= 0) {
-        alert(
+        props.setCurrentAlertText(
           "To start production you have to pick amount of material and machines."
         );
+        handleError();
       } else if (reduxStateInfo.pickedMachineQuantity < currentMachinesCount) {
-        alert("Sorry, you doesn't have that many machines.");
+        props.setCurrentAlertText(
+          "Sorry, you doesn't have that many machines."
+        );
+        handleError();
       } else {
         let bool = true;
 
@@ -156,7 +169,6 @@ function SettingsPanel(props) {
 
           employees[pickedSupervisorIndex].worksCount = newWorkCount;
           props.setEmployeesWorkCount(employees);
-          console.log(employees);
         }
         props.setMaterialQuantityDown(playerUsedMaterialAfterProduction);
         props.setMoney(playerMoneyAfterProduction);
@@ -233,7 +245,8 @@ function SettingsPanel(props) {
         }, 1000);
       }
     } else {
-      alert("Machine is still working.");
+      props.setCurrentAlertText("Machine is still working.");
+      handleError();
     }
 
     /* if machine is still working player can't start second work*/
@@ -292,6 +305,7 @@ function SettingsPanel(props) {
 
   return (
     <div className={styles.panelCard}>
+      {alertBoxIsVisible && <AlertBox handleError={handleError} />}
       <div className={styles.closeBtn} onClick={props.handleClose}>
         <Icon name="times" />
       </div>

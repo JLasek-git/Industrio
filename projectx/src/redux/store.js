@@ -1,11 +1,10 @@
 import { combineReducers, createStore } from "redux";
-import materials from "../data/materials.json";
-import machinesPreTreatment from "../data/machinesPreTreatment.json";
 
 import profileIcon from "../images/profileIcon.png";
 
 import globalReducer from "./globalRedux";
 import playerReducer from "./playerRedux";
+import appInfoReducer from "./appInfoRedux";
 import { saveState } from "./localStorage";
 
 const localStorageState =
@@ -39,7 +38,7 @@ if (localStorageState !== "localStorageState") {
     playerInfoElements.push(playerElement);
   }
 
-  if (!playerInfoElements.includes("reset")) {
+  if (!playerInfoElements.includes("resetGame")) {
     localStorage.clear();
   }
 }
@@ -56,7 +55,7 @@ const initialState =
           experience: 0,
           toNextLevel: 4000,
           money: 50000,
-          reset: "true",
+          resetGame: "true",
           equipment: {
             machines: {
               impactCrusher: {
@@ -223,13 +222,15 @@ const initialState =
             },
           ],
         },
-        materialsInfo: materials,
-        machinesInfo: machinesPreTreatment,
+        appInfo: {
+          currentAlertText: "none",
+        },
       };
 
 /* define reducers */
 const reducers = {
   playerInfo: playerReducer,
+  appInfo: appInfoReducer,
 };
 
 /* make initial state null for all keys in initial state not declared in reducers */
@@ -258,6 +259,7 @@ const store = createStore(
 store.subscribe(() => {
   saveState({
     playerInfo: store.getState().playerInfo,
+    appInfo: store.getState().appInfo,
   });
 });
 

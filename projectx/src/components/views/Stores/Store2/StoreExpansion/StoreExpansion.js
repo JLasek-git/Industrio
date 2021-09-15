@@ -2,7 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "./StoreExpansion.module.scss";
 import ButtonBuy from "../../../../common/ButtonBuy/ButtonBuy";
-function StoreExpansion({ name, improvement, cost, ...props }) {
+
+function StoreExpansion({ name, improvement, cost, handleError, ...props }) {
   const calculateMoneyAfterBuy = () => {
     return props.playerInfo.money - cost;
   };
@@ -19,7 +20,10 @@ function StoreExpansion({ name, improvement, cost, ...props }) {
     const playerMachinesCapacityAfterBuy = calculateMachinesCapacity();
 
     if (playerMoneyAfterBuy < 0) {
-      alert("You don't have money to buy this expansion");
+      props.setCurrentAlertText(
+        "You don't have enough money to buy that expansion."
+      );
+      handleError();
     } else {
       props.setMoney(playerMoneyAfterBuy);
       props.setMagazineCapacity(playerMachinesCapacityAfterBuy);

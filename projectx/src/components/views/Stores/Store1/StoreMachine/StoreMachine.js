@@ -41,6 +41,9 @@ function StoreMachine({
       props.setMoney(playerMoneyAfterBuy);
       props.setAllMachinesQuantity(allMachinesQuantity);
     } else {
+      props.setCurrentAlertText(
+        "You have no money to buy that machine, or no more machines will fit in your magazine."
+      );
       handleError();
     }
   };
@@ -60,9 +63,13 @@ function StoreMachine({
         props.setAllMachinesQuantity(playerAllMachinesQunatityOnSell);
         alert(`You sucessfully sold ${machineName} for ${machinePrice}$`);
       } else {
+        props.setCurrentAlertText(
+          "You can't sell machine that's currently working."
+        );
         handleError();
       }
     } else {
+      props.setCurrentAlertText("You have no machines to sell.");
       handleError();
     }
   };

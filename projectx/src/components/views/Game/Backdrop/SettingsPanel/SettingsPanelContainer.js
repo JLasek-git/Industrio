@@ -13,11 +13,17 @@ import {
   setPlayerLevel,
   setExperienceToNextLevel,
 } from "../../../../../redux/playerRedux";
+
+import {
+  getAppInfo,
+  setCurrentAlertText,
+} from "../../../../../redux/appInfoRedux";
 import SettingsPanel from "./SettingsPanel";
 import { connect } from "react-redux";
 
 const mapStateToProps = (state) => ({
   playerInfo: getAllPlayerInfo(state),
+  appInfo: getAppInfo(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -38,6 +44,7 @@ const mapDispatchToProps = (dispatch) => ({
   setPlayerLevel: (level) => dispatch(setPlayerLevel(level)),
   setExperienceToNextLevel: (experience) =>
     dispatch(setExperienceToNextLevel(experience)),
+  setCurrentAlertText: (text) => dispatch(setCurrentAlertText(text)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SettingsPanel);
