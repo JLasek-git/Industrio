@@ -61,7 +61,6 @@ function StoreMachine({
         });
         props.setMoney(playerMoneyAfterSell);
         props.setAllMachinesQuantity(playerAllMachinesQunatityOnSell);
-        alert(`You sucessfully sold ${machineName} for ${machinePrice}$`);
       } else {
         props.setCurrentAlertText(
           "You can't sell machine that's currently working."
