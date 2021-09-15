@@ -13,6 +13,7 @@ function EmployeeElement({
   quantityBoost,
   worksCount,
   hireCost,
+  handleError,
   ...props
 }) {
   function handleHire() {
@@ -28,9 +29,11 @@ function EmployeeElement({
       hireCost: hireCost,
     };
     if (employeesArray.some((employee) => employee.id === id)) {
-      alert("You already hired that employee.");
+      props.setCurrentAlertText("You already hired that employee.");
+      handleError();
     } else if (props.playerInfo.money < hireCost) {
-      alert("You can't afford to hire that person.");
+      props.setCurrentAlertText("You can't afford to hire that person.");
+      handleError();
     } else {
       const playerMoneyAfterHire = props.playerInfo.money - hireCost;
       props.setMoney(playerMoneyAfterHire);

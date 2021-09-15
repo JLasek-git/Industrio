@@ -17,6 +17,7 @@ function ShopElement({
   materialStateName,
   materialDisplayName,
   materialPrice,
+  handleError,
   ...props
 }) {
   const buyingAmount = useRef();
@@ -46,7 +47,8 @@ function ShopElement({
     );
 
     if (playerMoneyAfterAction < 0) {
-      alert("You need more money!");
+      props.setCurrentAlertText("You need more money!");
+      handleError();
     } else {
       props.setMoney(playerMoneyAfterAction);
       props.setMaterialQuantityBuy({
@@ -71,7 +73,8 @@ function ShopElement({
     );
 
     if (reduxStateInfo.playerMaterialAmount <= 0) {
-      alert("You don't have that much material in stock!");
+      props.setCurrentAlertText("You don't have that much material in stock!");
+      handleError();
     } else {
       props.setMoney(playerMoneyAfterAction);
       props.setMaterialQuantityBuy({

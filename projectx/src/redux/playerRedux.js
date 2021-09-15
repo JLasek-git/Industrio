@@ -234,7 +234,6 @@ export default function reducer(statePart = [], action = {}) {
       };
 
     case SET_MACHINE_EQ_QUANTITY: {
-      console.log(action.payload.machineStateName);
       return {
         ...statePart,
         equipment: {

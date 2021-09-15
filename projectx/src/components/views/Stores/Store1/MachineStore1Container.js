@@ -5,8 +5,10 @@ import {
   setMachineEqQuantity,
   setMoney,
 } from "../../../../redux/playerRedux";
+import { getAppInfo } from "../../../../redux/appInfoRedux";
 const mapStateToProps = (state) => ({
   playerInfo: getAllPlayerInfo(state),
+  appInfo: getAppInfo(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
