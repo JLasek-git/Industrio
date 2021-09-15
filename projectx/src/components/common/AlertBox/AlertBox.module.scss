@@ -26,3 +26,11 @@
     }
   }
 }
+
+@media (max-width: 1200px) {
+  .alertBoxBackground {
+    & .alertBoxContainer {
+      width: 90vw;
+    }
+  }
+}

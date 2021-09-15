@@ -36,22 +36,21 @@ form {
     cursor: pointer;
     border: none;
     width: 150px;
-    height: 25px;
+    height: 35px;
     font-family: $main-font;
     text-align: center;
-    margin: 5px;
+    margin: 15px;
     border: 1px solid #f3e1ac;
     border-radius: 5px;
   }
 
-  & label {
-    margin-bottom: 5px;      
+  & label {   
     text-align: center;
   }
 
   & select {
     width: 150px;
-    height: 25px;
+    height: 35px;
     margin: 5px;
     background-color: #2e4f5e;
     color: #f3e1ac;
