@@ -21,12 +21,12 @@ function SettingsPanel(props) {
   const shiftSupervisor = useRef();
 
   /* state used only in form */
-  const [currentMaterialValue, setCurrentValue] = useState(1);
+  const [currentMaterialValue, setCurrentValue] = useState(0);
   const [currentProductionCost, setCurrentCost] = useState(0);
   const [currentProductionTime, setCurrentTime] = useState(0);
   const [currentMachinePicked, setCurrentMachinePicked] =
     useState("impactCrusher");
-  const [currentMachinesCount, setCurrentMachinesCount] = useState(1);
+  const [currentMachinesCount, setCurrentMachinesCount] = useState(0);
   const [currentSupervisor, setCurrentSupervisor] = useState(
     props.playerInfo.employees[0].id
   );
@@ -135,9 +135,6 @@ function SettingsPanel(props) {
         amountAfter,
         currentMachinePicked,
       });
-      /* variable used in setInterval to count duration to end of production*/
-      let counter = productionDuration;
-
       /* if whole production cost which depends on calculation playerActualMoney - productionCosts is less than 0 it means player don't have enough money to proceed*/
       if (
         playerMoneyAfterProduction < 0 ||
@@ -159,7 +156,7 @@ function SettingsPanel(props) {
         handleError();
       } else {
         let bool = true;
-
+        console.log(productionDuration);
         if (
           props.playerInfo.employees[pickedSupervisorIndex].worksCount !==
           undefined
@@ -193,7 +190,7 @@ function SettingsPanel(props) {
           employees.splice(pickedSupervisorIndex, 1);
           setEmployeesWorkCount(employees);
         }
-
+        
         setTimeout(() => {
           /* here we're passing changed values to reducer. Values are calculated before set timeout function. In this part of code, we only changing them in Redux state */
           bool = false;
@@ -212,14 +209,11 @@ function SettingsPanel(props) {
           props.setMachineState({ bool, currentMachinePicked });
           if (
             props.playerInfo.experience +
-              reduxStateInfo.materialGivenExperience * pickedAmount >=
+              (reduxStateInfo.materialGivenExperience * pickedAmount) >=
             props.playerInfo.toNextLevel
           ) {
             const playerLevelUp = reduxStateInfo.playerLevel + 1;
-            const experienceAfterProduction =
-              props.playerInfo.experience + playerReceivedExperience;
-            const experienceAfterLevelUp =
-              experienceAfterProduction - props.playerInfo.toNextLevel;
+            const experienceAfterLevelUp = 0;
             const nextLevelCap =
               props.playerInfo.toNextLevel * playerLevelUp -
               props.playerInfo.toNextLevel * playerLevelUp * 0.3;
@@ -229,20 +223,21 @@ function SettingsPanel(props) {
           } else {
             props.setExperience(playerReceivedExperience);
           }
-          /* Reset timeDuration after end */
-          alert("Productions has finished.");
+          // alert("Productions has finished.");
         }, productionDuration);
-
+        
+        let counter = productionDuration;
         /* counter which shows time to end of production */
         const counterInterval = setInterval(() => {
           counter -= 1000;
-          if (counter <= 0) {
-            counter = 0;
-            props.setTime({ counter, currentMachinePicked });
+
+          if (counter === 0) {
+            props.setTime({counter, currentMachinePicked});
             clearInterval(counterInterval);
           }
           props.setTime({ counter, currentMachinePicked });
         }, 1000);
+       
       }
     } else {
       props.setCurrentAlertText("Machine is still working.");
@@ -326,7 +321,7 @@ function SettingsPanel(props) {
           name="amount"
           id="amount"
           defaultValue="0"
-          min="1"
+          min="0"
           max={props.playerInfo.equipment.materials.ironOre.quantity}
           onChange={changeHandler}
           ref={amountValue}
@@ -351,7 +346,7 @@ function SettingsPanel(props) {
           name="machinesCount"
           id="machinesCount"
           defaultValue={reduxStateInfo.pickedMachineQuantity}
-          min="1"
+          min="0"
           max={reduxStateInfo.pickedMachineQuantity}
           onChange={changeHandler}
           ref={machinesCount}
