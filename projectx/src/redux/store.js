@@ -54,7 +54,7 @@ const initialState =
           level: 1,
           experience: 0,
           toNextLevel: 4000,
-          money: 50000000,
+          money: 50000,
           resetGame: "true",
           equipment: {
             machines: {
@@ -252,8 +252,8 @@ const storeReducer = (state, action) => {
 
 const store = createStore(
   storeReducer,
-  initialState,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  initialState
+  // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 store.subscribe(() => {

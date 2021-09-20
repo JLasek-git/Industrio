@@ -190,7 +190,7 @@ function SettingsPanel(props) {
           employees.splice(pickedSupervisorIndex, 1);
           setEmployeesWorkCount(employees);
         }
-
+        
         setTimeout(() => {
           /* here we're passing changed values to reducer. Values are calculated before set timeout function. In this part of code, we only changing them in Redux state */
           bool = false;
@@ -223,23 +223,21 @@ function SettingsPanel(props) {
           } else {
             props.setExperience(playerReceivedExperience);
           }
-          alert("Productions has finished.");
+          // alert("Productions has finished.");
         }, productionDuration);
-
-        let roundedCounter = productionDuration / 1000;
-        let counter = Math.trunc(roundedCounter) * 1000;
-
+        
+        let counter = productionDuration;
         /* counter which shows time to end of production */
         const counterInterval = setInterval(() => {
           counter -= 1000;
-  
-          if (counter <= 0) {
-            counter = 0;
-            props.setTime({ counter, currentMachinePicked })
+
+          if (counter === 0) {
+            props.setTime({counter, currentMachinePicked});
             clearInterval(counterInterval);
           }
           props.setTime({ counter, currentMachinePicked });
         }, 1000);
+       
       }
     } else {
       props.setCurrentAlertText("Machine is still working.");

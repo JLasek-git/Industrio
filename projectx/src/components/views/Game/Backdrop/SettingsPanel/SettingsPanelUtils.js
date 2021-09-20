@@ -60,7 +60,11 @@ export function calculateDuration(
 
   const boostedDuration =
     rawDuration - rawDuration * employeeBonuses.productionTimeBoost;
-  return boostedDuration.toFixed(0);
+
+  const durationAsFloat = boostedDuration / 1000;
+  const roundedDuration = Math.trunc(durationAsFloat);
+  console.log(roundedDuration);
+  return roundedDuration * 1000;
 }
 
 export function calculateReceivedExp(
