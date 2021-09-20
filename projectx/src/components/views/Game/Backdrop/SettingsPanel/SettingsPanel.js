@@ -135,9 +135,6 @@ function SettingsPanel(props) {
         amountAfter,
         currentMachinePicked,
       });
-      /* variable used in setInterval to count duration to end of production*/
-      let counter = productionDuration;
-
       /* if whole production cost which depends on calculation playerActualMoney - productionCosts is less than 0 it means player don't have enough money to proceed*/
       if (
         playerMoneyAfterProduction < 0 ||
@@ -159,7 +156,7 @@ function SettingsPanel(props) {
         handleError();
       } else {
         let bool = true;
-
+        console.log(productionDuration);
         if (
           props.playerInfo.employees[pickedSupervisorIndex].worksCount !==
           undefined
@@ -212,14 +209,11 @@ function SettingsPanel(props) {
           props.setMachineState({ bool, currentMachinePicked });
           if (
             props.playerInfo.experience +
-              reduxStateInfo.materialGivenExperience * pickedAmount >=
+              (reduxStateInfo.materialGivenExperience * pickedAmount) >=
             props.playerInfo.toNextLevel
           ) {
             const playerLevelUp = reduxStateInfo.playerLevel + 1;
-            const experienceAfterProduction =
-              props.playerInfo.experience + playerReceivedExperience;
-            const experienceAfterLevelUp =
-              experienceAfterProduction - props.playerInfo.toNextLevel;
+            const experienceAfterLevelUp = 0;
             const nextLevelCap =
               props.playerInfo.toNextLevel * playerLevelUp -
               props.playerInfo.toNextLevel * playerLevelUp * 0.3;
@@ -232,12 +226,16 @@ function SettingsPanel(props) {
           alert("Productions has finished.");
         }, productionDuration);
 
+        let roundedCounter = productionDuration / 1000;
+        let counter = Math.trunc(roundedCounter) * 1000;
+
         /* counter which shows time to end of production */
         const counterInterval = setInterval(() => {
           counter -= 1000;
+  
           if (counter <= 0) {
             counter = 0;
-            props.setTime({ counter, currentMachinePicked });
+            props.setTime({ counter, currentMachinePicked })
             clearInterval(counterInterval);
           }
           props.setTime({ counter, currentMachinePicked });

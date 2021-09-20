@@ -54,7 +54,7 @@ const initialState =
           level: 1,
           experience: 0,
           toNextLevel: 4000,
-          money: 50000,
+          money: 50000000,
           resetGame: "true",
           equipment: {
             machines: {
@@ -65,7 +65,7 @@ const initialState =
                 requirement: 0,
                 type: "crusher",
                 application: "pre-treatment-of-ore",
-                performance: 15,
+                performance: 20,
                 work: false,
                 machineWorking: 0,
                 timeDuration: 0,
@@ -80,7 +80,7 @@ const initialState =
                 requirement: 10,
                 type: "crusher",
                 application: "pre-treatment-of-ore",
-                performance: 25,
+                performance: 30,
                 work: false,
                 machineWorking: 0,
                 timeDuration: 0,
@@ -95,7 +95,7 @@ const initialState =
                 requirement: 20,
                 type: "crusher",
                 application: "pre-treatment-of-ore",
-                performance: 50,
+                performance: 60,
                 work: false,
                 machineWorking: 0,
                 timeDuration: 0,
@@ -110,7 +110,7 @@ const initialState =
                 requirement: 30,
                 type: "crusher",
                 application: "pre-treatment-of-ore",
-                performance: 80,
+                performance: 100,
                 work: false,
                 machineWorking: 0,
                 timeDuration: 0,
@@ -125,7 +125,7 @@ const initialState =
                 requirement: 40,
                 type: "mill",
                 application: "pre-treatment-of-ore",
-                performance: 150,
+                performance: 200,
                 work: false,
                 machineWorking: 0,
                 timeDuration: 0,
@@ -140,7 +140,7 @@ const initialState =
                 requirement: 70,
                 type: "mill",
                 application: "pre-treatment-of-ore",
-                performance: 250,
+                performance: 300,
                 work: false,
                 machineWorking: 0,
                 timeDuration: 0,
@@ -155,7 +155,7 @@ const initialState =
                 requirement: 100,
                 type: "screens-and-separators",
                 application: "pre-treatment-of-ore",
-                performance: 750,
+                performance: 700,
                 work: false,
                 machineWorking: 0,
                 timeDuration: 0,
@@ -198,7 +198,7 @@ const initialState =
                 id: "iron-ore-concentrate",
                 name: "Iron ore concentrate",
                 price: 170,
-                durability: 450,
+                durability: 400,
                 experience: 7.5,
                 quantity: 0,
               },
@@ -252,8 +252,8 @@ const storeReducer = (state, action) => {
 
 const store = createStore(
   storeReducer,
-  initialState
-  // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  initialState,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 store.subscribe(() => {
