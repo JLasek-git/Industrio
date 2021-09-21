@@ -5,18 +5,25 @@ import InnerWindow from "../../../layout/InnerWindow/InnerWindow";
 import OuterWindow from "../../../layout/OuterWindow/OuterWindow";
 import MATERIALS from "../../../../data/materials.json";
 import AlertBox from "../../../common/AlertBox/AlertBoxContainer";
+import SuccessBox from "../../../common/SuccessBox/SuccessBoxContainer";
 
 function StockMarket1({ ...props }) {
   const [alertBoxIsVisible, setAlertBoxIsVisible] = useState(false);
+  const [successBoxIsVisible, setSuccessBoxIsVisible] = useState(false);
 
   function handleError() {
     setAlertBoxIsVisible(alertBoxIsVisible);
+  }
+
+  function handleSuccess() {
+    setSuccessBoxIsVisible(!successBoxIsVisible);
   }
 
   return (
     <Section>
       <OuterWindow>
         {alertBoxIsVisible && <AlertBox handleError={handleError} />}
+        {successBoxIsVisible && <SuccessBox handleSuccess={handleSuccess} />}
         <InnerWindow>
           {MATERIALS.map((material) => (
             <ShopElement
@@ -25,6 +32,7 @@ function StockMarket1({ ...props }) {
               materialDisplayName={material.name}
               materialPrice={material.price}
               handleError={handleError}
+              handleSuccess={handleSuccess}
               {...props}
             />
           ))}

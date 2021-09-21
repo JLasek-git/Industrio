@@ -3,7 +3,7 @@ import styles from "./SuccessBox.module.scss";
 import PropTypes from "prop-types";
 import Button from "../Button/Button";
 
-function SuccessBox({ handleClose, ...props }) {
+function SuccessBox({ handleSuccess, ...props }) {
   return (
     <div className={styles.successBoxBackground}>
       <div className={styles.successBoxContainer}>
@@ -11,7 +11,7 @@ function SuccessBox({ handleClose, ...props }) {
           <h1>Congratulations</h1>
           <p>{props.appInfo.currentSuccessText}</p>
         </div>
-        <div className={styles.successBoxButtonsContainer} onClick={handleClose}>
+        <div className={styles.successBoxButtonsContainer} onClick={handleSuccess}>
           <Button btnText="OK" />
         </div>
       </div>
@@ -21,7 +21,7 @@ function SuccessBox({ handleClose, ...props }) {
 
 SuccessBox.propTypes = {
   succesText: PropTypes.node,
-  hanldeClose: PropTypes.func,
+  handleSuccess: PropTypes.func,
 };
 
 export default SuccessBox;

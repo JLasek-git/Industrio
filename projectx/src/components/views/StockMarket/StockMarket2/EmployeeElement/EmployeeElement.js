@@ -14,6 +14,7 @@ function EmployeeElement({
   worksCount,
   hireCost,
   handleError,
+  handleSuccess,
   ...props
 }) {
   function handleHire() {
@@ -39,6 +40,8 @@ function EmployeeElement({
       props.setMoney(playerMoneyAfterHire);
       employeesArray.push(employeeInfo);
       props.setEmployeesArray(employeesArray);
+      props.setCurrentSuccessText(`You succesfully hired ${name}`);
+      handleSuccess();
     }
   }
   return (

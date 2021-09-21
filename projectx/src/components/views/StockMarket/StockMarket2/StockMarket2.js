@@ -6,17 +6,24 @@ import Section from "../../../layout/Section/Section";
 import EMPLOYEES from "../../../../data/employes.json";
 import EmployeeElement from "./EmployeeElement/EmployeeElementContainer";
 import AlertBox from "../../../common/AlertBox/AlertBoxContainer";
+import SuccessBox from "../../../common/SuccessBox/SuccessBoxContainer";
 
 const StockMarket2 = () => {
   const [alertBoxIsVisible, setAlertBoxIsVisible] = useState(false);
-
+  const [succesIsVisible, setSuccessIsVisible] = useState(false);
   function handleError() {
     setAlertBoxIsVisible(!alertBoxIsVisible);
   }
+
+  function handleSuccess() {
+    setSuccessIsVisible(!succesIsVisible);
+  }
+
   return (
     <Section>
       <OuterWindow>
         {alertBoxIsVisible && <AlertBox handleError={handleError} />}
+        {succesIsVisible && <SuccessBox handleSuccess={handleSuccess} />}
         <InnerWindow>
           {EMPLOYEES.map((employee) => (
             <EmployeeElement
@@ -30,6 +37,7 @@ const StockMarket2 = () => {
               worksCount={employee.worksCount}
               hireCost={employee.hireCost}
               handleError={handleError}
+              handleSuccess={handleSuccess}
             />
           ))}
         </InnerWindow>

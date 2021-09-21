@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styles from "./StoreExpansion.module.scss";
 import ButtonBuy from "../../../../common/ButtonBuy/ButtonBuy";
 
-function StoreExpansion({ name, improvement, cost, handleError, ...props }) {
+function StoreExpansion({ name, improvement, cost, handleError, handleSuccess, ...props }) {
   const calculateMoneyAfterBuy = () => {
     return props.playerInfo.money - cost;
   };
@@ -27,6 +27,8 @@ function StoreExpansion({ name, improvement, cost, handleError, ...props }) {
     } else {
       props.setMoney(playerMoneyAfterBuy);
       props.setMagazineCapacity(playerMachinesCapacityAfterBuy);
+      props.setCurrentSuccessText(`You succesfully bought ${name}`)
+      handleSuccess();
     }
   };
 

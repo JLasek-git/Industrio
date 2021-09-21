@@ -38,7 +38,7 @@ if (localStorageState !== "localStorageState") {
     playerInfoElements.push(playerElement);
   }
 
-  if (!playerInfoElements.includes("resetGame")) {
+  if (!playerInfoElements.includes("gameReset")) {
     localStorage.clear();
   }
 }
@@ -55,7 +55,7 @@ const initialState =
           experience: 0,
           toNextLevel: 4000,
           money: 50000,
-          resetGame: "true",
+          gameReset: "true",
           equipment: {
             machines: {
               impactCrusher: {
@@ -253,8 +253,8 @@ const storeReducer = (state, action) => {
 
 const store = createStore(
   storeReducer,
-  initialState,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  initialState
+  // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 store.subscribe(() => {
