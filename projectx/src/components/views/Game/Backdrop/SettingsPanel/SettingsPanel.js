@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState} from "react";
 import styles from "./SettingsPanel.module.scss";
 import Icon from "../../../../common/Icon/Icon";
 import Button from "../../../../common/Button/Button";
@@ -308,19 +308,15 @@ function SettingsPanel(props) {
         className={styles.parametersForm}
         onSubmit={(event) => submitHandler(event)}
       >
+        <p>Iron Ore</p>
         <label htmlFor="amount">
-          Iron Ore
-          <p>
-            {props.playerInfo.equipment.materials.ironOre.quantity > 0
-              ? currentMaterialValue
-              : "0"}
-          </p>
+            Material amount:
         </label>
         <input
-          type="range"
+          type="number"
           name="amount"
           id="amount"
-          defaultValue="0"
+          defaultValue={props.playerInfo.equipment.materials.ironOre.quantity}
           min="0"
           max={props.playerInfo.equipment.materials.ironOre.quantity}
           onChange={changeHandler}
@@ -345,7 +341,7 @@ function SettingsPanel(props) {
           type="number"
           name="machinesCount"
           id="machinesCount"
-          defaultValue={reduxStateInfo.pickedMachineQuantity}
+          defaultValue="0"
           min="0"
           max={reduxStateInfo.pickedMachineQuantity}
           onChange={changeHandler}

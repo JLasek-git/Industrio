@@ -17,6 +17,7 @@ import {
 import {
   getAppInfo,
   setCurrentAlertText,
+  setCurrentSuccessText
 } from "../../../../../redux/appInfoRedux";
 import SettingsPanel from "./SettingsPanel";
 import { connect } from "react-redux";
@@ -45,6 +46,7 @@ const mapDispatchToProps = (dispatch) => ({
   setExperienceToNextLevel: (experience) =>
     dispatch(setExperienceToNextLevel(experience)),
   setCurrentAlertText: (text) => dispatch(setCurrentAlertText(text)),
+  setCurrentSuccessText: (text) => dispatch(setCurrentSuccessText(text)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SettingsPanel);
