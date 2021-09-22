@@ -6,18 +6,25 @@ import InnerWindow from "../../../layout/InnerWindow/InnerWindow";
 import EXPANSIONS from "../../../../data/magazines.json";
 import StoreExpansion from "./StoreExpansion/StoreExpansionContainer";
 import AlertBox from "../../../common/AlertBox/AlertBoxContainer";
+import SuccessBox from "../../../common/SuccessBox/SuccessBoxContainer";
 
 const Store2 = () => {
   const [alertBoxIsVisible, setAlertBoxIsVisible] = useState(false);
+  const [successIsVisible, setSuccessIsVisible] = useState(false);
 
   function handleError() {
     setAlertBoxIsVisible(!alertBoxIsVisible);
+  }
+
+  function handleSuccess() {
+    setSuccessIsVisible(!successIsVisible);
   }
 
   return (
     <Section>
       <OuterWindow>
         {alertBoxIsVisible && <AlertBox handleError={handleError} />}
+        {successIsVisible && <SuccessBox handleSuccess={handleSuccess} />}
         <InnerWindow>
           {EXPANSIONS.map((expansion) => (
             <StoreExpansion
@@ -26,6 +33,7 @@ const Store2 = () => {
               improvement={expansion.improvement}
               cost={expansion.cost}
               handleError={handleError}
+              handleSuccess={handleSuccess}
             />
           ))}
         </InnerWindow>

@@ -18,6 +18,7 @@ function ShopElement({
   materialDisplayName,
   materialPrice,
   handleError,
+  handleSuccess,
   ...props
 }) {
   const buyingAmount = useRef();
@@ -55,6 +56,8 @@ function ShopElement({
         playerMaterialAfterAction,
         materialStateName,
       });
+      props.setCurrentSuccessText(`You sucessfully bought ${pickedAmount} tons of ${materialDisplayName}.`)
+      handleSuccess();
     }
   };
 
@@ -81,6 +84,8 @@ function ShopElement({
         playerMaterialAfterAction,
         materialStateName,
       });
+      props.setCurrentSuccessText(`You successfully sold ${pickedAmount} tons of ${materialDisplayName}.`);
+      handleSuccess();
     }
   };
 

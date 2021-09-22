@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState} from "react";
 import styles from "./SettingsPanel.module.scss";
 import Icon from "../../../../common/Icon/Icon";
 import Button from "../../../../common/Button/Button";
@@ -156,7 +156,6 @@ function SettingsPanel(props) {
         handleError();
       } else {
         let bool = true;
-        console.log(productionDuration);
         if (
           props.playerInfo.employees[pickedSupervisorIndex].worksCount !==
           undefined
@@ -191,8 +190,12 @@ function SettingsPanel(props) {
           setEmployeesWorkCount(employees);
         }
         
-        setTimeout(() => {
-          /* here we're passing changed values to reducer. Values are calculated before set timeout function. In this part of code, we only changing them in Redux state */
+
+        const startTime = Date.now();
+        const interval = 990;
+
+        const productionEndHandler = () => {
+          console.log(reduxStateInfo.playerEqReceivedMaterialQuantity);
           bool = false;
           amountAfter = 0;
           props.setMaterialReceivedFromProduction({
@@ -214,29 +217,30 @@ function SettingsPanel(props) {
           ) {
             const playerLevelUp = reduxStateInfo.playerLevel + 1;
             const experienceAfterLevelUp = 0;
-            const nextLevelCap =
-              props.playerInfo.toNextLevel * playerLevelUp -
-              props.playerInfo.toNextLevel * playerLevelUp * 0.3;
+            const nextLevelCap = Math.pow(2.72, 0.0271 * playerLevelUp) * 17644;
+            const levelCapAsInt = Math.trunc(nextLevelCap);
             props.setPlayerLevel(playerLevelUp);
             props.setExperience(experienceAfterLevelUp);
-            props.setExperienceToNextLevel(nextLevelCap);
+            props.setExperienceToNextLevel(levelCapAsInt);
           } else {
             props.setExperience(playerReceivedExperience);
           }
-          // alert("Productions has finished.");
-        }, productionDuration);
+        }
+ 
+        setTimeout(productionEndHandler, productionDuration);
         
-        let counter = productionDuration;
-        /* counter which shows time to end of production */
-        const counterInterval = setInterval(() => {
-          counter -= 1000;
-
-          if (counter === 0) {
+        const timeLeftCalculationHandler = () => {
+          let counter = productionDuration - (Date.now() - startTime);
+          if (counter <= 0) {
+            counter = 0;
             props.setTime({counter, currentMachinePicked});
             clearInterval(counterInterval);
           }
           props.setTime({ counter, currentMachinePicked });
-        }, 1000);
+        }
+
+        /* counter which shows time to end of production */
+        const counterInterval = setInterval(timeLeftCalculationHandler, interval);
        
       }
     } else {
@@ -308,19 +312,15 @@ function SettingsPanel(props) {
         className={styles.parametersForm}
         onSubmit={(event) => submitHandler(event)}
       >
+        <p>Iron Ore</p>
         <label htmlFor="amount">
-          Iron Ore
-          <p>
-            {props.playerInfo.equipment.materials.ironOre.quantity > 0
-              ? currentMaterialValue
-              : "0"}
-          </p>
+            Material amount:
         </label>
         <input
-          type="range"
+          type="number"
           name="amount"
           id="amount"
-          defaultValue="0"
+          defaultValue={props.playerInfo.equipment.materials.ironOre.quantity}
           min="0"
           max={props.playerInfo.equipment.materials.ironOre.quantity}
           onChange={changeHandler}
@@ -336,7 +336,7 @@ function SettingsPanel(props) {
         >
           {MACHINES.map((option) => (
             <option key={option.id} value={option.id} onClick={changeHandler}>
-              {option.name}
+              {option.name} - {props.playerInfo.equipment.machines[option.id].owned}
             </option>
           ))}
         </select>
@@ -345,7 +345,7 @@ function SettingsPanel(props) {
           type="number"
           name="machinesCount"
           id="machinesCount"
-          defaultValue={reduxStateInfo.pickedMachineQuantity}
+          defaultValue="0"
           min="0"
           max={reduxStateInfo.pickedMachineQuantity}
           onChange={changeHandler}
@@ -365,7 +365,7 @@ function SettingsPanel(props) {
               value={employee.id}
               onClick={changeHandler}
             >
-              {employee.name}
+              {employee.name} {employee.name !== "None" && (employee.worksCount)}
             </option>
           ))}
         </select>

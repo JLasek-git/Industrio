@@ -10,6 +10,7 @@ import {
 import {
   getAppInfo,
   setCurrentAlertText,
+  setCurrentSuccessText,
 } from "../../../../../redux/appInfoRedux";
 const mapStateToProps = (state) => ({
   playerInfo: getAllPlayerInfo(state),
@@ -21,6 +22,7 @@ const mapDispatchToProps = (dispatch) => ({
   setMoney: (amount) => dispatch(setMoney(amount)),
   setAllMachinesQuantity: (amount) => dispatch(setAllMachinesQuantity(amount)),
   setCurrentAlertText: (text) => dispatch(setCurrentAlertText(text)),
+  setCurrentSuccessText: (text) => dispatch(setCurrentSuccessText(text)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(StoreMachine);

@@ -63,7 +63,6 @@ export function calculateDuration(
 
   const durationAsFloat = boostedDuration / 1000;
   const roundedDuration = Math.trunc(durationAsFloat);
-  console.log(roundedDuration);
   return roundedDuration * 1000;
 }
 

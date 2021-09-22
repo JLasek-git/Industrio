@@ -9,7 +9,9 @@ function StoreMachine({
   machineStateName,
   machinePrice,
   machineName,
+  machineRequirement,
   handleError,
+  handleSuccess,
   ...props
 }) {
   const reduxStateInfo = {
@@ -32,7 +34,7 @@ function StoreMachine({
     if (
       playerMoneyAfterBuy >= 0 &&
       reduxStateInfo.playerAllMachinesQuantity <
-        reduxStateInfo.playerMagazineCapacity
+        reduxStateInfo.playerMagazineCapacity && props.playerInfo.level >= props.playerInfo.equipment.machines[machineStateName].requirement
     ) {
       props.setMachineEqQuantity({
         machineQuantity,
@@ -40,6 +42,11 @@ function StoreMachine({
       });
       props.setMoney(playerMoneyAfterBuy);
       props.setAllMachinesQuantity(allMachinesQuantity);
+      props.setCurrentSuccessText(`You succesfully bought ${machineName}`);
+      handleSuccess();
+    } else if(props.playerInfo.level < props.playerInfo.equipment.machines[machineStateName].requirement) {
+      props.setCurrentAlertText("You do not have the required level to purchase this machine")
+      handleError();
     } else {
       props.setCurrentAlertText(
         "You have no money to buy that machine, or no more machines will fit in your magazine."
@@ -61,6 +68,8 @@ function StoreMachine({
         });
         props.setMoney(playerMoneyAfterSell);
         props.setAllMachinesQuantity(playerAllMachinesQunatityOnSell);
+        props.setCurrentSuccessText(`You succesfully sold ${machineName}`)
+        handleSuccess();
       } else {
         props.setCurrentAlertText(
           "You can't sell machine that's currently working."
@@ -77,6 +86,7 @@ function StoreMachine({
     <div className={styles.singleMachine}>
       <img src={machineImg} alt={machineStateName} />
       <p>{machineName}</p>
+      <p>Level required: {machineRequirement}</p>
       <div className={styles.actionHandlers}>
         <div onClick={() => handleBuy()}>
           <ButtonBuy />
@@ -99,6 +109,7 @@ StoreMachine.propTypes = {
   machineName: PropTypes.node,
   machinePrice: PropTypes.number,
   handleError: PropTypes.func,
+  machineRequirement: PropTypes.node,
 };
 
 export default StoreMachine;

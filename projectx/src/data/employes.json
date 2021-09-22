@@ -2,9 +2,9 @@
   {
     "id": "danielJoseph",
     "name": "Daniel Joseph",
-    "productionTimeBoost": 0.5,
-    "experienceBoost": 0.1,
-    "productionCostBoost": 0.1,
+    "productionTimeBoost": 0.08,
+    "experienceBoost": 0.02,
+    "productionCostBoost": 0.01,
     "quantityBoost": 0,
     "worksCount": 20,
     "hireCost": 20000
@@ -13,10 +13,10 @@
   {
     "id": "roseDixon",
     "name": "Rose Dixon",
-    "productionTimeBoost": 0.1,
+    "productionTimeBoost": 0.03,
     "experienceBoost": 0,
-    "productionCostBoost": 0.1,
-    "quantityBoost": 0.5,
+    "productionCostBoost": 0.02,
+    "quantityBoost": 0.06,
     "worksCount": 20,
     "hireCost": 20000
   },
@@ -24,10 +24,10 @@
   {
     "id": "thomasJack",
     "name": "Thomas Jack",
-    "productionTimeBoost": 0.3,
-    "experienceBoost": 0.1,
-    "productionCostBoost": 0.1,
-    "quantityBoost": 0.3,
+    "productionTimeBoost": 0.05,
+    "experienceBoost": 0.02,
+    "productionCostBoost": 0.01,
+    "quantityBoost": 0.06,
     "worksCount": 20,
     "hireCost": 40000
   },
@@ -35,10 +35,10 @@
   {
     "id": "poppyStewart",
     "name": "Poppy Stewart",
-    "productionTimeBoost": 0.1,
-    "experienceBoost": 0.1,
-    "productionCostBoost": 0.3,
-    "quantityBoost": 0.3,
+    "productionTimeBoost": 0.02,
+    "experienceBoost": 0.01,
+    "productionCostBoost": 0.06,
+    "quantityBoost": 0.05,
     "worksCount": 20,
     "hireCost": 40000
   },
@@ -46,10 +46,10 @@
   {
     "id": "harryLewis",
     "name": "Harry Lewis",
-    "productionTimeBoost": 0.6,
-    "experienceBoost": 0.1,
-    "productionCostBoost": 0.3,
-    "quantityBoost": 0.4,
+    "productionTimeBoost": 0.06,
+    "experienceBoost": 0.02,
+    "productionCostBoost": 0.04,
+    "quantityBoost": 0.05,
     "worksCount": 30,
     "hireCost": 80000
   },
@@ -57,10 +57,10 @@
   {
     "id": "elenaCole",
     "name": "Elena Cole",
-    "productionTimeBoost": 0.3,
-    "experienceBoost": 0.1,
-    "productionCostBoost": 0.4,
-    "quantityBoost": 0.6,
+    "productionTimeBoost": 0.03,
+    "experienceBoost": 0.01,
+    "productionCostBoost": 0.04,
+    "quantityBoost": 0.06,
     "worksCount": 30,
     "hireCost": 80000
   }
