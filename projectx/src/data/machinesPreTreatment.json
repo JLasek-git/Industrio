@@ -1,3 +1,4 @@
+
 [
   {
     "id": "impactCrusher",
@@ -6,6 +7,7 @@
     "requirement": 0,
     "type": "crusher",
     "application": "pre-treatment-of-ore",
+    "img": "kruszarka_udarowa.png",
     "performance": 1.5
   },
 
@@ -16,6 +18,7 @@
     "requirement": 10,
     "type": "crusher",
     "application": "pre-treatment-of-ore",
+    "img": "kruszarka_szczekowa.png",
     "performance": 2.5
   },
 
@@ -26,6 +29,7 @@
     "requirement": 20,
     "type": "crusher",
     "application": "pre-treatment-of-ore",
+    "img": "Kruaszkara_stozkowa.png",
     "performance": 5
   },
 
@@ -36,6 +40,7 @@
     "requirement": 30,
     "type": "crusher",
     "application": "pre-treatment-of-ore",
+    "img": "kruszarka_motowa.png",
     "performance": 8
   },
 
@@ -46,6 +51,7 @@
     "requirement": 40,
     "type": "mill",
     "application": "pre-treatment-of-ore",
+    "img": "myn_kulowy.png",
     "performance": 15
   },
 
@@ -56,6 +62,7 @@
     "requirement": 70,
     "type": "mill",
     "application": "pre-treatment-of-ore",
+    "img": "myn_pretowy.png",
     "performance": 25
   },
 
@@ -66,6 +73,7 @@
     "requirement": 100,
     "type": "screens-and-separators",
     "application": "pre-treatment-of-ore",
+    "img": "przeisiewacz_bebnowy.png",
     "performance": 75
   },
 
@@ -76,6 +84,7 @@
     "requirement": 150,
     "type": "screens-and-separators",
     "application": "pre-treatment-of-ore",
+    "img": "separator_magnetyczny.png",
     "performance": 200
   }
 ]
