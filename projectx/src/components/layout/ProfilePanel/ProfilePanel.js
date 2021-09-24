@@ -36,7 +36,7 @@ function ProfilePanel({ ...props }) {
           </span>
         </div>
         <div className={styles.money}>
-          <span className={styles.moneyCount}>${props.playerInfo.money}</span>
+          <span className={styles.moneyCount}>${Math.trunc(props.playerInfo.money)}</span>
         </div>
       </div>
     </div>

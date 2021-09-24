@@ -35,3 +35,7 @@ export function calculatePlayerMaterialAfterSell(
 ) {
   return playerMaterialOwned - pickedAmount;
 }
+
+export function calculatePlayerWholeMaterialInMagazine(ironOreQunatity, ironOreConcentrateQuantity) {
+  return ironOreQunatity + ironOreConcentrateQuantity;
+}

@@ -38,7 +38,7 @@ if (localStorageState !== "localStorageState") {
     playerInfoElements.push(playerElement);
   }
 
-  if (!playerInfoElements.includes("newPatch")) {
+  if (!playerInfoElements.includes("newestPatch")) {
     localStorage.clear();
   }
 }
@@ -55,7 +55,7 @@ const initialState =
           experience: 0,
           toNextLevel: 12000,
           money: 50000,
-          newPatch: "true",
+          newestPatch: "true",
           equipment: {
             machines: {
               impactCrusher: {
@@ -254,8 +254,8 @@ const storeReducer = (state, action) => {
 
 const store = createStore(
   storeReducer,
-  initialState
-  // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  initialState,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 store.subscribe(() => {

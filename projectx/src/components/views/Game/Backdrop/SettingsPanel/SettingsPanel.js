@@ -121,7 +121,10 @@ function SettingsPanel(props) {
         pickedMachinesAmount,
         reduxStateInfo.materialDurability,
         reduxStateInfo.machinePerformance,
-        reduxStateInfo.employeesStateArray[pickedSupervisorIndex]
+        reduxStateInfo.employeesStateArray[pickedSupervisorIndex],
+        props.playerInfo.magazine.poorMagazine.materialCapacity,
+        props.playerInfo.equipment.materials.ironOre.quantity,
+        props.playerInfo.equipment.materials.ironOreConcentrate.quantity
       );
       const playerReceivedExperience = calculateReceivedExp(
         pickedAmount,
@@ -277,16 +280,33 @@ function SettingsPanel(props) {
     /* This line is used for DOM element to display proper amount of machines */
     setCurrentMachinesCount(pickedMachinesAmount);
 
-    const productionTimeRaw =
-      ((reduxStateInfo.materialDurability / reduxStateInfo.machinePerformance) *
-        pickedAmount) /
-      pickedMachinesAmount;
-    const productionTimeWithBoost =
-      productionTimeRaw -
-      productionTimeRaw *
-        reduxStateInfo.employeesStateArray[pickedSupervisorIndex]
-          .productionTimeBoost;
-    const timeToProduct = productionTimeWithBoost.toFixed(1);
+      function calculateProductionTimeDisplayed() {
+        const productionTimeRaw =
+        ((reduxStateInfo.materialDurability / reduxStateInfo.machinePerformance) *
+          pickedAmount) /
+        pickedMachinesAmount;
+      const productionTimeWithBoost =
+        productionTimeRaw -
+        productionTimeRaw *
+          reduxStateInfo.employeesStateArray[pickedSupervisorIndex]
+            .productionTimeBoost;
+  
+      const materialFreeSpace = props.playerInfo.magazine.poorMagazine.materialCapacity - (props.playerInfo.equipment.materials.ironOre.quantity - props.playerInfo.equipment.materials.ironOreConcentrate.quantity); 
+      
+      if(materialFreeSpace < 0) {
+        const materialFreeSpaceAsAbs = Math.abs(materialFreeSpace);
+  
+        const timeToProductWithPenalty = productionTimeWithBoost * materialFreeSpaceAsAbs;
+
+        return timeToProductWithPenalty;
+      } else {
+        
+        return productionTimeWithBoost;
+      }
+      }
+
+      const timeToProduct = calculateProductionTimeDisplayed();
+
 
     const costToProductRaw =
       pickedAmount * reduxStateInfo.singleProductionCost * pickedMachinesAmount;

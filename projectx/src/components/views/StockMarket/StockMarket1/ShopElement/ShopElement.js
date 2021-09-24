@@ -11,6 +11,7 @@ import {
   calculatePlayerMaterialAfterSell,
   calculatePlayerMoneyAfterBuy,
   calculatePlayerMoneyAfterSell,
+  calculatePlayerWholeMaterialInMagazine,
 } from "./ShopElementUtils";
 
 function ShopElement({
@@ -46,9 +47,16 @@ function ShopElement({
       pickedAmount,
       reduxStateInfo.playerMaterialAmount
     );
+    const playerWholeMaterialInMagazine = calculatePlayerWholeMaterialInMagazine(
+      props.playerInfo.equipment.materials.ironOre.quantity,
+      props.playerInfo.equipment.materials.ironOreConcentrate.quantity,
+    );
 
     if (playerMoneyAfterAction < 0) {
       props.setCurrentAlertText("You need more money!");
+      handleError();
+    } else if (playerWholeMaterialInMagazine + pickedAmount > props.playerInfo.magazine.poorMagazine.materialCapacity ) {
+      props.setCurrentAlertText("You don't have enough storage space!");
       handleError();
     } else {
       props.setMoney(playerMoneyAfterAction);

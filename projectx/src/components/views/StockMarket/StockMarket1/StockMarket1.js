@@ -12,7 +12,7 @@ function StockMarket1({ ...props }) {
   const [successBoxIsVisible, setSuccessBoxIsVisible] = useState(false);
 
   function handleError() {
-    setAlertBoxIsVisible(alertBoxIsVisible);
+    setAlertBoxIsVisible(!alertBoxIsVisible);
   }
 
   function handleSuccess() {

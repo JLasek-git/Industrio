@@ -52,18 +52,30 @@ export function calculateDuration(
   pickedMachinesAmount,
   materialDurability,
   machinePerformance,
-  employeeBonuses
+  employeeBonuses,
+  magazineCapacity,
+  ironOreQuantity,
+  ironOreConcentrateQuantity
 ) {
+
+  const freeMaterialSpace = magazineCapacity - (ironOreQuantity + ironOreConcentrateQuantity);
   const rawDuration =
     ((materialDurability / machinePerformance) * 1000 * pickedAmount) /
     pickedMachinesAmount;
+
 
   const boostedDuration =
     rawDuration - rawDuration * employeeBonuses.productionTimeBoost;
 
   const durationAsFloat = boostedDuration / 1000;
   const roundedDuration = Math.trunc(durationAsFloat);
-  return roundedDuration * 1000;
+
+  if(freeMaterialSpace < 0) {
+    const materialSpaceAsAbs = Math.abs(freeMaterialSpace);
+    return roundedDuration * 1000 * materialSpaceAsAbs;
+  } else {
+    return roundedDuration * 1000;
+  }
 }
 
 export function calculateReceivedExp(
