@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./MagazinePanel.module.scss";
+import { currencyFormat } from "../../../utils/utils";
 
 function MaterialPanel({ ...props }) {
   function calculateFreePlaces() {
@@ -10,9 +11,16 @@ function MaterialPanel({ ...props }) {
     return freePlaces;
   }
 
+  function calculateFreeMaterialSpace() {
+    const freeSpace = props.playerInfo.magazine.poorMagazine.materialCapacity - (props.playerInfo.equipment.materials.ironOre.quantity + props.playerInfo.equipment.materials.ironOreConcentrate.quantity);
+
+    return freeSpace;
+  }
+
   return (
     <div className={styles.materialsContainer}>
       <h1>Magazine</h1>
+      <p>Free material space: {currencyFormat(Math.trunc(calculateFreeMaterialSpace()))}t</p>
       <p>Free machine places: {calculateFreePlaces()}</p>
       <div className={styles.materialsInfo}>
         <h2>Materials</h2>

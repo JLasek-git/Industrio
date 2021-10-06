@@ -1,6 +1,7 @@
 @import "../../../../styles/global.scss";
 
 .machinesContainer {
+  cursor: default;
   width: 25%;
   min-height: 20%;
   padding: 10px;
@@ -23,13 +24,14 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin: 10px 0;
+      margin: 10px 0 0;
 
       & .machineStateInfo {
         min-width: 20%;
         display: flex;
-        justify-content: space-between;
+        justify-content: space-evenly;
         align-items: center;
+
         & .workIndicator {
           width: 15px;
           height: 15px;

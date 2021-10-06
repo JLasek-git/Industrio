@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "./StoreExpansion.module.scss";
 import ButtonBuy from "../../../../common/ButtonBuy/ButtonBuy";
+import { currencyFormat } from "../../../../utils/utils";
 
 function StoreExpansion({ name, improvement, cost, handleError, handleSuccess, ...props }) {
   const calculateMoneyAfterBuy = () => {
@@ -43,7 +44,7 @@ function StoreExpansion({ name, improvement, cost, handleError, handleSuccess, .
       </div>
       <div className={styles.descriptions}>
         <p>Additional places: {improvement}</p>
-        <p>Cost: ${cost}</p>
+        <p>Cost: ${currencyFormat(cost)}</p>
       </div>
     </div>
   );

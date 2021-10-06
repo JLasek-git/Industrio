@@ -3,6 +3,7 @@ import styles from "./EmployeeElement.module.scss";
 import PropTypes from "prop-types";
 import Button from "../../../../common/Button/Button";
 import employeeImg from "../../../../../images/profileIcon.png";
+import { currencyFormat } from "../../../../utils/utils";
 
 function EmployeeElement({
   id,
@@ -73,7 +74,7 @@ function EmployeeElement({
             {worksCount}
           </p>
           <p className={styles.infoElement}>
-            <span>Hire cost: </span>${hireCost}
+            <span>Hire cost: </span>${currencyFormat(hireCost)}
           </p>
         </div>
         <div className={styles.hireBtn} onClick={handleHire}>

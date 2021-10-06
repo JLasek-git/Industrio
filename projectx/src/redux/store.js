@@ -38,7 +38,7 @@ if (localStorageState !== "localStorageState") {
     playerInfoElements.push(playerElement);
   }
 
-  if (!playerInfoElements.includes("newPatch")) {
+  if (!playerInfoElements.includes("newestPatch")) {
     localStorage.clear();
   }
 }
@@ -55,7 +55,7 @@ const initialState =
           experience: 0,
           toNextLevel: 12000,
           money: 50000,
-          newPatch: "true",
+          newestPatch: "true",
           equipment: {
             machines: {
               impactCrusher: {
@@ -189,7 +189,7 @@ const initialState =
                 name: "Iron ore",
                 price: 100,
                 durability: 300,
-                experience: 100,
+                experience: 50,
                 productionCost: 10,
                 quantity: 100,
               },
@@ -199,7 +199,7 @@ const initialState =
                 name: "Iron ore concentrate",
                 price: 170,
                 durability: 400,
-                experience: 100,
+                experience: 50,
                 quantity: 0,
               },
             },

@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import styles from "./ShopElement.module.scss";
 import ButtonBuy from "../../../../common/ButtonBuy/ButtonBuy";
 import ButtonSell from "../../../../common/ButtonSell/ButtonSell";
+import { currencyFormat } from "../../../../utils/utils";
+
 import {
   calculateBuyingCost,
   calculateItemsWorth,
@@ -11,6 +13,7 @@ import {
   calculatePlayerMaterialAfterSell,
   calculatePlayerMoneyAfterBuy,
   calculatePlayerMoneyAfterSell,
+  calculatePlayerWholeMaterialInMagazine,
 } from "./ShopElementUtils";
 
 function ShopElement({
@@ -46,9 +49,16 @@ function ShopElement({
       pickedAmount,
       reduxStateInfo.playerMaterialAmount
     );
+    const playerWholeMaterialInMagazine = calculatePlayerWholeMaterialInMagazine(
+      props.playerInfo.equipment.materials.ironOre.quantity,
+      props.playerInfo.equipment.materials.ironOreConcentrate.quantity,
+    );
 
     if (playerMoneyAfterAction < 0) {
       props.setCurrentAlertText("You need more money!");
+      handleError();
+    } else if (playerWholeMaterialInMagazine + pickedAmount > props.playerInfo.magazine.poorMagazine.materialCapacity ) {
+      props.setCurrentAlertText("You don't have enough storage space!");
       handleError();
     } else {
       props.setMoney(playerMoneyAfterAction);
@@ -93,15 +103,14 @@ function ShopElement({
   const changeBuyingAmountHandler = () => {
     const pickedAmount = parseInt(buyingAmount.current.value);
 
-    setCurrentBuyingCost(pickedAmount * materialPrice);
+    setCurrentBuyingCost(currencyFormat(pickedAmount * materialPrice));
     setCurrentBuyingAmount(pickedAmount);
   };
 
   const changeSellingAmountHandler = () => {
     const pickedAmount = sellingAmount.current.value;
     const sellingIncome =
-      pickedAmount * materialPrice - pickedAmount * materialPrice * 0.2;
-
+      currencyFormat((pickedAmount * materialPrice) - (pickedAmount * materialPrice * 0.2));
     setCurrentSellingIncome(sellingIncome);
     setCurrentSellingAmount(pickedAmount);
   };
