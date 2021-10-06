@@ -31,7 +31,7 @@ function MachinesPanel({ showProductionSettings, ...props }) {
           </div>
           <details>
             <summary>Details</summary>
-            <div class={styles.detailsInfo}>
+            <div className={styles.detailsInfo}>
               <span>Iron Ore Concentrate: {props.playerInfo.equipment.machines[machine.id].materialFromProduction}t</span>
             </div>
           </details>
