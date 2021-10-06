@@ -11,13 +11,13 @@ function MachinesPanel({ showProductionSettings, ...props }) {
       {MACHINES.map((machine) => (
         <div key={machine.id} className={styles.machinesInfo}>
           <div className={styles.singleMachine}>
-            {machine.name}:{" "}
+            {machine.name}: 
             <div className={styles.machineStateInfo}>
               <div className={styles.timeCounter}>
                 {(
                   props.playerInfo.equipment.machines[machine.id].timeDuration /
                   60000
-                ).toFixed(2)}
+                ).toFixed(2)}m
               </div>
               <div
                 className={styles.workIndicator}
@@ -29,6 +29,12 @@ function MachinesPanel({ showProductionSettings, ...props }) {
               ></div>
             </div>
           </div>
+          <details>
+            <summary>Details</summary>
+            <div class={styles.detailsInfo}>
+              <span>Iron Ore Concentrate: {props.playerInfo.equipment.machines[machine.id].materialFromProduction}t</span>
+            </div>
+          </details>
         </div>
       ))}
       <div onClick={showProductionSettings}>
