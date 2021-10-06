@@ -1,3 +1,4 @@
+
 /* BUYING CALCULATIONS */
 
 export function calculateMaxPlayerCanBuy(playerMoney, materialPrice) {
@@ -22,7 +23,7 @@ export function calculatePlayerMaterialAfterBuy(
 /* SELLING CALCULATIONS */
 
 export function calculateItemsWorth(pickedAmount, materialPrice) {
-  return materialPrice * pickedAmount;
+  return (materialPrice * pickedAmount) - (materialPrice * pickedAmount * 0.2);
 }
 
 export function calculatePlayerMoneyAfterSell(sellingItemsWorth, playerMoney) {

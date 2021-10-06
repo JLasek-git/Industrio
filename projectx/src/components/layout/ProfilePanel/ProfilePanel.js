@@ -2,6 +2,7 @@ import React from "react";
 // import PropTypes from "prop-types";
 import styles from "./ProfilePanel.module.scss";
 import Icon from "../../common/Icon/Icon";
+import { currencyFormat } from "../../utils/utils";
 
 const linearColors = {
   green: "#017D01",
@@ -36,7 +37,7 @@ function ProfilePanel({ ...props }) {
           </span>
         </div>
         <div className={styles.money}>
-          <span className={styles.moneyCount}>${Math.trunc(props.playerInfo.money)}</span>
+          <span className={styles.moneyCount}>${currencyFormat(props.playerInfo.money)}</span>
         </div>
       </div>
     </div>

@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import styles from "./ShopElement.module.scss";
 import ButtonBuy from "../../../../common/ButtonBuy/ButtonBuy";
 import ButtonSell from "../../../../common/ButtonSell/ButtonSell";
+import { currencyFormat } from "../../../../utils/utils";
+
 import {
   calculateBuyingCost,
   calculateItemsWorth,
@@ -101,15 +103,14 @@ function ShopElement({
   const changeBuyingAmountHandler = () => {
     const pickedAmount = parseInt(buyingAmount.current.value);
 
-    setCurrentBuyingCost(pickedAmount * materialPrice);
+    setCurrentBuyingCost(currencyFormat(pickedAmount * materialPrice));
     setCurrentBuyingAmount(pickedAmount);
   };
 
   const changeSellingAmountHandler = () => {
     const pickedAmount = sellingAmount.current.value;
     const sellingIncome =
-      pickedAmount * materialPrice - pickedAmount * materialPrice * 0.2;
-
+      currencyFormat((pickedAmount * materialPrice) - (pickedAmount * materialPrice * 0.2));
     setCurrentSellingIncome(sellingIncome);
     setCurrentSellingAmount(pickedAmount);
   };

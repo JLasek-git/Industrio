@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styles from "./StoreMachine.module.scss";
 import ButtonBuy from "../../../../common/ButtonBuy/ButtonBuy";
 import ButtonSell from "../../../../common/ButtonSell/ButtonSell";
+import { currencyFormat } from "../../../../utils/utils";
 
 function StoreMachine({
   machineImg,
@@ -99,8 +100,8 @@ function StoreMachine({
         </div>
       </div>
       <div className={styles.pricesContainer}>
-        <p>Buying price: ${machinePrice}</p>
-        <p>Selling price: ${machinePrice / 2}</p>
+        <p>Buying price: ${currencyFormat(machinePrice)}</p>
+        <p>Selling price: ${currencyFormat(machinePrice / 2)}</p>
       </div>
     </div>
   );

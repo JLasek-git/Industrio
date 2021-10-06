@@ -19,7 +19,7 @@ function MaterialPanel({ ...props }) {
   return (
     <div className={styles.materialsContainer}>
       <h1>Magazine</h1>
-      <p>Free material space: {calculateFreeMaterialSpace()}t</p>
+      <p>Free material space: {Math.trunc(calculateFreeMaterialSpace())}t</p>
       <p>Free machine places: {calculateFreePlaces()}</p>
       <div className={styles.materialsInfo}>
         <h2>Materials</h2>
