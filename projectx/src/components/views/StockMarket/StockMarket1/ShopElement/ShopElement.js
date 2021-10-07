@@ -117,10 +117,10 @@ function ShopElement({
 
   /* Main component */
   return (
-    <div className={styles.materialActionsList}>
+    <div className={styles.stockMarketElementContainer}>
       <h1>{materialDisplayName}</h1>
-      <form className={styles.buyingForm}>
-        <div className={styles.formComponent}>
+      <form className={styles.stockMarketContentWrapper}>
+        <div className={styles.formContent}>
           <label htmlFor="buyingAmount"></label>
           <p>{currentBuyingAmount}</p>
           <input
@@ -146,7 +146,7 @@ function ShopElement({
             <ButtonBuy />
           </div>
         </div>
-        <div className={styles.formComponent}>
+        <div className={styles.formContent}>
           <label htmlFor="sellingAmount"></label>
           <p>{currentSellingAmount}</p>
           <input

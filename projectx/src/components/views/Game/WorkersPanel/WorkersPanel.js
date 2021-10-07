@@ -3,7 +3,7 @@ import styles from "./WorkersPanel.module.scss";
 
 function WorkersPanel({ ...props }) {
   return (
-    <div className={styles.workersContainer}>
+    <div className={styles.dashboardInfoContainer}>
       <h1>Supervisors</h1>
       <div className={styles.descriptions}>
         <span>Name:</span>
@@ -12,8 +12,8 @@ function WorkersPanel({ ...props }) {
       {props.playerInfo.employees.map(
         (employee) =>
           employee.id !== "none" && (
-            <div key={employee.id} className={styles.singleWorker}>
-              <div className={styles.workerInfo}>
+            <div key={employee.id} className={styles.dashboardInfoElement}>
+              <div className={styles.singleElement}>
                 {employee.name}  
                 <span className={styles.workCounter}>{employee.worksCount}</span>
               </div>

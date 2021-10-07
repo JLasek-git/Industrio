@@ -34,7 +34,7 @@ function StoreExpansion({ name, improvement, cost, handleError, handleSuccess, .
   };
 
   return (
-    <div className={styles.singleExpansion}>
+    <div className={styles.storeElement}>
       <p className={styles.expansionName}>{name}</p>
       <div
         className={styles.actionHandler}

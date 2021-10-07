@@ -2,7 +2,7 @@
 
 .backdrop {
   position: absolute;
-  background-color: #232323;
+  background-color: $color-dark-gray;
   width: calc(100% - 250px);
   height: calc(100% - 20px);
   right: 0;
@@ -10,7 +10,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-left: 2px solid #4e4e4e;
+  border-left: 2px solid $color-light-gray;
 }
 
 @media (max-width: 1200px) {

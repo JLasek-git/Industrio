@@ -3,15 +3,15 @@
 .btn {
   height: 30px;
   min-width: 100px;
-  background-color: rgb(22, 122, 22);
+  background-color: $color-green;
   border: 0;
-  color: #f3e1ac;
+  color: $color-delicate-yellow;
   border-radius: 10px;
   font-family: $main-font;
   transition: 0.3s linear;
   cursor: pointer;
 
   &:hover {
-    background-color: rgb(22, 172, 22);
+    background-color: $color-green-hover;
   }
 }

@@ -6,11 +6,11 @@ import MACHINES from "../../../../data/machinesPreTreatment.json";
 
 function MachinesPanel({ showProductionSettings, ...props }) {
   return (
-    <div className={styles.machinesContainer}>
+    <div className={styles.dashboardInfoContainer}>
       <h1>Pre-treatment</h1>
       {MACHINES.map((machine) => (
-        <div key={machine.id} className={styles.machinesInfo}>
-          <div className={styles.singleMachine}>
+        <div key={machine.id} className={styles.dashboardInfoElement}>
+          <div className={styles.singleElement}>
             {machine.name}: 
             <div className={styles.machineStateInfo}>
               <div className={styles.timeCounter}>

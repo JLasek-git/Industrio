@@ -85,7 +85,7 @@ function StoreMachine({
 
 
   return (
-    <div className={styles.singleMachine}>
+    <div className={styles.storeElement}>
       <div className={styles.machinePhotoContainer}>
       <img src={process.env.PUBLIC_URL + `/${machineImg}`} alt={machineStateName} />
       </div>

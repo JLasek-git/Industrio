@@ -4,17 +4,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 2px solid rgb(78, 78, 78);
-  background-color: #232323;
+  border-bottom: 2px solid $color-light-gray;
+  background-color: $color-dark-gray;
   width: 250px;
   height: 60px;
   & .linkDirection {
-    color: #f3e1ac;
+    color: $color-delicate-yellow;
   }
 }
 
 .navLinkActive .linkBtn {
-  background-color: #343434;
+  background-color: $color-medium-gray;
 }
 
 @media (max-width: 1200px) {

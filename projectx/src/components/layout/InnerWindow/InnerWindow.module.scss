@@ -3,13 +3,13 @@
 .childrenContainer {
   width: 75%;
   height: 75%;
-  color: #f3e1ac;
+  color: $color-delicate-yellow;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  background-color: #455a64;
-  border: 1px solid #f3e1ac;
+  background-color: $color-light-grayish-blue;
+  border: 1px solid $color-delicate-yellow;
   overflow-y: scroll;
 
   & > * {

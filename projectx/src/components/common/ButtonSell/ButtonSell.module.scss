@@ -3,8 +3,8 @@
 .btn {
   height: 30px;
   min-width: 100px;
-  background-color: rgb(112, 17, 33);
-  color: #f3e1ac;
+  background-color: $color-dark-red;
+  color: $color-delicate-yellow;
   border: 0;
   border-radius: 10px;
   font-family: $main-font;
@@ -12,6 +12,6 @@
   cursor: pointer;
 
   &:hover {
-    background-color: rgb(182, 17, 33);
+    background-color: $color-dark-red-hover;
   }
 }

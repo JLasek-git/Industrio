@@ -1,0 +1,9 @@
+@import "./settings.scss";
+
+@mixin stock-market-content {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 40px;
+}

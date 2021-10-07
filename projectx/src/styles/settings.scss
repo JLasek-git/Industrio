@@ -1,19 +1,33 @@
-$button-font-size: 18px;
-$button-width: 180px;
-$button-heigth: 40px;
-$button-line-heigth: 40px;
-$button-radius: 20px;
-$button-margin: 5px;
+// SIZES
 
-$blue-lighter: #218dfa;
-$blue-darker: #3742fa;
-$color-blue: #3742fa;
-$color-white-text: #dfe4ea;
-$color-dark-gray: #2f3542;
-$color-light-gray: #a4b0be;
-$color-grayish-blue: #70a1ff;
 
+// COLORS
+
+$color-delicate-yellow: #f3e1ac;
+$color-delicate-yellow-hover: #f3d782;
+$color-golden: #daa520;
+
+$color-grayish-blue: #2e4f5e;
+$color-light-grayish-blue: #455a64;
+
+$color-green: #167a16;
+$color-green-hover: #16ac16;
+$color-light-green: #69da53;
+
+$color-red: #ff0000;
+$color-dark-red: #701121;
+$color-dark-red-hover: #b61121;
+$color-light-red: #ff5b53;
+
+$color-light-gray: #4e4e4e;
+$color-medium-gray: #343434;
+$color-dark-gray: #232323;
+
+$color-alpha-backdrop: rgba(0, 0, 0, 0.3);
+
+// MARGINS/PADDINGS/RADIUS
 $basic-maring: 10px;
 $basic-radius: 25px;
 
+// FONTS
 $main-font: "Delius", cursive;

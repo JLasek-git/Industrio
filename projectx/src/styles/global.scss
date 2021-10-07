@@ -1,4 +1,5 @@
 @import "./settings.scss";
+@import "./mixins.scss";
 
 *,
 *::before,
@@ -31,8 +32,8 @@ form {
   align-items: center;
 
   & input {
-    background-color: #2e4f5e;
-    color: #f3e1ac;
+    background-color: $color-grayish-blue;
+    color: $color-delicate-yellow;
     cursor: pointer;
     border: none;
     width: 150px;
@@ -40,7 +41,7 @@ form {
     font-family: $main-font;
     text-align: center;
     margin: 15px;
-    border: 1px solid #f3e1ac;
+    border: 1px solid $color-delicate-yellow;
     border-radius: 5px;
   }
 
@@ -52,14 +53,14 @@ form {
     width: 150px;
     height: 35px;
     margin: 15px;
-    background-color: #2e4f5e;
-    color: #f3e1ac;
+    background-color: $color-grayish-blue;
+    color: $color-delicate-yellow;
     border: none;
     font-family: $main-font;
     text-align: center;
     cursor: pointer;
     border-radius: 5px;
-    border: 1px solid #f3e1ac;
+    border: 1px solid $color-delicate-yellow;
   }
 }
 
@@ -77,9 +78,97 @@ details {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 1px solid #f3e1ac;
-    background-color: #2e4f5e;
+    border: 1px solid $color-delicate-yellow;
+    background-color: $color-grayish-blue;
     margin-top: 5px;
     padding: 10px;
+  }
+}
+
+
+// DASHBORD GLOBAL STYLES FOR INFORMATION PANELS
+.dashboardInfoContainer {
+  cursor: default;
+  width: 25%;
+  min-height: 20%;
+  padding: 10px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-color: $color-light-grayish-blue;
+  border: 1px solid $color-delicate-yellow;
+  color: $color-delicate-yellow;
+
+  & .dashboardInfoElement {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    cursor: pointer;
+    margin: 10px 0;
+
+    & .singleElement {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 10px 0 0;
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .dashboardInfoContainer {
+    width: 90%;
+    min-height: 100%;
+    margin-bottom: 40px;
+  }
+}
+
+
+// *STORES* CONTAINERS OF MACHINES AND EXPANSIONS IN STORE GLOBAL SETTING
+
+.storeElement { 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-width: 500px;
+  min-height: 350px;
+  margin: 20px;
+  border: 1px solid $color-delicate-yellow;
+  background-color: $color-grayish-blue;
+}
+
+@media (max-width: 1200px) {
+  .storeElement {
+    min-width: 95%;
+  }
+}
+
+
+// *STOCK MARKET* CONTAINER CONTENT OF MATERIAL AND MACHINE EMPLOYEE MARKET
+.stockMarketElementContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0 0;
+
+  & .stockMarketContentWrapper {
+    width: 60%;
+    height: 90%;
+    margin: 10px 0;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid $color-delicate-yellow;
+    background-color: $color-grayish-blue;
   }
 }

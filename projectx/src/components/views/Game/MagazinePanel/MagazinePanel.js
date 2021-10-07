@@ -18,11 +18,11 @@ function MaterialPanel({ ...props }) {
   }
 
   return (
-    <div className={styles.materialsContainer}>
+    <div className={styles.dashboardInfoContainer}>
       <h1>Magazine</h1>
       <p>Free material space: {currencyFormat(Math.trunc(calculateFreeMaterialSpace()))}t</p>
       <p>Free machine places: {calculateFreePlaces()}</p>
-      <div className={styles.materialsInfo}>
+      <div className={styles.dashboardInfoElement}>
         <h2>Materials</h2>
         <span>
           Iron ore:{" "}

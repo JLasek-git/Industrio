@@ -46,8 +46,8 @@ function EmployeeElement({
     }
   }
   return (
-    <div className={styles.employeesContainer}>
-      <div className={styles.singleEmployee}>
+    <div className={styles.stockMarketElementContainer}>
+      <div className={styles.stockMarketContentWrapper}>
         <div className={styles.employeeInfo}>
           <div className={styles.employeePhoto}>
             <img src={employeeImg} alt="EmployeePhoto" />

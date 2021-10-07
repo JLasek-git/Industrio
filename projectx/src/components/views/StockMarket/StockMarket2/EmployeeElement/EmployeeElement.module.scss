@@ -1,31 +1,12 @@
 @import "../../../../../styles/global.scss";
 
-.employeesContainer {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
+.stockMarketElementContainer {
 
-  & .singleEmployee {
-    width: 60%;
-    height: 90%;
-    padding: 20px 0;
-    margin: 10px 0;
-    background-color: #2e4f5e;
-    border: 1px solid #f3e1ac;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  & .stockMarketContentWrapper {
 
     & .employeeInfo {
-      width: 40%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      @include stock-market-content;
+      align-items: space-between;
 
       & .employeeName {
         font-size: 1.5em;
@@ -50,12 +31,6 @@
           object-fit: cover;
         }
       }
-    }
-    & .hireBtn {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
   }
 }

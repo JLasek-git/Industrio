@@ -4,13 +4,13 @@
   position: absolute;
   width: 70%;
   height: 70%;
-  background-color: #455a64;
+  background-color: $color-light-grayish-blue;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: #f3e1ac;
-  border: 1px solid #f3e1ac;
+  color: $color-delicate-yellow;
+  border: 1px solid $color-delicate-yellow;
   z-index: 13;
 
 
