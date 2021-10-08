@@ -1,13 +1,13 @@
 @import "../../../styles/global.scss";
 
 .profilePanel {
-  padding: 20px;
+  padding: $basic-padding;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: $color-dark-gray;
-  border-bottom: 2px solid $color-light-gray;
+  border-bottom: $basic-border-thickness solid $color-light-gray;
   width: 250px;
   height: 20%;
   color: $color-delicate-yellow;
@@ -16,7 +16,7 @@
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    border: 2px solid $color-light-gray;
+    border: $basic-border-thickness solid $color-light-gray;
 
     & img {
       width: 100%;
@@ -39,7 +39,7 @@
       justify-content: center;
       align-items: center;
       color: $color-dark-gray;
-      border-radius: 20px;
+      border-radius: $basic-radius;
 
       & .experienceAmount {
         display: none;

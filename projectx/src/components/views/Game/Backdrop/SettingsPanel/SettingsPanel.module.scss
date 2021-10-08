@@ -10,7 +10,7 @@
   justify-content: center;
   align-items: center;
   color: $color-delicate-yellow;
-  border: 1px solid $color-delicate-yellow;
+  border: $basic-border-thickness solid $color-delicate-yellow;
   z-index: 13;
 
 
@@ -41,10 +41,10 @@
       justify-content: space-between;
 
       & label {
-        margin: 10px;
+        margin: $basic-margin;
       }
       & input {
-        margin: 10px;
+        margin: $basic-margin;
       }
     }
   }

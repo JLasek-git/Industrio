@@ -1,15 +1,9 @@
 @import "../../../styles/global.scss";
 
 .btn {
-  height: 30px;
-  min-width: 100px;
+  @include buttons;
   background-color: $color-green;
-  border: 0;
   color: $color-delicate-yellow;
-  border-radius: 10px;
-  font-family: $main-font;
-  transition: 0.3s linear;
-  cursor: pointer;
 
   &:hover {
     background-color: $color-green-hover;

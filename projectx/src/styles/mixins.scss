@@ -7,3 +7,13 @@
     justify-content: center;
     margin: 40px;
 }
+
+@mixin buttons {
+    height: 30px;
+    min-width: 100px;
+    border: 0;
+    border-radius: $basic-radius;
+    font-family: $main-font;
+    transition: .3s linear;
+    cursor: pointer;
+}

@@ -7,7 +7,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-left: 2px solid $color-light-gray;
+  border-left: $basic-border-thickness solid $color-light-gray;
 }
 
 @media (max-width: 1200px) {

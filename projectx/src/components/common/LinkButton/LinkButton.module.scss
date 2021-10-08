@@ -4,7 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 2px solid $color-light-gray;
+  border-bottom: $basic-border-thickness solid $color-light-gray;
   background-color: $color-dark-gray;
   width: 250px;
   height: 60px;

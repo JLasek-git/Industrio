@@ -19,7 +19,7 @@
     align-items: center;
     width: 700px;
     height: 300px;
-    border: 2px solid $color-light-green;
+    border: $basic-border-thickness solid $color-light-green;
 
     & .successBoxTextContainer {
       text-align: center;

@@ -1,14 +1,8 @@
 @import "../../../styles/global.scss";
 
 .btn {
-  height: 30px;
-  min-width: 100px;
+  @include buttons;
   background-color: $color-delicate-yellow;
-  border: 0;
-  border-radius: 10px;
-  font-family: $main-font;
-  transition: 0.3s linear;
-  cursor: pointer;
 
   &:hover {
     background-color: $color-delicate-yellow-hover;

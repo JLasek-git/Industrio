@@ -6,7 +6,7 @@
   align-items: flex-start;
   width: calc(100% - 250px);
   height: calc(100% - 20px);
-  border-left: 2px solid $color-light-gray;
+  border-left: $basic-border-thickness solid $color-light-gray;
   overflow-y: scroll;
 }
 

@@ -1,10 +1,9 @@
 @import "../../../../../styles/global.scss";
 
 .stockMarketElementContainer {
-
+  /* Styles for .stockMarketElementContainer in global.scss */
   & .stockMarketContentWrapper {
-
-
+    /* Styles for .stockMarketContentWrapper in global.scss */
     & .formContent{ 
       @include stock-market-content;
       align-items: center;

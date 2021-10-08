@@ -1,13 +1,13 @@
 @import "../../../../styles/global.scss";
 
 .dashboardInfoContainer {
-
+  /* Styles for .dashboardInfoContainer in global.scss */
   & .dashboardInfoElement {
-
+    /* Styles for .dashboardInfoElement in global.scss */
     & span:not(.materialNumber) {
       display: flex;
       justify-content: space-between;
-      margin: 10px 0;
+      margin: $basic-margin 0;
     }
   }
 
