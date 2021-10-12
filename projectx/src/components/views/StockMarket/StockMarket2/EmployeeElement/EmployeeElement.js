@@ -18,8 +18,12 @@ function EmployeeElement({
   handleSuccess,
   ...props
 }) {
+  /* handleHire function is called after player clicks on Hire button */
   function handleHire() {
+    /* employeesArray is used to make shorter variable from redux state*/
     const employeesArray = props.playerInfo.employees;
+
+    /* object with info about employee player wants to hire */
     const employeeInfo = {
       id: id,
       name: name,
@@ -30,13 +34,19 @@ function EmployeeElement({
       worksCount: worksCount,
       hireCost: hireCost,
     };
+    /* IF statement which checks if employee is not already in player employee array */
     if (employeesArray.some((employee) => employee.id === id)) {
+      /* setCrurentAlertText sets current Alert box text to display after failed hire */
       props.setCurrentAlertText("You already hired that employee.");
       handleError();
+
+      /* else if which checks if player have enough money to hire employee */
     } else if (props.playerInfo.money < hireCost) {
+      /* setCrurentAlertText sets current Alert box text to display after failed sell */
       props.setCurrentAlertText("You can't afford to hire that person.");
       handleError();
     } else {
+      /* IF player fulfill requirements calculate money after hire, push employee to player employeesArray and set new redux state such as new playerMoney amount, employeesArray and succesText displayed in alert box after successfull hire*/
       const playerMoneyAfterHire = props.playerInfo.money - hireCost;
       props.setMoney(playerMoneyAfterHire);
       employeesArray.push(employeeInfo);
@@ -46,8 +56,8 @@ function EmployeeElement({
     }
   }
   return (
-    <div className={styles.employeesContainer}>
-      <div className={styles.singleEmployee}>
+    <div className={styles.stockMarketElementContainer}>
+      <div className={styles.stockMarketContentWrapper}>
         <div className={styles.employeeInfo}>
           <div className={styles.employeePhoto}>
             <img src={employeeImg} alt="EmployeePhoto" />
@@ -86,6 +96,7 @@ function EmployeeElement({
 }
 
 EmployeeElement.propTypes = {
+  id: PropTypes.string,
   name: PropTypes.node,
   perfomanceIncreased: PropTypes.node,
   productionTimeBoost: PropTypes.node,
@@ -94,6 +105,8 @@ EmployeeElement.propTypes = {
   qunatityBoost: PropTypes.node,
   hireTime: PropTypes.node,
   hireCost: PropTypes.node,
+  handleSuccess: PropTypes.func,
+  handleError: PropTypes.func,
 };
 
 export default EmployeeElement;

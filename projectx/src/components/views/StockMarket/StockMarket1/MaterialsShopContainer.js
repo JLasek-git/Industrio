@@ -14,6 +14,6 @@ const mapDispatchToProps = (dispatch) => ({
   setMaterialQuantityBuy: (buyInfo) =>
     dispatch(setMaterialQuantityBuy(buyInfo)),
   setMoney: (amount) => dispatch(setMoney(amount)),
-  });
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(StockMarket1);

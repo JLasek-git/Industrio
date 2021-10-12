@@ -1,36 +1,7 @@
 @import "../../../styles/global.scss";
 
-.successBoxBackground {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
-  overflow: hidden;
-  .successBoxContainer {
-    position: absolute;
-    background-color: #2e4f5e;
-    color: #69da53;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 700px;
-    height: 300px;
-    border: 2px solid #69da53;
-
-    & .successBoxTextContainer {
-      text-align: center;
-    }
-  }
-}
-
-@media (max-width: 1200px) {
-  .successBoxBackground {
-    & .successBoxContainer {
-      width: 90vw;
-    }
+.alertBoxBackground {
+  & .alertBoxContainer {
+    @include alert-boxes-container($color-light-green);
   }
 }

@@ -17,7 +17,7 @@ import {
 import {
   getAppInfo,
   setCurrentAlertText,
-  setCurrentSuccessText
+  setCurrentSuccessText,
 } from "../../../../../redux/appInfoRedux";
 import SettingsPanel from "./SettingsPanel";
 import { connect } from "react-redux";

@@ -1,22 +1,22 @@
 @import "../../../styles/global.scss";
 
 .profilePanel {
-  padding: 20px;
+  padding: $basic-padding;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #232323;
-  border-bottom: 2px solid rgb(78, 78, 78);
+  background-color: $color-dark-gray;
+  border-bottom: $basic-border-thickness solid $color-light-gray;
   width: 250px;
   height: 20%;
-  color: #f3e1ac;
+  color: $color-delicate-yellow;
 
   & .avatar {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    border: 2px solid rgb(78, 78, 78);
+    border: $basic-border-thickness solid $color-light-gray;
 
     & img {
       width: 100%;
@@ -38,8 +38,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      color: black;
-      border-radius: 20px;
+      color: $color-dark-gray;
+      border-radius: $basic-radius;
 
       & .experienceAmount {
         display: none;

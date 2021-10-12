@@ -4,16 +4,32 @@ import styles from "./StoreExpansion.module.scss";
 import ButtonBuy from "../../../../common/ButtonBuy/ButtonBuy";
 import { currencyFormat } from "../../../../utils/utils";
 
-function StoreExpansion({ name, improvement, cost, handleError, handleSuccess, ...props }) {
-  const calculateMoneyAfterBuy = () => {
-    return props.playerInfo.money - cost;
+function StoreExpansion({
+  name,
+  improvement,
+  cost,
+  handleError,
+  handleSuccess,
+  ...props
+}) {
+  /* reduxStateInfo is object with saved state props*/
+  const reduxStateInfo = {
+    playerMoney: props.playerInfo.money,
+    magazineCapacity: props.playerInfo.magazine.poorMagazine.machinesCapacity,
   };
 
-  const calculateMachinesCapacity = () => {
-    return (
-      props.playerInfo.magazine.poorMagazine.machinesCapacity + improvement
-    );
+  /* Function calculateMoneyAfterBuy calculate new money amount in player inventory after buy */
+  const calculateMoneyAfterBuy = () => {
+    return reduxStateInfo.playerMoney - cost;
   };
+
+  /* Function calculateMachinesCapacity calculate new machine capacity in player magazine after upgrade */
+  const calculateMachinesCapacity = () => {
+    return reduxStateInfo.magazineCapacity + improvement;
+  };
+
+  /* handleBuy function calls calculateMoneyAfterBuy and calculateMachinesCapacity function after click on Buy button. It also checks
+      if players fulfills requirements to buy expansion */
 
   const handleBuy = (event) => {
     event.preventDefault();
@@ -28,13 +44,13 @@ function StoreExpansion({ name, improvement, cost, handleError, handleSuccess, .
     } else {
       props.setMoney(playerMoneyAfterBuy);
       props.setMagazineCapacity(playerMachinesCapacityAfterBuy);
-      props.setCurrentSuccessText(`You succesfully bought ${name}`)
+      props.setCurrentSuccessText(`You succesfully bought ${name}`);
       handleSuccess();
     }
   };
 
   return (
-    <div className={styles.singleExpansion}>
+    <div className={styles.storeElement}>
       <p className={styles.expansionName}>{name}</p>
       <div
         className={styles.actionHandler}
@@ -54,5 +70,7 @@ StoreExpansion.propTypes = {
   name: PropTypes.node,
   improvement: PropTypes.node,
   cost: PropTypes.node,
+  handleError: PropTypes.func,
+  handleSuccess: PropTypes.func,
 };
 export default StoreExpansion;

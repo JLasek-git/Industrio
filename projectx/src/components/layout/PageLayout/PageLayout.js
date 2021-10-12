@@ -12,14 +12,6 @@ function PageLayout() {
     isVisible(!panels);
   };
 
-  // const { width } = useWindowDimensions();
-
-  // window.addEventListener("resize", () => {
-  //   if (width >= 1200) {
-  //     isVisible(true);
-  //   }
-  // });
-
   return (
     <div className={styles.pageLayoutContainer}>
       <div className={styles.windowBorder}>

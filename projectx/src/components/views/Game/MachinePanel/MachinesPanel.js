@@ -6,18 +6,19 @@ import MACHINES from "../../../../data/machinesPreTreatment.json";
 
 function MachinesPanel({ showProductionSettings, ...props }) {
   return (
-    <div className={styles.machinesContainer}>
+    <div className={styles.dashboardInfoContainer}>
       <h1>Pre-treatment</h1>
       {MACHINES.map((machine) => (
-        <div key={machine.id} className={styles.machinesInfo}>
-          <div className={styles.singleMachine}>
-            {machine.name}: 
+        <div key={machine.id} className={styles.dashboardInfoElement}>
+          <div className={styles.singleElement}>
+            {machine.name}:
             <div className={styles.machineStateInfo}>
               <div className={styles.timeCounter}>
                 {(
                   props.playerInfo.equipment.machines[machine.id].timeDuration /
                   60000
-                ).toFixed(2)}m
+                ).toFixed(2)}
+                m
               </div>
               <div
                 className={styles.workIndicator}
@@ -31,9 +32,23 @@ function MachinesPanel({ showProductionSettings, ...props }) {
           </div>
           <details>
             <summary>Details</summary>
-            <div className={styles.detailsInfo}>
-              <span>Iron Ore Concentrate: {props.playerInfo.equipment.machines[machine.id].materialFromProduction}t</span>
-            </div>
+            {props.playerInfo.equipment.machines[machine.id].work ? (
+              <div className={styles.detailsInfo}>
+                You will receive:
+                <span>
+                  Iron Ore Concentrate:{" "}
+                  {Math.trunc(
+                    props.playerInfo.equipment.machines[machine.id]
+                      .materialFromProduction
+                  )}
+                  t
+                </span>
+              </div>
+            ) : (
+              <div className={styles.detailsInfo}>
+                Machine is currently not working
+              </div>
+            )}
           </details>
         </div>
       ))}

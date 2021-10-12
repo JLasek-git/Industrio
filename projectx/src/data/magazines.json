@@ -1,29 +1,26 @@
 [
   {
-    "id": "littleExpansion",
-    "name": "Little Expansion",
-    "improvement": 1,
-    "cost": 50000
+     "id":"littleExpansion",
+     "name":"Little Expansion",
+     "improvement":1,
+     "cost":50000
   },
-
   {
-    "id": "smallExpansion",
-    "name": "Small Expansion",
-    "improvement": 4,
-    "cost": 190000
+     "id":"smallExpansion",
+     "name":"Small Expansion",
+     "improvement":4,
+     "cost":190000
   },
-
   {
-    "id": "mediumExpansion",
-    "name": "Medium Expansion",
-    "improvement": 7,
-    "cost": 329000
+     "id":"mediumExpansion",
+     "name":"Medium Expansion",
+     "improvement":7,
+     "cost":329000
   },
-
   {
-    "id": "bigExpansion",
-    "name": "Big Expansion",
-    "improvement": 12,
-    "cost": 552000
+     "id":"bigExpansion",
+     "name":"Big Expansion",
+     "improvement":12,
+     "cost":552000
   }
 ]

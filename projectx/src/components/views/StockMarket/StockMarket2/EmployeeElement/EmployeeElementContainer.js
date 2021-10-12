@@ -6,7 +6,10 @@ import {
   setMoney,
 } from "../../../../../redux/playerRedux";
 
-import { setCurrentAlertText, setCurrentSuccessText } from "../../../../../redux/appInfoRedux";
+import {
+  setCurrentAlertText,
+  setCurrentSuccessText,
+} from "../../../../../redux/appInfoRedux";
 
 const mapStateToProps = (state) => ({
   playerInfo: getAllPlayerInfo(state),

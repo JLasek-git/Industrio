@@ -9,33 +9,33 @@
     justify-content: flex-end;
     align-items: center;
     height: 20px;
-    background-color: #555555;
+    background-color: $color-light-gray;
     line-height: 15px;
 
     & > * {
       width: 15px;
       height: 15px;
       border-radius: 50%;
-      margin-right: 6px;
+      margin-right: $basic-margin;
     }
 
     & .greenCircle {
-      background-color: green;
+      background-color: $color-green;
     }
 
     & .yellowCircle {
-      background-color: goldenrod;
+      background-color: $color-golden;
     }
 
     & .redCircle {
-      background-color: red;
+      background-color: $color-red;
     }
 
     & .title {
       position: absolute;
       left: 1%;
       font-weight: bolder;
-      color: #f3e1ac;
+      color: $color-delicate-yellow;
     }
   }
 
@@ -49,7 +49,7 @@
   & .hamburgerIconWrapper {
     width: 45px;
     height: 45px;
-    background: #343434;
+    background: $color-medium-gray;
     border-radius: 50%;
     position: fixed;
     top: 5%;
@@ -70,7 +70,7 @@
         justify-content: center;
         align-items: center;
         font-size: 26px;
-        color: #f3e1ac;
+        color: $color-delicate-yellow;
       }
     }
   }

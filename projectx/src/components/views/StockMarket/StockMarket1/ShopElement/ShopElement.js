@@ -49,15 +49,19 @@ function ShopElement({
       pickedAmount,
       reduxStateInfo.playerMaterialAmount
     );
-    const playerWholeMaterialInMagazine = calculatePlayerWholeMaterialInMagazine(
-      props.playerInfo.equipment.materials.ironOre.quantity,
-      props.playerInfo.equipment.materials.ironOreConcentrate.quantity,
-    );
+    const playerWholeMaterialInMagazine =
+      calculatePlayerWholeMaterialInMagazine(
+        props.playerInfo.equipment.materials.ironOre.quantity,
+        props.playerInfo.equipment.materials.ironOreConcentrate.quantity
+      );
 
     if (playerMoneyAfterAction < 0) {
       props.setCurrentAlertText("You need more money!");
       handleError();
-    } else if (playerWholeMaterialInMagazine + pickedAmount > props.playerInfo.magazine.poorMagazine.materialCapacity ) {
+    } else if (
+      playerWholeMaterialInMagazine + pickedAmount >
+      props.playerInfo.magazine.poorMagazine.materialCapacity
+    ) {
       props.setCurrentAlertText("You don't have enough storage space!");
       handleError();
     } else {
@@ -66,7 +70,9 @@ function ShopElement({
         playerMaterialAfterAction,
         materialStateName,
       });
-      props.setCurrentSuccessText(`You sucessfully bought ${pickedAmount} tons of ${materialDisplayName}.`)
+      props.setCurrentSuccessText(
+        `You sucessfully bought ${pickedAmount} tons of ${materialDisplayName}.`
+      );
       handleSuccess();
     }
   };
@@ -94,7 +100,9 @@ function ShopElement({
         playerMaterialAfterAction,
         materialStateName,
       });
-      props.setCurrentSuccessText(`You successfully sold ${pickedAmount} tons of ${materialDisplayName}.`);
+      props.setCurrentSuccessText(
+        `You successfully sold ${pickedAmount} tons of ${materialDisplayName}.`
+      );
       handleSuccess();
     }
   };
@@ -108,19 +116,20 @@ function ShopElement({
   };
 
   const changeSellingAmountHandler = () => {
-    const pickedAmount = sellingAmount.current.value;
-    const sellingIncome =
-      currencyFormat((pickedAmount * materialPrice) - (pickedAmount * materialPrice * 0.2));
+    const pickedAmount = parseInt(sellingAmount.current.value);
+    const sellingIncome = currencyFormat(
+      pickedAmount * materialPrice - pickedAmount * materialPrice * 0.2
+    );
     setCurrentSellingIncome(sellingIncome);
     setCurrentSellingAmount(pickedAmount);
   };
 
   /* Main component */
   return (
-    <div className={styles.materialActionsList}>
+    <div className={styles.stockMarketElementContainer}>
       <h1>{materialDisplayName}</h1>
-      <form className={styles.buyingForm}>
-        <div className={styles.formComponent}>
+      <form className={styles.stockMarketContentWrapper}>
+        <div className={styles.formContent}>
           <label htmlFor="buyingAmount"></label>
           <p>{currentBuyingAmount}</p>
           <input
@@ -146,7 +155,7 @@ function ShopElement({
             <ButtonBuy />
           </div>
         </div>
-        <div className={styles.formComponent}>
+        <div className={styles.formContent}>
           <label htmlFor="sellingAmount"></label>
           <p>{currentSellingAmount}</p>
           <input
@@ -178,6 +187,8 @@ ShopElement.propTypes = {
   materialStateName: PropTypes.string,
   materialDisplayName: PropTypes.node,
   materialPrice: PropTypes.number,
+  handleSuccess: PropTypes.func,
+  handleError: PropTypes.func,
 };
 
 export default ShopElement;
