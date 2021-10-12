@@ -1,9 +1,7 @@
 @import "../../../styles/global.scss";
 
 .btn {
-  @include buttons;
-  background-color: $color-green;
-  color: $color-delicate-yellow;
+  @include buttons($color-green, $font-color: $color-delicate-yellow);
 
   &:hover {
     background-color: $color-green-hover;

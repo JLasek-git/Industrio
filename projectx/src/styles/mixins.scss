@@ -1,19 +1,34 @@
 @import "./settings.scss";
 
 @mixin stock-market-content {
-    width: 40%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 40px;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 40px;
 }
 
-@mixin buttons {
-    height: 30px;
-    min-width: 100px;
-    border: 0;
-    border-radius: $basic-radius;
-    font-family: $main-font;
-    transition: .3s linear;
-    cursor: pointer;
+@mixin buttons($bg-color, $font-color: black) {
+  height: 30px;
+  min-width: 100px;
+  border: 0;
+  background-color: $bg-color;
+  color: $font-color;
+  border-radius: $basic-radius;
+  font-family: $main-font;
+  transition: 0.3s linear;
+  cursor: pointer;
+}
+
+@mixin alert-boxes-container($accents-color) {
+  position: absolute;
+  background-color: $color-grayish-blue;
+  color: $accents-color;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 700px;
+  height: 300px;
+  border: $basic-border-thickness solid $accents-color;
 }

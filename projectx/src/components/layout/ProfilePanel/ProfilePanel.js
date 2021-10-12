@@ -25,7 +25,7 @@ function ProfilePanel({ ...props }) {
           className={styles.experience}
           style={{
             backgroundImage: `linear-gradient(to right, ${linearColors.green} ${
-              (props.playerInfo.experience/ props.playerInfo.toNextLevel) * 100
+              (props.playerInfo.experience / props.playerInfo.toNextLevel) * 100
             }%, ${linearColors.white} 0)`,
           }}
         >
@@ -33,11 +33,14 @@ function ProfilePanel({ ...props }) {
             Level {props.playerInfo.level}
           </span>
           <span className={styles.experienceAmount}>
-            {Math.trunc(props.playerInfo.experience)}/{props.playerInfo.toNextLevel}
+            {Math.trunc(props.playerInfo.experience)}/
+            {props.playerInfo.toNextLevel}
           </span>
         </div>
         <div className={styles.money}>
-          <span className={styles.moneyCount}>${currencyFormat(props.playerInfo.money)}</span>
+          <span className={styles.moneyCount}>
+            ${currencyFormat(props.playerInfo.money)}
+          </span>
         </div>
       </div>
     </div>

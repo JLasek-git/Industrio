@@ -33,7 +33,7 @@ export default function reducer(statePart = [], action = {}) {
       return {
         ...statePart,
         currentSuccessText: action.payload,
-      }
+      };
     }
 
     default:

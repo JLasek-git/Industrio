@@ -1,36 +1,7 @@
 @import "../../../styles/global.scss";
 
 .alertBoxBackground {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  background-color: $color-alpha-backdrop;
-  overflow: hidden;
-  .alertBoxContainer {
-    position: absolute;
-    background-color: $color-grayish-blue;
-    color: $color-light-red;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 700px;
-    height: 300px;
-    border: 2px solid $color-light-red;
-
-    & .alertBoxTextContainer {
-      text-align: center;
-    }
-  }
-}
-
-@media (max-width: 1200px) {
-  .alertBoxBackground {
-    & .alertBoxContainer {
-      width: 90vw;
-    }
+  & .alertBoxContainer {
+    @include alert-boxes-container($color-light-red);
   }
 }

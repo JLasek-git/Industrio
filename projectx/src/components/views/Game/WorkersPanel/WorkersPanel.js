@@ -14,8 +14,10 @@ function WorkersPanel({ ...props }) {
           employee.id !== "none" && (
             <div key={employee.id} className={styles.dashboardInfoElement}>
               <div className={styles.singleElement}>
-                {employee.name}  
-                <span className={styles.workCounter}>{employee.worksCount}</span>
+                {employee.name}
+                <span className={styles.workCounter}>
+                  {employee.worksCount}
+                </span>
               </div>
               <details>
                 <summary>Details</summary>

@@ -3,16 +3,28 @@ import styles from "./MagazinePanel.module.scss";
 import { currencyFormat } from "../../../utils/utils";
 
 function MaterialPanel({ ...props }) {
+  const reduxStateInfo = {
+    magazineMachineCapacity:
+      props.playerInfo.magazine.poorMagazine.machinesCapacity,
+    ownedMachinesQuantity:
+      props.playerInfo.equipment.machines.allMachinesQuantity,
+    magazineMaterialCapacity:
+      props.playerInfo.magazine.poorMagazine.materialCapacity,
+  };
+
   function calculateFreePlaces() {
     const freePlaces =
-      props.playerInfo.magazine.poorMagazine.machinesCapacity -
-      props.playerInfo.equipment.machines.allMachinesQuantity;
+      reduxStateInfo.magazineMachineCapacity -
+      reduxStateInfo.ownedMachinesQuantity;
 
     return freePlaces;
   }
 
   function calculateFreeMaterialSpace() {
-    const freeSpace = props.playerInfo.magazine.poorMagazine.materialCapacity - (props.playerInfo.equipment.materials.ironOre.quantity + props.playerInfo.equipment.materials.ironOreConcentrate.quantity);
+    const freeSpace =
+      reduxStateInfo.magazineMaterialCapacity -
+      (props.playerInfo.equipment.materials.ironOre.quantity +
+        props.playerInfo.equipment.materials.ironOreConcentrate.quantity);
 
     return freeSpace;
   }
@@ -20,7 +32,10 @@ function MaterialPanel({ ...props }) {
   return (
     <div className={styles.dashboardInfoContainer}>
       <h1>Magazine</h1>
-      <p>Free material space: {currencyFormat(Math.trunc(calculateFreeMaterialSpace()))}t</p>
+      <p>
+        Free material space:{" "}
+        {currencyFormat(Math.trunc(calculateFreeMaterialSpace()))}t
+      </p>
       <p>Free machine places: {calculateFreePlaces()}</p>
       <div className={styles.dashboardInfoElement}>
         <h2>Materials</h2>

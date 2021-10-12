@@ -20,7 +20,6 @@ function AlertBox({ handleError, ...props }) {
 }
 
 AlertBox.propTypes = {
-  errorText: PropTypes.node,
   hanldeError: PropTypes.func,
 };
 

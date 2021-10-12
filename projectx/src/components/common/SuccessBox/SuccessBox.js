@@ -5,13 +5,16 @@ import Button from "../Button/Button";
 
 function SuccessBox({ handleSuccess, ...props }) {
   return (
-    <div className={styles.successBoxBackground}>
-      <div className={styles.successBoxContainer}>
-        <div className={styles.successBoxTextContainer}>
+    <div className={styles.alertBoxBackground}>
+      <div className={styles.alertBoxContainer}>
+        <div className={styles.alertBoxTextContainer}>
           <h1>Congratulations</h1>
           <p>{props.appInfo.currentSuccessText}</p>
         </div>
-        <div className={styles.successBoxButtonsContainer} onClick={handleSuccess}>
+        <div
+          className={styles.alertBoxButtonsContainer}
+          onClick={handleSuccess}
+        >
           <Button btnText="OK" />
         </div>
       </div>
@@ -20,7 +23,6 @@ function SuccessBox({ handleSuccess, ...props }) {
 }
 
 SuccessBox.propTypes = {
-  succesText: PropTypes.node,
   handleSuccess: PropTypes.func,
 };
 
