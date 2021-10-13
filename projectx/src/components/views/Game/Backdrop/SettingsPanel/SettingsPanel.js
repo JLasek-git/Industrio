@@ -87,17 +87,16 @@ function SettingsPanel(props) {
       /* this defines our pickedAmount on input and parses to int*/
       const pickedAmount = parseInt(amountValue.current.value);
       const pickedMachinesAmount = parseInt(machinesCount.current.value);
+
       const pickedSupervisorIndex = reduxStateInfo.employeesStateArray
         .map((employee) => {
           return employee.id;
         })
         .indexOf(currentSupervisor);
 
-      /* This line allow us to properly add materials for player production */
+      /* START calculations*/
 
-      /* START calculations passed to state depending on props */
-
-      /*  */
+      /* Functions for all of those calculations are in SettingsPnelUtils.js */
       const wholeProductionCost = calculateProductionCost(
         pickedAmount,
         pickedMachinesAmount,
@@ -140,6 +139,7 @@ function SettingsPanel(props) {
       );
       /* END */
 
+      /* It's used only to return player material on page refresh since, there's no server yet */
       let amountAfter = playerReceivedMaterialAfterProduction;
       props.setMaterialReceivedFromProduction({
         amountAfter,
@@ -167,6 +167,8 @@ function SettingsPanel(props) {
         handleError();
       } else {
         let bool = true;
+
+        /* if statement that checks if player picked supervisor, if yes his worksCount is reduced  */
         if (
           reduxStateInfo.employeesStateArray[pickedSupervisorIndex]
             .worksCount !== undefined
@@ -176,23 +178,9 @@ function SettingsPanel(props) {
 
           employees[pickedSupervisorIndex].worksCount = newWorkCount;
           props.setEmployeesWorkCount(employees);
-        }
-        props.setMaterialQuantityDown(playerUsedMaterialAfterProduction);
-        props.setMoney(playerMoneyAfterProduction);
-        props.setMachineState({ bool, currentMachinePicked });
-        props.setAmountMachinesWorking({
-          pickedMachinesAmount,
-          currentMachinePicked,
-        });
 
-        let productionCost = wholeProductionCost;
-        props.setProductionCost({
-          currentMachinePicked,
-          productionCost,
-        });
-
-        /* If statement which delete employee from array, when worksCount is 0 */
-        if (
+          /* If statement which delete employee from array, when worksCount is 0 */
+        } else if (
           reduxStateInfo.employeesStateArray[pickedSupervisorIndex]
             .worksCount <= 0
         ) {
@@ -201,12 +189,33 @@ function SettingsPanel(props) {
           setEmployeesWorkCount(employees);
         }
 
+        /* setting new values on production start (taking material, taking money and setting workState for machine)*/
+        props.setMaterialQuantityDown(playerUsedMaterialAfterProduction);
+        props.setMoney(playerMoneyAfterProduction);
+        props.setMachineState({ bool, currentMachinePicked });
+        props.setAmountMachinesWorking({
+          pickedMachinesAmount,
+          currentMachinePicked,
+        });
+
+        /* It's used only to return player money after page refresh, since there's no server yet*/
+        let productionCost = wholeProductionCost;
+        props.setProductionCost({
+          currentMachinePicked,
+          productionCost,
+        });
+
+        /* Taking production start time and setting interval (for timers) */
         const startTime = Date.now();
         const interval = 990;
 
+        /* productionEndHandler is called by setTimeout after timer reaches 0 */
         const productionEndHandler = () => {
-          console.log(reduxStateInfo.playerEqReceivedMaterialQuantity);
+          /* bool is used to set machine worksState */
           bool = false;
+
+          /* == START == */
+          /* Used only for returning player money and material on page refreshe since there's no server yet */
           amountAfter = 0;
           props.setMaterialReceivedFromProduction({
             amountAfter,
@@ -218,8 +227,14 @@ function SettingsPanel(props) {
             currentMachinePicked,
             productionCost,
           });
+          /* == END == */
+
+          /* set new materialQuantity and machine worksState in redux state */
           props.setMaterialQuantityUp(playerReceivedMaterialAfterProduction);
           props.setMachineState({ bool, currentMachinePicked });
+
+          /* If statement that checks if player fulfilled requirements for new level if yes it calculate new level and nev levelCap.
+            Than it sets those values to redux state */
           if (
             reduxStateInfo.playerExperience +
               reduxStateInfo.materialGivenExperience * pickedAmount >=
@@ -232,13 +247,17 @@ function SettingsPanel(props) {
             props.setPlayerLevel(playerLevelUp);
             props.setExperience(experienceAfterLevelUp);
             props.setExperienceToNextLevel(levelCapAsInt);
+
+            /* If player hasn't fulfilled new level requirements it's just changing state of player experience */
           } else {
             props.setExperience(playerReceivedExperience);
           }
         };
 
+        /* setTimeout which determinate end of production */
         setTimeout(productionEndHandler, productionDuration);
 
+        /* timeLeftcalculationHandler is used to calculate displayed timer in Dashboard and productionSettingsPanel */
         const timeLeftCalculationHandler = () => {
           let counter = productionDuration - (Date.now() - startTime);
           if (counter <= 0) {
@@ -350,7 +369,7 @@ function SettingsPanel(props) {
           type="number"
           name="amount"
           id="amount"
-          defaultValue={reduxStateInfo.playerIronOre}
+          defaultValue={Math.trunc(reduxStateInfo.playerIronOre)}
           min="0"
           max={reduxStateInfo.playerIronOre}
           onChange={changeHandler}
