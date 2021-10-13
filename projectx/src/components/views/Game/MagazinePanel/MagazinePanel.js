@@ -3,6 +3,7 @@ import styles from "./MagazinePanel.module.scss";
 import { currencyFormat } from "../../../utils/utils";
 
 function MaterialPanel({ ...props }) {
+  /* save redux state values to reduxStateInfo object for shorter names and easier changes */
   const reduxStateInfo = {
     magazineMachineCapacity:
       props.playerInfo.magazine.poorMagazine.machinesCapacity,
@@ -12,6 +13,7 @@ function MaterialPanel({ ...props }) {
       props.playerInfo.magazine.poorMagazine.materialCapacity,
   };
 
+  /* calculateFreePlaces calculate how many free places for machines in magazine left */
   function calculateFreePlaces() {
     const freePlaces =
       reduxStateInfo.magazineMachineCapacity -
@@ -20,6 +22,7 @@ function MaterialPanel({ ...props }) {
     return freePlaces;
   }
 
+  /* calculateFreeMaterialSpace calculate free material space */
   function calculateFreeMaterialSpace() {
     const freeSpace =
       reduxStateInfo.magazineMaterialCapacity -
