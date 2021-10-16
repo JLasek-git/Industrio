@@ -32,8 +32,8 @@ You can check this project on heroku: https://murmuring-plateau-49512.herokuapp.
           - Fix bug that adding wrong amount of material after production when production lasts shorter 
               than the previous one
           - Mediaquerries (especially for Employees Market)
-          - Some ReduxState datatypes fixes (for example making machines object an array, to easier generation 
-              and not displaying all machines in Dashboard, only those that the player owns)
+          - Some ReduxState datatypes fixes (for example making machines object an array, to easier 
+               generation and not displaying all machines in Dashboard, only those that the player owns)
               
 <h3> Things I want to add: </h3>
 
