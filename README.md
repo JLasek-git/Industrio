@@ -25,6 +25,7 @@ You can check this project on heroku: https://murmuring-plateau-49512.herokuapp.
           - Functionality which limits material space and machine places in player magazine
           - Gaining experience and new levels
           - Game reseting button
+          - Employees bonuses
          
 <h3> Things to fix in project: </h3>
   
