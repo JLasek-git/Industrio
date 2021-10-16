@@ -35,6 +35,8 @@ You can check this project on heroku: https://murmuring-plateau-49512.herokuapp.
           - Mediaquerries (especially for Employees Market)
           - Some ReduxState datatypes fixes (for example making machines object an array, to easier 
                generation and not displaying all machines in Dashboard, only those that the player owns)
+          - Code quality
+          - Some layout styles
               
 <h3> Things I want to add: </h3>
 
@@ -45,4 +47,7 @@ You can check this project on heroku: https://murmuring-plateau-49512.herokuapp.
           - Dynamic prices depending on supply and demand
           - Dynamic generation of employees stats
           - Graphs showing the player stats such as money balance etc.
-        
+      
+<h1 align="center">Short description</h1>
+
+Industrio is a game, where player becomes the owner of a metallurgical plant. He can buy new machines, expand the warehouse and hire employees who improve production results. 
