@@ -169,9 +169,7 @@ function ShopElement({
             <p>Price: ${materialPrice} / 1t</p>
             <p>Cost: ${currentBuyingCost}</p>
           </div>
-          <div onClick={(event) => handleShopActionBuy(event)}>
-            <ButtonBuy />
-          </div>
+          <ButtonBuy btnFunction={handleShopActionBuy} />
         </div>
         <div className={styles.formContent}>
           <label htmlFor="sellingAmount"></label>
@@ -192,9 +190,7 @@ function ShopElement({
             <p>Price: ${materialPrice - materialPrice * 0.2} / 1t</p>
             <p>Income: ${currentSellingIncome}</p>
           </div>
-          <div onClick={(event) => handleShopActionSell(event)}>
-            <ButtonSell />
-          </div>
+          <ButtonSell btnFunction={handleShopActionSell} />
         </div>
       </form>{" "}
     </div>

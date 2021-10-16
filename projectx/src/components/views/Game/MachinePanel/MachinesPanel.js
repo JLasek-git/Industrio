@@ -52,9 +52,7 @@ function MachinesPanel({ showProductionSettings, ...props }) {
           </details>
         </div>
       ))}
-      <div onClick={showProductionSettings}>
-        <Button btnText="Production" />
-      </div>
+      <Button btnText="Production" btnFunction={showProductionSettings} />
     </div>
   );
 }

@@ -121,6 +121,8 @@ export const setExperienceToNextLevel = (payload) => ({
   payload,
   type: SET_EXPERIENCE_TO_NEXT_LEVEL,
 });
+
+// Reducers
 export default function reducer(statePart = [], action = {}) {
   switch (action.type) {
     case SET_MATERIAL_QUANTITY_UP:

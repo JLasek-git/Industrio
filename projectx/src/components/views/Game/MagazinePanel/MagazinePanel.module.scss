@@ -4,7 +4,7 @@
   /* Styles for .dashboardInfoContainer in global.scss */
   & .dashboardInfoElement {
     /* Styles for .dashboardInfoElement in global.scss */
-    & span:not(.materialNumber) {
+    & span:not(.elementQuantity) {
       display: flex;
       justify-content: space-between;
       margin: $basic-margin 0;
