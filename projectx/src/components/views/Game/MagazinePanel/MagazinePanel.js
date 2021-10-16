@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "./MagazinePanel.module.scss";
 import { currencyFormat } from "../../../utils/utils";
+import MACHINES from "../../../../data/machinesPreTreatment.json";
+import MATERIALS from "../../../../data/materials.json";
 
 function MaterialPanel({ ...props }) {
   /* save redux state values to reduxStateInfo object for shorter names and easier changes */
@@ -42,71 +44,27 @@ function MaterialPanel({ ...props }) {
       <p>Free machine places: {calculateFreePlaces()}</p>
       <div className={styles.dashboardInfoElement}>
         <h2>Materials</h2>
-        <span>
-          Iron ore:{" "}
-          <span className={styles.materialNumber}>
-            {Math.floor(props.playerInfo.equipment.materials.ironOre.quantity)}t
+        {MATERIALS.map((material) => (
+          <span>
+            {material.name}{" "}
+            <span className={styles.elementQuantity}>
+              {Math.floor(
+                props.playerInfo.equipment.materials[material.id].quantity
+              )}
+              t
+            </span>
           </span>
-        </span>
-        <span>
-          Iron ore concentrate:{" "}
-          <span className={styles.materialNumber}>
-            {Math.floor(
-              props.playerInfo.equipment.materials.ironOreConcentrate.quantity
-            )}
-            t
-          </span>
-        </span>
+        ))}
         <h3>Machines</h3>
-        <span>
-          Impact Crusher:{" "}
-          <span className={styles.materialNumber}>
-            {" "}
-            {props.playerInfo.equipment.machines.impactCrusher.owned}
+        {MACHINES.map((machine) => (
+          <span>
+            {machine.name}
+            <span className={styles.elementQuantity}>
+              {" "}
+              {props.playerInfo.equipment.machines[machine.id].owned}
+            </span>
           </span>
-        </span>
-        <span>
-          Jaw Crusher:{" "}
-          <span className={styles.materialNumber}>
-            {props.playerInfo.equipment.machines.jawCrusher.owned}
-          </span>
-        </span>
-        <span>
-          Cone Crusher:{" "}
-          <span className={styles.materialNumber}>
-            {props.playerInfo.equipment.machines.coneCrusher.owned}
-          </span>
-        </span>
-        <span>
-          Hammer Crusher:{" "}
-          <span className={styles.materialNumber}>
-            {props.playerInfo.equipment.machines.hammerCrusher.owned}
-          </span>
-        </span>
-        <span>
-          Ball Drum Mill:{" "}
-          <span className={styles.materialNumber}>
-            {props.playerInfo.equipment.machines.ballDrumMill.owned}
-          </span>
-        </span>
-        <span>
-          Rod Drum Mill:{" "}
-          <span className={styles.materialNumber}>
-            {props.playerInfo.equipment.machines.rodDrumMill.owned}
-          </span>
-        </span>
-        <span>
-          Drum Screen:{" "}
-          <span className={styles.materialNumber}>
-            {props.playerInfo.equipment.machines.drumScreen.owned}
-          </span>
-        </span>
-        <span>
-          Magnetic Separator:{" "}
-          <span className={styles.materialNumber}>
-            {props.playerInfo.equipment.machines.magneticSeparator.owned}
-          </span>
-        </span>
+        ))}
       </div>
     </div>
   );

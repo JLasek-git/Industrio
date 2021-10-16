@@ -52,12 +52,7 @@ function StoreExpansion({
   return (
     <div className={styles.storeElement}>
       <p className={styles.expansionName}>{name}</p>
-      <div
-        className={styles.actionHandler}
-        onClick={(event) => handleBuy(event)}
-      >
-        <ButtonBuy />
-      </div>
+      <ButtonBuy btnFunction={(event) => handleBuy(event)} />
       <div className={styles.descriptions}>
         <p>Additional places: {improvement}</p>
         <p>Cost: ${currencyFormat(cost)}</p>

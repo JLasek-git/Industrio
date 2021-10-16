@@ -122,12 +122,8 @@ function StoreMachine({
       <p>{machineName}</p>
       <p>Level required: {machineRequirement}</p>
       <div className={styles.actionHandlers}>
-        <div onClick={() => handleBuy()}>
-          <ButtonBuy />
-        </div>
-        <div onClick={() => handleSell()}>
-          <ButtonSell />
-        </div>
+        <ButtonBuy btnFunction={handleBuy} />
+        <ButtonSell btnFunction={handleSell} />
       </div>
       <div className={styles.pricesContainer}>
         <p>Buying price: ${currencyFormat(machinePrice)}</p>

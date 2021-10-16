@@ -87,8 +87,8 @@ function EmployeeElement({
             <span>Hire cost: </span>${currencyFormat(hireCost)}
           </p>
         </div>
-        <div className={styles.hireBtn} onClick={handleHire}>
-          <Button btnText="Hire" />
+        <div className={styles.hireBtn}>
+          <Button btnText="Hire" btnFunction={handleHire} />
         </div>
       </div>
     </div>

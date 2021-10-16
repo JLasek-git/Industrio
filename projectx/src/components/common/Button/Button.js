@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "./Button.module.scss";
 
-function Button({ btnText }) {
+function Button({ btnText, btnFunction }) {
   return (
-    <button className={styles.btn}>
+    <button className={styles.btn} onClick={btnFunction}>
       <span className={styles.btnText}>{btnText}</span>
     </button>
   );
@@ -12,6 +12,7 @@ function Button({ btnText }) {
 
 Button.propTypes = {
   btnText: PropTypes.node,
+  btnFunction: PropTypes.func,
 };
 
 export default Button;

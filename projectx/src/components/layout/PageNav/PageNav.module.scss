@@ -4,3 +4,10 @@
   height: 100vh;
   background-color: $color-dark-gray;
 }
+
+.resetBtnContainer {
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
