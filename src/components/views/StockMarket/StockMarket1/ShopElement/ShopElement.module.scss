@@ -2,7 +2,11 @@
 
 .stockMarketContentWrapper {
   /* Styles for .stockMarketContentWrapper in global.scss */
+
   & .formContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
   }
 
