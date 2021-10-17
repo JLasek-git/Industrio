@@ -43,7 +43,7 @@ function MaterialPanel({ ...props }) {
       </p>
       <p>Free machine places: {calculateFreePlaces()}</p>
       <div className={styles.dashboardInfoElement}>
-        <h2>Materials</h2>
+        <h2>Materials:</h2>
         {MATERIALS.map((material) => (
           <span>
             {material.name}{" "}
@@ -55,16 +55,28 @@ function MaterialPanel({ ...props }) {
             </span>
           </span>
         ))}
-        <h3>Machines</h3>
-        {MACHINES.map((machine) => (
+        <h3>Machines:</h3>
+        {reduxStateInfo.ownedMachinesQuantity === 0 ? (
           <span>
-            {machine.name}
-            <span className={styles.elementQuantity}>
-              {" "}
-              {props.playerInfo.equipment.machines[machine.id].owned}
-            </span>
+            Unfortunately you do not have any machines. You can buy them in
+            'Machines Shop'.
           </span>
-        ))}
+        ) : null}
+
+        {MACHINES.map((machine) => {
+          if (props.playerInfo.equipment.machines[machine.id].owned > 0) {
+            return (
+              <span>
+                {machine.name}
+                <span className={styles.elementQuantity}>
+                  {" "}
+                  {props.playerInfo.equipment.machines[machine.id].owned}
+                </span>
+              </span>
+            );
+          }
+          return null;
+        })}
       </div>
     </div>
   );

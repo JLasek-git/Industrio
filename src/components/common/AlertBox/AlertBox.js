@@ -20,7 +20,7 @@ function AlertBox({ handleError, ...props }) {
 }
 
 AlertBox.propTypes = {
-  hanldeError: PropTypes.func,
+  handleError: PropTypes.func,
 };
 
 export default AlertBox;
