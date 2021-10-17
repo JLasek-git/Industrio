@@ -8,6 +8,8 @@
 
 If there's any problem with "npm install" just delete package-lock.json before npm install.
 
+Stack: React, Redux, SCSS
+
 You can check this project on heroku: https://murmuring-plateau-49512.herokuapp.com/panel/game
 
 <h1 align="center">Project info</h1>
