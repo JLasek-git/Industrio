@@ -14,7 +14,6 @@ You can check this project on heroku: https://murmuring-plateau-49512.herokuapp.
 
 <h3> Things I made in this project: </h3>
   
-          - Whole graphic design
           - Routing between views using React Router
           - Application state management using React Redux
           - Dynamic components generation
@@ -29,18 +28,18 @@ You can check this project on heroku: https://murmuring-plateau-49512.herokuapp.
           - Employees bonuses
          
 <h3> Things to fix in project: </h3>
-  
-          - Add starter login page (currently homepage link is just blank page with MainLayout)
-          - Fix bug that adding wrong amount of material after production when production lasts shorter 
+          
+          - Complete change of the visual layer of the website (the current one was done quickly,
+             I mainly focused on functionalities)
+          - Improving page responsiveness
+          - Overall code quality improvement, minor refactoring
+          - Changing layout structer (currently it's a little bit messy)
+          - Fixing bug that adding wrong amount of material after production when production lasts shorter
               than the previous one
-          - Mediaquerries (especially for Employees Market)
-          - Some ReduxState datatypes fixes (for example making machines object an array, to easier 
-               generation and not displaying all machines in Dashboard, only those that the player owns)
-          - Code quality
-          - Some layout styles
               
 <h3> Things I want to add: </h3>
-
+          
+          - Add starter login page (currently homepage link is just blank page with MainLayout)
           - Development tree
           - Separate levels for each production branch
           - Research center
