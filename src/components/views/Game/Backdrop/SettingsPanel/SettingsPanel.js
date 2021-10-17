@@ -380,15 +380,23 @@ function SettingsPanel(props) {
           name="machineType"
           id="machineType"
           onChange={changeHandler}
-          defaultValue="impactCrusher"
           ref={machineType}
         >
-          {MACHINES.map((option) => (
-            <option key={option.id} value={option.id} onClick={changeHandler}>
-              {option.name} -{" "}
-              {reduxStateInfo.playerMachinesArray[option.id].owned}
-            </option>
-          ))}
+          {MACHINES.map((machine) => {
+            if (props.playerInfo.equipment.machines[machine.id].owned > 0) {
+              return (
+                <option
+                  key={machine.id}
+                  value={machine.id}
+                  onClick={changeHandler}
+                >
+                  {machine.name} -{" "}
+                  {reduxStateInfo.playerMachinesArray[machine.id].owned}
+                </option>
+              );
+            }
+            return null;
+          })}
         </select>
         <label htmlFor="machinesCount"></label>
         <input

@@ -1,55 +1,34 @@
 @import "../../../../../styles/global.scss";
 
-.stockMarketElementContainer {
-  /* Styles for .stockMarketElementContainer in global.scss */
-  & .stockMarketContentWrapper {
-    /* Styles for .stockMarketContentWrapper in global.scss */
-    & .employeeInfo {
-      @include stock-market-content;
-      align-items: space-between;
+.stockMarketContentWrapper {
+  /* Styles for .stockMarketContentWrapper in global.scss */
 
-      & .employeeName {
-        font-size: 1.5em;
-        text-align: center;
-      }
+  align-items: space-between;
 
-      & .infoElement {
-        display: flex;
-        justify-content: space-between;
-      }
+  & .employeePhoto {
+    width: 70px;
+    height: 70px;
+    align-self: center;
+    border-radius: 50%;
+    overflow: hidden;
 
-      & .employeePhoto {
-        width: 70px;
-        height: 70px;
-        align-self: center;
-        border-radius: 50%;
-        overflow: hidden;
-
-        & img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-      }
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
   }
-}
 
-@media (max-width: 1200px) {
-  .employeesContainer {
-    & .singleEmployee {
-      width: 90%;
+  & .employeeDescription {
+    width: 70%;
+    & .employeeName {
+      font-size: 1.5em;
+      text-align: center;
     }
-  }
-}
 
-@media (min-width: 1201px) and (max-width: 1366px) {
-  .employeesContainer {
-    height: 100vh;
-    & .singleEmployee {
-      & .employeeInfo {
-        width: 70%;
-      }
+    & .infoElement {
+      display: flex;
+      justify-content: space-between;
     }
   }
 }

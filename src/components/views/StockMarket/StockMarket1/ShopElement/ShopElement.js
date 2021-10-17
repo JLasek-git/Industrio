@@ -144,56 +144,54 @@ function ShopElement({
 
   /* Main component */
   return (
-    <div className={styles.stockMarketElementContainer}>
+    <form className={styles.stockMarketContentWrapper}>
       <h1>{materialDisplayName}</h1>
-      <form className={styles.stockMarketContentWrapper}>
-        <div className={styles.formContent}>
-          <label htmlFor="buyingAmount"></label>
-          <p>{currentBuyingAmount}</p>
-          <input
-            type="range"
-            name="buyingAmount"
-            id="buyingAmount"
-            defaultValue="0"
-            min="0"
-            max={calculateMaxPlayerCanBuy(
-              reduxStateInfo.playerMoney,
-              materialPrice
-            )}
-            onChange={(event) =>
-              changeBuyingAmountHandler(props.playerInfo, event)
-            }
-            ref={buyingAmount}
-          />
-          <div className={styles.prices}>
-            <p>Price: ${materialPrice} / 1t</p>
-            <p>Cost: ${currentBuyingCost}</p>
-          </div>
-          <ButtonBuy btnFunction={handleShopActionBuy} />
+      <div className={styles.formContent}>
+        <label htmlFor="buyingAmount"></label>
+        <p>{currentBuyingAmount}</p>
+        <input
+          type="range"
+          name="buyingAmount"
+          id="buyingAmount"
+          defaultValue="0"
+          min="0"
+          max={calculateMaxPlayerCanBuy(
+            reduxStateInfo.playerMoney,
+            materialPrice
+          )}
+          onChange={(event) =>
+            changeBuyingAmountHandler(props.playerInfo, event)
+          }
+          ref={buyingAmount}
+        />
+        <div className={styles.prices}>
+          <p>Price: ${materialPrice} / 1t</p>
+          <p>Cost: ${currentBuyingCost}</p>
         </div>
-        <div className={styles.formContent}>
-          <label htmlFor="sellingAmount"></label>
-          <p>{currentSellingAmount}</p>
-          <input
-            type="range"
-            name="sellingAmount"
-            id="sellingAmount"
-            defaultValue="0"
-            min="0"
-            max={reduxStateInfo.playerMaterialAmount}
-            onChange={(event) =>
-              changeSellingAmountHandler(props.playerInfo, event)
-            }
-            ref={sellingAmount}
-          />
-          <div className={styles.prices}>
-            <p>Price: ${materialPrice - materialPrice * 0.2} / 1t</p>
-            <p>Income: ${currentSellingIncome}</p>
-          </div>
-          <ButtonSell btnFunction={handleShopActionSell} />
+        <ButtonBuy btnFunction={handleShopActionBuy} />
+      </div>
+      <div className={styles.formContent}>
+        <label htmlFor="sellingAmount"></label>
+        <p>{currentSellingAmount}</p>
+        <input
+          type="range"
+          name="sellingAmount"
+          id="sellingAmount"
+          defaultValue="0"
+          min="0"
+          max={reduxStateInfo.playerMaterialAmount}
+          onChange={(event) =>
+            changeSellingAmountHandler(props.playerInfo, event)
+          }
+          ref={sellingAmount}
+        />
+        <div className={styles.prices}>
+          <p>Price: ${materialPrice - materialPrice * 0.2} / 1t</p>
+          <p>Income: ${currentSellingIncome}</p>
         </div>
-      </form>{" "}
-    </div>
+        <ButtonSell btnFunction={handleShopActionSell} />
+      </div>
+    </form>
   );
 }
 
