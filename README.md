@@ -1,4 +1,5 @@
-<h3 aling="center">To start this locally</h3>
+<h4 align="center">***Project isn't fully finished yet. Scroll down to read things I want to add and fix.***</h4>
+<h3>To start this locally</h3>
 
           git clone git@github.com:JLasek-git/Industrio.git
           cd Industrio
