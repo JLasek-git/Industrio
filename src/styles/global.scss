@@ -78,7 +78,7 @@ details {
     justify-content: center;
     align-items: center;
     border: $basic-border-thickness solid $color-delicate-yellow;
-    background-color: $color-grayish-blue;
+    background-color: $color-light-grayish-blue;
     margin-top: $basic-margin;
     padding: $basic-padding;
   }
@@ -95,15 +95,16 @@ details {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  background-color: $color-light-grayish-blue;
+  background-color: $color-grayish-blue;
   border: $basic-border-thickness solid $color-delicate-yellow;
   color: $color-delicate-yellow;
 
   & .dashboardInfoElement {
     width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: flex-start;
     cursor: pointer;
     margin: $basic-margin 0;
 
