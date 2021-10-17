@@ -45,7 +45,7 @@ function MaterialPanel({ ...props }) {
       <div className={styles.dashboardInfoElement}>
         <h2>Materials:</h2>
         {MATERIALS.map((material) => (
-          <span>
+          <span key={material.id}>
             {material.name}{" "}
             <span className={styles.elementQuantity}>
               {Math.floor(
@@ -66,7 +66,7 @@ function MaterialPanel({ ...props }) {
         {MACHINES.map((machine) => {
           if (props.playerInfo.equipment.machines[machine.id].owned > 0) {
             return (
-              <span>
+              <span key={machine.id}>
                 {machine.name}
                 <span className={styles.elementQuantity}>
                   {" "}

@@ -1,11 +1,15 @@
 @import "./settings.scss";
 
-@mixin stock-market-content {
-  width: 40%;
+@mixin shop-panels($width, $height) {
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  margin: 40px;
+  align-items: center;
+  flex-direction: column;
+  min-width: 500px;
+  min-height: 600px;
+  margin: $basic-margin;
+  border: $basic-border-thickness solid $color-delicate-yellow;
+  background-color: $color-grayish-blue;
 }
 
 @mixin buttons($bg-color, $font-color: black) {

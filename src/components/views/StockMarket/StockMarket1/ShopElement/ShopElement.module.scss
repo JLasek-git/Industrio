@@ -1,24 +1,20 @@
 @import "../../../../../styles/global.scss";
 
-.stockMarketElementContainer {
-  /* Styles for .stockMarketElementContainer in global.scss */
-  & .stockMarketContentWrapper {
-    /* Styles for .stockMarketContentWrapper in global.scss */
-    & .formContent {
-      @include stock-market-content;
-      align-items: center;
-    }
+.stockMarketContentWrapper {
+  /* Styles for .stockMarketContentWrapper in global.scss */
+  & .formContent {
+    align-items: center;
+  }
 
-    & .prices {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 20px;
+  & .prices {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
 
-      & p {
-        margin: 0;
-      }
+    & p {
+      margin: 0;
     }
   }
 }
