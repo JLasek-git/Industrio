@@ -4,9 +4,8 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  width: calc(100% - 250px);
+  width: 100%;
   height: 100%;
-  border-left: $basic-border-thickness solid $color-light-gray;
 }
 
 @media (max-width: 1200px) {

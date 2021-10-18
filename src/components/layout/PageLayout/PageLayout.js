@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import styles from "./PageLayout.module.scss";
-import PageNav from "../PageNav/PageNav";
-import ProfilePanel from "../ProfilePanel/ProfilePanelContainer";
+import SideBarNav from "../SideBarNav/SideBarNavContainer";
 import Icon from "../../common/Icon/Icon";
+import OuterWindow from "../OuterWindow/OuterWindow";
+import InnerWindow from "../InnerWindow/InnerWindow";
 // import useWindowDimensions from "../../utils/utils";
 
-function PageLayout() {
+function PageLayout({ children }) {
   const [panels, isVisible] = useState(true);
 
   const showPanels = () => {
@@ -20,15 +21,17 @@ function PageLayout() {
         <div className={styles.yellowCircle}></div>
         <div className={styles.greenCircle}></div>
       </div>
+      <OuterWindow>
+        <InnerWindow>{children}</InnerWindow>
+      </OuterWindow>
       <div className={styles.hamburgerIconWrapper}>
         <div className={styles.hamburgerIcon} onClick={showPanels}>
-          <Icon name="bars" />
+          {panels === false ? <Icon name="bars" /> : <Icon name="times" />}
         </div>
       </div>
       {panels && (
         <div className={styles.leftPanels}>
-          <ProfilePanel closePanels={showPanels} />
-          <PageNav />
+          <SideBarNav closePanels={showPanels} />
         </div>
       )}
     </div>
