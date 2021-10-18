@@ -1,5 +1,5 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import MainLayout from "./components/layout/MainLayout/MainLayout";
+import PageLayout from "./components/layout/PageLayout/PageLayout";
 import Game from "./components/views/Game/GameContainer";
 import Store1 from "./components/views/Stores/Store1/MachineStore1Container";
 import Store2 from "./components/views/Stores/Store2/Store2";
@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <MainLayout>
+        <PageLayout>
           <Switch>
             <Route
               exact
@@ -38,7 +38,7 @@ function App() {
               component={StockMarket2}
             />
           </Switch>
-        </MainLayout>
+        </PageLayout>
       </BrowserRouter>
     </div>
   );

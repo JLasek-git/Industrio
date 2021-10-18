@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styles from "./Game.module.scss";
-import Section from "../../layout/Section/Section";
 import MagazinePanel from "./MagazinePanel/MagazinePanelContainer";
 import MachinesPanel from "./MachinePanel/MachinesPanelContainer";
 import Backdrop from "./Backdrop/Backdrop";
@@ -26,17 +25,17 @@ const Game = ({ ...props }) => {
   };
 
   return (
-    <Section>
+    <>
       {alertBoxIsVisible && <AlertBox handleError={handleError} />}
+      {backdrop && (
+        <Backdrop hideProductionSettings={productionSettingsBackdrop} />
+      )}
       <div className={styles.gameContainer}>
         <MachinesPanel showProductionSettings={productionSettingsBackdrop} />
         <MagazinePanel />
         <WorkersPanel />
-        {backdrop && (
-          <Backdrop hideProductionSettings={productionSettingsBackdrop} />
-        )}
       </div>
-    </Section>
+    </>
   );
 };
 

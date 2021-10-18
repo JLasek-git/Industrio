@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import Section from "../../../layout/Section/Section";
 import StoreMachine from "./StoreMachine/StoreMachineContainer";
-import InnerWindow from "../../../layout/InnerWindow/InnerWindow";
-import OuterWindow from "../../../layout/OuterWindow/OuterWindow";
 import MACHINES from "../../../../data/machinesPreTreatment.json";
 import AlertBox from "../../../common/AlertBox/AlertBoxContainer";
 import SuccessBox from "../../../common/SuccessBox/SuccessBoxContainer";
@@ -21,26 +18,22 @@ function Store1({ ...props }) {
   }
 
   return (
-    <Section>
-      <OuterWindow>
-        {warningIsVisible && <AlertBox handleError={handleError} />}
-        {successIsVisible && <SuccessBox handleSuccess={handleSuccess} />}
-        <InnerWindow>
-          {MACHINES.map((machine) => (
-            <StoreMachine
-              key={machine.id}
-              machineImg={machine.img}
-              machineStateName={machine.id}
-              machinePrice={machine.price}
-              machineName={machine.name}
-              machineRequirement={machine.requirement}
-              handleError={handleError}
-              handleSuccess={handleSuccess}
-            />
-          ))}
-        </InnerWindow>
-      </OuterWindow>
-    </Section>
+    <>
+      {warningIsVisible && <AlertBox handleError={handleError} />}
+      {successIsVisible && <SuccessBox handleSuccess={handleSuccess} />}
+      {MACHINES.map((machine) => (
+        <StoreMachine
+          key={machine.id}
+          machineImg={machine.img}
+          machineStateName={machine.id}
+          machinePrice={machine.price}
+          machineName={machine.name}
+          machineRequirement={machine.requirement}
+          handleError={handleError}
+          handleSuccess={handleSuccess}
+        />
+      ))}
+    </>
   );
 }
 

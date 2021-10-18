@@ -1,6 +1,5 @@
 @import "./settings.scss";
 @import "./mixins.scss";
-@import "./mediaqueries.scss";
 
 *,
 *::before,
@@ -88,7 +87,6 @@ details {
 .dashboardInfoContainer {
   cursor: default;
   width: 30%;
-  min-height: 20%;
   padding: $basic-padding;
   margin: $basic-margin;
   display: flex;
@@ -115,6 +113,13 @@ details {
       justify-content: space-between;
       margin: $basic-margin 0 0;
     }
+  }
+}
+
+@media (max-width: 1200px) {
+  .dashboardInfoContainer {
+    min-width: 80vw;
+    margin-bottom: 40px;
   }
 }
 
