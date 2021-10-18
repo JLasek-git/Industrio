@@ -1,0 +1,104 @@
+@import "../../../styles/global.scss";
+
+.sidePanel {
+  position: absolute;
+  left: 0;
+  top: 20px;
+  z-index: 11;
+
+  & .profilePanel {
+    padding: $basic-padding;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $color-dark-gray;
+    border-bottom: $basic-border-thickness solid $color-light-gray;
+    width: 100%;
+    height: 20%;
+    color: $color-delicate-yellow;
+
+    & .avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: $basic-border-thickness solid $color-light-gray;
+
+      & img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+    }
+
+    & .playerInfo {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      & .experience {
+        cursor: pointer;
+        width: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $color-dark-gray;
+        border-radius: $basic-radius;
+
+        & .experienceAmount {
+          display: none;
+        }
+
+        &:hover .experienceAmount {
+          display: block;
+        }
+
+        &:hover .levelInfo {
+          display: none;
+        }
+      }
+    }
+
+    & .closeBtn {
+      display: none;
+    }
+  }
+
+  & .mainNavBar {
+    height: 100vh;
+    background-color: $color-dark-gray;
+
+    & .resetBtnContainer {
+      height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .sidePanel {
+    width: 100vw;
+    top: 0;
+    & .profilePanel {
+      & .closeBtn {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 2%;
+        font-size: 32px;
+      }
+    }
+
+    & .mainNavBar {
+      & .resetBtnContainer {
+        flex-direction: column;
+        justify-content: flex-start;
+        margin-top: 10px;
+      }
+    }
+  }
+}
