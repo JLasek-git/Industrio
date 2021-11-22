@@ -10,6 +10,7 @@
   margin: $basic-margin;
   border: $basic-border-thickness solid $color-delicate-yellow;
   background-color: $color-grayish-blue;
+  border-radius: 15px;
 }
 
 @mixin buttons($bg-color, $font-color: black) {

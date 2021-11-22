@@ -10,7 +10,8 @@
   align-items: center;
   background-color: $color-light-grayish-blue;
   border: $basic-border-thickness solid $color-delicate-yellow;
-  overflow-y: scroll;
+  overflow-y: auto;
+  border-radius: 15px;
 
   & > * {
     height: 40%;
