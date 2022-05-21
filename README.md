@@ -1,7 +1,7 @@
 <h4 align="center">***Project isn't fully finished yet. Scroll down to read things I want to add and fix.***</h4>
 <h3>To start this locally</h3>
 
-          git clone git@github.com:JLasek-git/Industrio.git
+          git clone https://github.com/JLasek-git/Industrio.git
           cd Industrio
           npm install
           npm run start
@@ -11,6 +11,16 @@ If there's any problem with "npm install" just delete package-lock.json before n
 You can check this project on heroku: https://murmuring-plateau-49512.herokuapp.com/panel/game
 
 <h1 align="center">Project info</h1>
+
+<h4 align="center">Hi! I'm glad you're here. This is "Industrio", one of my first projects.</h6>
+<p>I've always been huge fan of web browser games, so I've decided to make one by myself. Game isn't big, but coding Industrio taught me a lot. Especially about React and Redux. I haven't used any materials libraries, so every component was made entirely by myself.</p> 
+
+<h4 align="center"> What player can do in Industrio? </h6>
+
+<p>Industrio is a game, where player becomes the owner of a metallurgical plant. He can buy new machines, expand the warehouse and hire employees which can improve production results.</p> 
+
+<br />
+<br />
 
 <h3> Things I made in this project: </h3>
   
@@ -48,6 +58,4 @@ You can check this project on heroku: https://murmuring-plateau-49512.herokuapp.
           - Dynamic generation of employees stats
           - Graphs showing the player stats such as money balance etc.
       
-<h1 align="center">Short description</h1>
 
-Industrio is a game, where player becomes the owner of a metallurgical plant. He can buy new machines, expand the warehouse and hire employees who improve production results. 
